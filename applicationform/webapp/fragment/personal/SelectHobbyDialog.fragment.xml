@@ -1,0 +1,30 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <SelectDialog
+        title="{i18n>PersonalInformationChooseHobby}"
+        busyIndicatorDelay="0"
+        showClearButton="true"
+        contentHeight="40%"
+        contentWidth="40%"
+        multiSelect="true"
+        growingThreshold="20"
+        items="{
+            path: 'HobbyList>/results',
+            sorter: [{
+                path: 'name',
+                descending: false
+            }]
+        }"
+        search=".onGeneralSelectDialogSearch"
+        confirm=".onHobbySelectConfirm"
+        cancel=".onGeneralSelectDialogCancel"
+        class="sapUiResponsivePadding--header sapUiResponsivePadding--subHeader sapUiResponsivePadding--footer"
+    >
+        <StandardListItem
+            title="{HobbyList>name}"
+            type="Active"
+        />
+    </SelectDialog>
+</core:FragmentDefinition>

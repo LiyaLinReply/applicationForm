@@ -1,7 +1,12 @@
-sap.ui.define([
-    "sap/ui/core/UIComponent",
-    "applicationform/model/models"
-], (UIComponent, models) => {
+sap.ui.define(
+    [
+        "sap/ui/core/UIComponent",
+        "sap/ui/Device",
+        "sap/ui/model/json/JSONModel",
+        "sap/m/MessageBox",
+        "sap/ui/export/Spreadsheet"
+    ],
+    function (UIComponent, Device, JSONModel, MessageBox) {
     "use strict";
 
     return UIComponent.extend("applicationform.Component", {
@@ -13,14 +18,19 @@ sap.ui.define([
         },
 
         init() {
+            console.log("You are in the component");
+            const _this = this;
             // call the base component's init function
-            UIComponent.prototype.init.apply(this, arguments);
+            UIComponent.prototype.init.apply(_this, arguments);
 
             // set the device model
-            this.setModel(models.createDeviceModel(), "device");
+            // _this.setModel(models.createDeviceModel(), "device");
 
             // enable routing
-            this.getRouter().initialize();
+            _this.getRouter().initialize();
+            const location = String(window.location.hash);
+            console.log("The location is ", location);
+            _this.getRouter().navTo("ApplicationForm");
         }
     });
 });

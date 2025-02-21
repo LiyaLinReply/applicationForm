@@ -1,0 +1,85 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog 
+        busyIndicatorDelay="0"
+        busy="{ApplicationFormInfo>/busy}"
+        title="{i18n>AcademicInfoCourseSecondCourseChoice}"
+        contentWidth="70%"
+        contentHeight="70%"
+        afterClose="onDialogSecondCourseChoiceClose">
+
+		<Table
+			id="secondChoiceCourseTable"
+			items="{
+				path: 'CourseList>/results'
+			}"
+			sticky="ColumnHeaders"
+		>
+			<headerToolbar>
+				<OverflowToolbar>
+					<ToolbarSpacer />
+					<SearchField width="40%" search="onSearchSecondCourseName" />
+					<Select maxWidth="40%" forceSelection="false"
+						change="onFilterSecondCourseCredit" 
+						items="{
+							path: 'CourseCreditChoose>/results'
+						}" 
+						width="100%">
+						<core:Item key="{CourseCreditChoose>name}" text="{CourseCreditChoose>name}"/>
+					</Select>
+				</OverflowToolbar>
+			</headerToolbar>
+			<columns>
+				<Column>
+					
+				</Column>
+				<Column>
+					<Text text="{i18n>AcademicInfoCourseSelectionIdentificationCode}" />
+				</Column>
+				<Column>
+					<Text text="{i18n>AcademicInfoCourseSelectionCourseName}" />
+				</Column>
+				<Column>
+					<Text text="{i18n>AcademicInfoCourseSelectionCreditNumber}" />
+				</Column>
+				<Column>
+					<Text text="{i18n>AcademicInfoCourseSelectionDepartment}" />
+				</Column>
+				<Column>
+					<Text text="{i18n>AcademicInfoCourseSelectionDocumentLink}" />
+				</Column>
+				<Column>
+					<Text text="{i18n>AcademicInfoCourseSelectionNote}" />
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<CheckBox editable="{= ${CourseList>isConstrained} === false &amp;&amp; ${CourseList>isFirstConfirmed} === false}" selected="{CourseList>isSecondSelected}" select="onSecondCourseChoiceCheckBoxSelect"/>
+						<Text text="{CourseList>courseIdentificationCode}"/>
+						<Text text="{CourseList>courseName}"/>
+						<Text text="{CourseList>courseCredit}"/>
+						<Text text="{CourseList>courseDepartmentNames}"/>
+						<Text text="{CourseList>courseDocumentLink}"/>
+						<Text text="{CourseList>courseNote}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<footer>
+			<Toolbar>
+				<content>
+					<ToolbarSpacer />
+					<Button type="Accept"
+							text="{i18n>generalTextSave}"
+							press="onSecondCourseChoiceConfirm" />
+					<Button 
+						text="{i18n>generalTextCancel}"
+						press="onDialogSecondCourseChoiceClose"
+						 />
+				</content>
+			</Toolbar>
+		</footer>
+	</Dialog>
+</core:FragmentDefinition>

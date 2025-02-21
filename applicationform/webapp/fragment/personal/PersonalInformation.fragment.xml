@@ -1,0 +1,340 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:u="sap.ui.unified"
+>
+
+    <VBox  width="100%">
+        <VBox width="100%" class="sapUiContentPadding">
+            <Title class="sapUiSmallMarginBottom"  text="{i18n>PersonalInfoProgramSelection}" />
+            <HBox class="sapUiSmallMarginBottom"  justifyContent="SpaceBetween">
+                <VBox width="30%" >
+                    <Label text="{i18n>PersonalInfoSelectYourProgram}"/>
+                    <Select forceSelection="false"
+                        change="onChooseProgram($event, 'ProgramList')" 
+                        items="{
+                            path: 'ProgramList>/results'
+                        }" 
+                        width="100%">
+                        <core:Item key="{ProgramList>ID}" text="{ProgramList>name}"/>
+                    </Select>
+                </VBox>
+                <VBox width="30%" visible="{= ${ProgramChoice>/typeProgram} !== null}">
+                    <Label text="{i18n>PersonalInfoFacultyLedProgram}"/>
+                    <Select 
+                        forceSelection="false"
+                        visible="{ProgramChoice>/isFaculty}"
+                        change="onChooseProgram($event, 'FacultyProgramList')" 
+                        items="{
+                            path: 'FacultyProgramList>/results'
+                        }" 
+                        width="100%">
+                        <core:Item key="{FacultyProgramList>name}" text="{FacultyProgramList>name}"/>
+                    </Select>
+                </VBox>
+                <VBox width="30%">
+                </VBox>
+            </HBox>
+
+
+        </VBox>
+        <VBox  width="100%" class="sapUiContentPadding azureBackgroundColor">
+            <Title class="sapUiSmallMarginBottom"  text="{i18n>PersonalInfoTitle}" ></Title>
+            <HBox class="sapUiSmallMarginBottom"  justifyContent="SpaceBetween">
+                <VBox width="30%">
+                    <Label text="{i18n>PersonalInfoLegalFirstName}" />
+                    <Input value="{PersonalInfo>/firstName}" />
+                </VBox>
+                <VBox width="30%">
+                    <Label text="{i18n>PersonalInfoLegalLastName}" />
+                    <Input value="{PersonalInfo>/lastName}" />
+                </VBox>
+                <VBox width="30%">
+                    <Label text="{i18n>PersonalInfoPreferredFirstName}" />
+                    <Input value="{PersonalInfo>/preferredFirstName}" />
+                </VBox>
+            </HBox>
+            <HBox class="sapUiSmallMarginBottom"  justifyContent="SpaceBetween">
+                <VBox width="30%">
+                    <Label text="{i18n>generalTextPrimaryEmail}" />
+                    <Input value="{PersonalInfo>/primaryEmailAddress}" />
+                </VBox>
+                <VBox width="30%">
+                    <Label text="{i18n>generalTextAlternativeEmailAddress}" />
+                    <Input value="{PersonalInfo>/alternativeEmailAddress}" />
+                </VBox>
+                <VBox width="30%">
+                    <Label text="{i18n>PersonalInfoSexOnPassport}" />
+                    <Select 
+                        forceSelection="false"
+                        change="onSelectSex" 
+                        items="{
+                            path: 'SexOnPassportList>/results'
+                        }" 
+                        width="100%">
+                        <core:Item key="{SexOnPassportList>ID}" text="{SexOnPassportList>sex}"/>
+                    </Select>
+                    <Text text="{i18n>PersonalInfoSexTIP}" wrapping="true" width="100%" />
+                </VBox>
+
+            </HBox>
+            <HBox class="sapUiSmallMarginBottom"  justifyContent="SpaceBetween">
+                <VBox width="30%">
+                    <Label text="{i18n>PersonalInfoGenderIdentity}" />
+                    <Input value="{PersonalInfo>/genderIdentity}" />
+                </VBox>
+                <VBox width="30%">
+                    <Label text="{i18n>PersonalInfoHomeInstitution}" />
+                    <Select forceSelection="false"
+                        change="onSelectUniversity" 
+                        items="{
+                            path: 'UniversityList>/results'
+                        }" 
+                        width="100%">
+                        <core:Item key="{UniversityList>ID}" text="{UniversityList>name}"/>
+                    </Select>
+                    <Input value="{PersonalInfoNotMandatory>/noteHomeInstituion}" visible="{=${PersonalInfo>/universityOther} === true}"/>
+                </VBox>
+                <VBox width="30%">
+                    <Label text="{i18n>PersonalInfoCountryCitizenship}" />
+                    <Select forceSelection="false"
+                        change="onSelectCountryCitizenship" 
+                        items="{
+                            path: 'CountryList>/results'
+                        }" 
+                        width="100%">
+                        <core:Item key="{CountryList>ID}" text="{CountryList>name}"/>
+                    </Select>
+                </VBox>
+            </HBox>
+            <HBox class="sapUiSmallMarginBottom"  justifyContent="SpaceBetween">
+                <VBox width="30%">
+                    <Label text="{i18n>PersonalInfoFirstLanguage}" />
+
+
+                    <Select 
+                        forceSelection="false"
+                        change="onSelectFirstLanguage" 
+                        items="{
+                            path: 'FirstLanguageList>/results'
+                        }" 
+                        width="100%">
+                        <core:Item key="{FirstLanguageList>ID}" text="{FirstLanguageList>name}"/>
+                    </Select>    
+                </VBox>
+                <VBox width="30%">
+                    <Label text="{i18n>PersonalInfoDateofBirth}" />
+                    <DatePicker
+                        width="100%"
+                        change="onDateofBirthChange"
+                        displayFormat="MM/dd/yyyy"
+                        value="{
+                            path: 'PersonalInfo>/dateBirth',
+                            type: 'sap.ui.model.type.Date',
+                            formatOptions: {
+                                pattern: 'MM/dd/yyyy',
+                                style: 'short',
+                                strictParsing: true,
+                                UTC: true
+                            }
+                        }" 
+                    />
+                </VBox>
+                <VBox width="30%">
+                    <Label text="{i18n>PersonalInfoCityOfBirth}" />
+                    <Input value="{PersonalInfo>/cityOfBirth}"/>
+                </VBox>
+
+            </HBox>
+            <HBox class="sapUiSmallMarginBottom"  justifyContent="SpaceBetween" >
+                <VBox width="30%">
+                    <Label text="{i18n>PersonalInfoStateofBirth}" />
+                    <Input value="{PersonalInfo>/stateOfBirth}"/>
+                </VBox>
+                <VBox width="30%">
+                    <Label text="{i18n>PersonalInfoCountryOfBirth}" />
+                    <Input value="{PersonalInfo>/countryOfBirth}"/>
+                </VBox>
+                <VBox width="30%">
+                    <Label text="{i18n>PersonalInfoMobilePhoneNumber}" />
+                    <HBox >
+                        <Select forceSelection="false" change="onSelectMobileNumberPrefix" class="sapUiSmallMarginEnd">
+                            <core:Item key="M" text="M"></core:Item>
+                            <core:Item key="F" text="F"></core:Item>
+                        </Select>
+                        <Input value="{PersonalInfo>/mobilePhoneNumber}"/>
+                    </HBox>
+
+                </VBox>
+
+            </HBox>
+
+            <HBox class="sapUiSmallMarginBottom" justifyContent="SpaceBetween" >
+                <VBox width="30%">
+                    <Label text="{i18n>PersonalInfoInstagramAccount}" />
+                    <Input value="{PersonalInfo>/emailAddress}" />
+                </VBox>
+                <VBox width="30%">
+                    <Label text="{i18n>PersonalInfoPassportNumber}" />
+                    <Input value="{PersonalInfo>/passportNumber}"/>
+                    <CheckBox text="{i18n>PersonalInformationPassportLater}" selected="{PersonalInfo>/passportLater}"/>
+
+                </VBox>
+                <VBox width="30%">
+                    <Label text="{i18n>PersonalInfoHowDidYouFind}" /> 
+
+                    <Select 
+                        forceSelection="false"
+                        change="onHowDidYoufindChange" 
+                        items="{
+                            path: 'FindOutList>/results'
+                        }" 
+                        width="100%">
+                        <core:Item key="{FindOutList>ID}" text="{FindOutList>source}"/>
+                    </Select>      
+                </VBox>
+            
+             </HBox>
+
+            <HBox class="sapUiSmallMarginBottom"  justifyContent="SpaceBetween" >
+                <VBox width="30%">
+                    <Label text="{i18n>PersonalInformationItalianQuestion}" />
+                    <HBox justifyContent="Start">
+                        <CheckBox text="yes" selected="{PersonalInfo>/isItaloAmerican}"/>
+                        <CheckBox text="no" selected="{=!${PersonalInfo>/isItaloAmerican}}" select="onGeneralCheckBoxNoPress('isItaloAmerican', 'PersonalInfo')"/>
+                    </HBox>
+                </VBox>
+                <VBox width="30%">
+                    <Label text="{i18n>PersonalInformationNIAFQuestion}" />
+                    <HBox justifyContent="Start">
+                        <CheckBox text="yes" selected="{PersonalInfo>/isMemberOfNiaf}"/>
+                        <CheckBox text="no" selected="{= !${PersonalInfo>/isMemberOfNiaf}}" select="onGeneralCheckBoxNoPress('isMemberOfNiaf', 'PersonalInfo')"/>
+                    </HBox>
+                </VBox>
+                <VBox width="30%">
+                    <Label text="{i18n>PersonalInformationOSDIAQuestion}" />
+                    <HBox justifyContent="Start">
+                        <CheckBox text="yes" selected="{PersonalInfo>/isMemberOfOsdia}"/>
+                        <CheckBox text="no" selected="{= !${PersonalInfo>/isMemberOfOsdia}}" select="onGeneralCheckBoxNoPress('isMemberOfOsdia', 'PersonalInfo')"/>
+                    </HBox>    
+                </VBox>
+            </HBox>
+
+            <Panel class="sapUiSmallMarginBottom dragDropArea" id="dropArea">
+                <VBox justifyContent="Center" alignItems="Center" id="dropZone">
+                    <core:Icon src="sap-icon://upload"/>
+                    <HBox >
+                        <u:FileUploader id="passportFileUploader" change="onPassportUpload" value="{passportUpload>/filename}"></u:FileUploader>
+                        <Button visible="{passportUpload>/uploadedPassport}" text="x" type="Emphasized" press="onClickRemovePassport"/>
+                    </HBox>
+                    <Text text="{i18n>generalTextSupportedFormat}" />
+                </VBox>
+
+            </Panel>
+
+        </VBox>
+
+
+
+        <VBox width="100%" class="sapUiContentPadding sapUiSmallMarginBottom">
+            <Title class="sapUiSmallMarginBottom"  text="{i18n>PersonalInformationPermanentAddressTitle}" />
+            <HBox class="sapUiSmallMarginBottom"  justifyContent="SpaceBetween">
+                <VBox width="30%" >
+                    <Label  text="{i18n>PersonalInformationAddressStreet}"/>
+                    <Input value="{PermanentAddressInfo>/street}"/>
+                </VBox>
+                <VBox width="30%">
+                    <Label  text="{i18n>PersonalInformationAddressCity}"/>
+                    <Input value="{PermanentAddressInfo>/city}"/>
+                </VBox>
+                <VBox width="30%">
+                    <Label  text="{i18n>PersonalInformationAddressState}"/>
+                    <Input value="{PermanentAddressInfo>/state}"/>
+                </VBox>
+            </HBox>
+            <HBox class="sapUiSmallMarginBottom"  justifyContent="SpaceBetween">
+                <VBox width="30%" >
+                    <Label  text="{i18n>PersonalInformationAddressZipCode}"/>
+                    <Input value="{PermanentAddressInfo>/zipcode}"/>
+                </VBox>
+                <VBox width="30%">
+                    <Label  text="{i18n>PersonalInformationAddressCountry}"/>
+                    <Input value="{PermanentAddressInfo>/country}"/>
+                </VBox>
+                <VBox width="30%">
+                </VBox>
+            </HBox>
+
+
+        </VBox>
+
+        <VBox width="100%" class="sapUiContentPadding sapUiSmallMarginBottom">
+            <Title class="sapUiSmallMarginBottom"  text="{i18n>PersonalInformationEmergencyContact}" />
+            <HBox class="sapUiSmallMarginBottom"  justifyContent="SpaceBetween">
+                <VBox width="30%" >
+                    <Label  text="{i18n>PersonalInformationGuardianName}"/>
+                    <Input value="{PersonalInfo>/guardianName}"/>
+                </VBox>
+                <VBox width="30%">
+                    <Label  text="{i18n>PersonalInformationRelationShip}"/>
+                    <Input value="{PersonalInfo>/relationship}"/>
+                </VBox>
+                <VBox width="30%">
+                    <Label text="{i18n>PersonalInformationHomePhoneNumber}"/>
+                    <Input value="{PersonalInfoNotMandatory>/homePhoneParent}"/>
+                </VBox>
+            </HBox>
+            <HBox class="sapUiSmallMarginBottom"  justifyContent="SpaceBetween">
+                <VBox width="30%" >
+                    <Label  text="{i18n>PersonalInformationMobilePhoneNumber}"/>
+                    <Input value="{PersonalInfo>/mobilePhoneNumberParent}"/>
+                </VBox>
+                <VBox width="30%">
+                    <Label  text="{i18n>PersonalInformationEmailAddress}"/>
+                    <Input value="{PersonalInfo>/emailAddressParent}"/>
+                </VBox>
+                <VBox width="30%">
+                    <Label  text="{i18n>PersonalInformationPermanentAddress}"/>
+                    <TextArea width="100%" rows="3" value="{PersonalInfo>/permanentAddressParent}"/>
+                </VBox>
+            </HBox>
+        </VBox>
+
+        <VBox width="100%" class="azureBackgroundColor sapUiContentPadding sapUiSmallMarginBottom">
+            <Title class="sapUiSmallMarginBottom"  text="{i18n>generalTextAdditionalInfo}" />
+            <HBox class="sapUiSmallMarginBottom"  justifyContent="SpaceBetween">
+                <VBox width="30%" >
+                    <Label  wrapping="true" text="{i18n>PersonalInformationIsGreek}"/>
+                    <HBox justifyContent="Start">
+                        <CheckBox text="yes" selected="{PersonalInfo>/isGreeklife}"/>
+                        <CheckBox text="no" selected="{=!${PersonalInfo>/isGreeklife}}" select="onGeneralCheckBoxNoPress('isGreeklife', 'PersonalInfo')" />
+                    </HBox>
+                    <TextArea width="100%" visible="{PersonalInfo>/isGreeklife}" rows="3" value="{PersonalInfoNotMandatory>/noteGreeklife}"/>
+                </VBox>
+                <VBox width="30%">
+                    <Label  wrapping="true" text="{i18n>PersonalInformationIsClub}"/>
+                    <HBox justifyContent="Start">
+                        <CheckBox text="yes" selected="{PersonalInfo>/isClubs}"/>
+                        <CheckBox text="no" selected="{=!${PersonalInfo>/isClubs}}" select="onGeneralCheckBoxNoPress('isClubs', 'PersonalInfo')"/>
+                    </HBox>
+                    <TextArea  width="100%" visible="{PersonalInfo>/isClubs}" rows="3" value="{PersonalInfoNotMandatory>/noteClubs}"/>
+                    <Label  visible="{PersonalInfo>/isClubs}" wrapping="true" text="{i18n>PersonalInformationClubLeadership}"/>
+                    <TextArea   width="100%" visible="{PersonalInfo>/isClubs}" rows="3" value="{PersonalInfoNotMandatory>/leadershipExperience}"/>
+                </VBox>
+                <VBox width="30%">
+                    <Label  wrapping="true" text="{i18n>PersonalInformationHobby}"/>
+                    <Button text="ChooseHobbies" press="onChooseHobbiesPress"/>
+                    <TextArea width="100%" rows="3" visible="{=!${PersonalInfo>/isOtherHobby}}" enabled="false" value="{PersonalInfoNotMandatory>/choosedHobbies}" />
+                    <TextArea  width="100%" rows="3" visible="{=${PersonalInfo>/isOtherHobby} === true}" value="{PersonalInfoNotMandatory>/otherHobby}"/>
+                    <CheckBox text="Others" visible="{=${PersonalInfo>/isOtherHobby} === true}" selected="{PersonalInfoNotMandatory>/isUlteriorHobby}"/>
+                    <TextArea  width="100%" rows="3" visible="{=${PersonalInfoNotMandatory>/isUlteriorHobby} === true}" value="{PersonalInfoNotMandatory>/ulteriorHobby}"/>
+
+                </VBox>
+            </HBox>
+
+        </VBox>
+
+    </VBox>
+    
+</core:FragmentDefinition>

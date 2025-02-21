@@ -63,10 +63,20 @@
                     "bundleName": "applicationform.i18n.i18n"
                 }
             },
-            "": {
+            "applicationformDataModel": {
                 "dataSource": "mainService",
                 "preload": true,
-                "settings": {}
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true,
+                    "useBatch": false
+                  }            
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
             }
         },
         "resources": {
@@ -90,10 +100,17 @@
             },
             "routes": [
                 {
-                    "name": "RouteMainView",
-                    "pattern": ":?query:",
+                    "name": "MainView",
+                    "pattern": "MainView",
                     "target": [
                         "TargetMainView"
+                    ]
+                },
+                {
+                    "name": "ApplicationForm",
+                    "pattern": "ApplicationForm",
+                    "target": [
+                        "TargetApplicationFormView"
                     ]
                 }
             ],
@@ -101,6 +118,10 @@
                 "TargetMainView": {
                     "id": "MainView",
                     "name": "MainView"
+                },
+                "TargetApplicationFormView": {
+                    "id": "ApplicationForm",
+                    "name": "ApplicationForm"
                 }
             }
         },

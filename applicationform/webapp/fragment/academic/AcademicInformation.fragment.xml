@@ -1,0 +1,252 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:u="sap.ui.unified"
+	xmlns:dnd="sap.ui.core.dnd"
+>
+
+    <VBox width="100%">
+        <VBox width="100%" class="sapUiContentPadding">
+            <Title class="sapUiSmallMarginBottom"  text="{i18n>AcademicInfoTitle}" />
+            <HBox class="sapUiSmallMarginBottom"  justifyContent="SpaceBetween">
+                <VBox width="30%" >
+                    <Label  text="{i18n>AcademicInfoSelectYear}" wrapping="true"/>
+                    <Select 
+                        id="idAcademicSelectYear"
+                        forceSelection="false"
+                        change="onChooseAcademicInfo" 
+                        items="{
+                            path: 'YearSchoolList>/results'
+                        }" 
+                        width="100%">
+                        <core:Item key="{YearSchoolList>ID}" text="{YearSchoolList>academicYear}"/>
+                    </Select>
+                </VBox>
+                <VBox width="30%" >
+                    <Label  text="{i18n>AcademicInfoSelectMajorField}" />
+                    <Select 
+                        id="idAcademicSelectMajorField"
+                        forceSelection="false"
+                        change="onChooseMajorField" 
+                        items="{
+                            path: 'MajorFieldList>/results'
+                        }" 
+                        width="100%">
+                        <core:Item key="{MajorFieldList>ID}" text="{MajorFieldList>name}"/>
+                    </Select>
+                </VBox>
+                <VBox width="30%">
+                    <Label text="{i18n>AcademicInfoSelectMajor}" />
+                    <Input value="{AcademicInfo>/major}" />
+                </VBox>
+            </HBox>
+
+            <HBox class="sapUiSmallMarginBottom"  justifyContent="SpaceBetween">
+                <VBox width="30%">
+                    <Label text="{i18n>AcademicInfoSelectMinor}" />
+                    <Input value="{AcademicInfoNotMandatory>/minor}" />
+                </VBox>
+                <VBox width="30%">
+                    <Label text="{i18n>AcademicInfoSelectGPA}" />
+                    <Input value="{AcademicInfo>/gpa}" change="onGpaInputChange" liveChange="onGpaInputLiveChange"/>
+                </VBox>
+                <VBox width="30%">
+                    <Label text="{i18n>AcademicInfoSelectCredit}" />
+                    <Input value="{AcademicInfoNotMandatory>/creditHours}" type="Number"/>
+                </VBox>
+            </HBox>
+
+            <HBox class="sapUiSmallMarginBottom"  justifyContent="SpaceBetween">
+                <VBox width="30%">
+                    <Label text="{i18n>AcademicInfoSelectGraduationDate}" />
+                    <Select 
+                        id="idAcademicSelectGraduationDate"
+                        forceSelection="false"
+                        change="onChooseGraduationDate" 
+                        items="{
+                            path: 'GraduationDateList>/results'
+                        }" 
+                        width="100%">
+                        <core:Item key="{GraduationDateList>ID}" text="{GraduationDateList>year}"/>
+                    </Select>            
+                </VBox>
+                <VBox width="30%">
+                    <Label text="{i18n>AcademicInfoSelectLearningImpairment}" wrapping="true"/>
+                    <HBox justifyContent="Start">
+                        <CheckBox text="yes" selected="{AcademicInfo>/learningImpairments}"/>
+                        <CheckBox text="no" selected="{=!${AcademicInfo>/learningImpairments}}" select="onGeneralCheckBoxNoPress('learningImpairments', 'AcademicInfo')"/>
+                    </HBox>
+                    <TextArea rows="3" visible="{AcademicInfo>/learningImpairments}" value="{AcademicInfoNotMandatory>/noteLearningImpairments}"  />
+                    <u:FileUploader visible="{AcademicInfo>/learningImpairments}" id="impairmentsDocumentUpload" change="onUploadLearningImpairment" value="{AcademicInfoNotMandatory>/filename}"></u:FileUploader>
+                </VBox>
+                <VBox width="30%">
+                    <CheckBox visible="{= ${AcademicInfo>/internshipAvailable} === true &amp;&amp; ${AcademicInfo>/gpa} >= 3}" text="{i18n>AcademicInfoInternshipCheckBox}" selected="{AcademicInfo>/internshipRequest}"/>
+                    <Label visible="{= ${AcademicInfo>/internshipAvailable} === true &amp;&amp; ${AcademicInfo>/gpa} >= 3}" text="{i18n>AcademicInfoInternshipText}" wrapping="true" />
+                </VBox>
+            </HBox>
+
+        </VBox>
+
+        <VBox width="100%" class="sapUiContentPadding">
+            <Title class="sapUiSmallMarginBottom"  text="{i18n>AcademicInfoCourseSelection}" />
+            <HBox class="sapUiSmallMarginBottom"  justifyContent="SpaceBetween">
+                <VBox width="30%" >
+                    <Label  text="{i18n>AcademicInfoCourseCreditSelect}"/>
+                    <Select forceSelection="false"
+                        id="idAcademicSelectCredit"
+                        change="onChooseCourseCredit" 
+                        items="{
+                            path: 'CourseCreditChoose>/results'
+                        }" 
+                        width="100%">
+                        <core:Item key="{CourseCreditChoose>name}" text="{CourseCreditChoose>name}"/>
+                    </Select>
+                </VBox>
+                <VBox width="30%" >
+                </VBox>
+                <VBox width="30%">
+                </VBox>
+            </HBox>
+
+
+        </VBox>
+        <VBox width="100%" class="sapUiContentPadding azureBackgroundColor " >
+            <Title class="sapUiSmallMarginBottom"  text="{i18n>AcademicInfoCourseFirstCourseChoice}" />
+            <Panel  class="sapUiSmallMarginBottom panelBorder">
+                <VBox justifyContent="Center" alignItems="Center" >
+                        <Table
+                            items="{
+                                path: 'CourseList>/results',
+                                filters : [
+                                    { path : 'isFirstConfirmed', operator : 'EQ', value1 : '1'}
+                                ],
+                                sorter: {path: 'firstRank', descending: true}
+                            }"
+                            sticky="ColumnHeaders"
+                        >
+                        <headerToolbar>
+                            <OverflowToolbar>
+                                <ToolbarSpacer />
+                                <Button text="{i18n>AcademicInfoCourseSelectCourse}" press="onFirstCourseSelectPress"/>
+                            </OverflowToolbar>
+                        </headerToolbar>
+                            <columns>
+                                <Column>
+                                    <Text text="{i18n>AcademicInfoCourseSelectionIdentificationCode}" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>AcademicInfoCourseSelectionCourseName}" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>AcademicInfoCourseSelectionCreditNumber}" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>AcademicInfoCourseSelectionDepartment}" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>AcademicInfoCourseSelectionDocumentLink}" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>AcademicInfoCourseSelectionNote}" />
+                                </Column>
+                                <Column>
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{CourseList>courseIdentificationCode}"/>
+                                        <Text text="{CourseList>courseName}"/>
+                                        <Text text="{CourseList>courseCredit}"/>
+                                        <Text text="{CourseList>courseDepartmentNames}"/>
+                                        <Text text="{CourseList>courseDocumentLink}"/>
+                                        <Text text="{CourseList>courseNote}"/>
+                                        <Button icon="sap-icon://delete" press="onFirstCourseDeleteButtonPress"/>
+
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                            <dragDropConfig>
+                                <dnd:DragDropInfo
+                                    sourceAggregation="items"
+                                    targetAggregation="items"
+                                    dropPosition="Between"
+                                    drop="onDropFirstCourseTable"/>
+                            </dragDropConfig>
+                        </Table>
+
+                </VBox>
+            </Panel>
+        </VBox>
+
+        <VBox width="100%" class="sapUiContentPadding azureBackgroundColor " >
+            <Title class="sapUiSmallMarginBottom"  text="{i18n>AcademicInfoCourseSecondCourseChoice}" />
+            <Panel  class="sapUiSmallMarginBottom panelBorder">
+                <VBox justifyContent="Center" alignItems="Center" >
+                        <Table
+                            items="{
+                                path: 'CourseList>/results',
+                                filters : [
+                                    { path : 'isSecondConfirmed', operator : 'EQ', value1 : '1'}
+                                ],
+                                sorter: {path: 'secondRank', descending: true}
+                            }"
+                            sticky="ColumnHeaders"
+                        >
+                        <headerToolbar>
+                            <OverflowToolbar>
+                            <ToolbarSpacer />
+                            <Button text="{i18n>AcademicInfoCourseSelectCourse}" press="onSecondCourseSelectPress"/>
+                            </OverflowToolbar>
+                        </headerToolbar>
+                            <columns>
+                                <Column>
+                                    <Text text="{i18n>AcademicInfoCourseSelectionIdentificationCode}" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>AcademicInfoCourseSelectionCourseName}" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>AcademicInfoCourseSelectionCreditNumber}" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>AcademicInfoCourseSelectionDepartment}" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>AcademicInfoCourseSelectionDocumentLink}" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>AcademicInfoCourseSelectionNote}" />
+                                </Column>
+                                <Column>
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{CourseList>courseIdentificationCode}"/>
+                                        <Text text="{CourseList>courseName}"/>
+                                        <Text text="{CourseList>courseCredit}"/>
+                                        <Text text="{CourseList>courseDepartmentNames}"/>
+                                        <Text text="{CourseList>courseDocumentLink}"/>
+                                        <Text text="{CourseList>courseNote}"/>
+                                        <Button icon="sap-icon://delete" press="onSecondCourseDeleteButtonPress"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                            <dragDropConfig>
+                                <dnd:DragDropInfo
+                                    sourceAggregation="items"
+                                    targetAggregation="items"
+                                    dropPosition="Between"
+                                    drop="onDropSecondCourseTable"/>
+                            </dragDropConfig>
+                        </Table>
+                </VBox>
+            </Panel>
+        </VBox>
+    </VBox>
+
+    
+</core:FragmentDefinition>

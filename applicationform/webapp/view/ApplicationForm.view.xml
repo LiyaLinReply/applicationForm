@@ -1,0 +1,105 @@
+<mvc:View controllerName="applicationform.controller.ApplicationForm"
+    displayBlock="true"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:tnt="sap.tnt"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m">
+
+    <Page title="applicationForm" busy="{ApplicationFormInfo>/busy}">
+
+        <HBox width="100%" class="backgroundSideNavigation">
+            
+            <tnt:SideNavigation id="applicationFormSideNavigation" selectedKey="personal" expanded="true" >
+                <tnt:NavigationList class="fixedProperty" width="250px" itemSelect="onNavigationItemSelect">
+                    <tnt:NavigationListItem text="Personal informations" icon="sap-icon://customer" key="personal"/>
+                    <tnt:NavigationListItem text="Academic information" icon="sap-icon://education" key="academic"/>
+                    <tnt:NavigationListItem text="Internship" icon="sap-icon://basket" key="internship"/>
+                    <tnt:NavigationListItem text="Health and safety" icon="sap-icon://validate" key="health"/>
+                    <tnt:NavigationListItem text="Housing information" icon="sap-icon://home" key="housing"/>
+                    <tnt:NavigationListItem text="Documents" icon="sap-icon://document" key="document"/>
+                    <tnt:NavigationListItem text="Confirmation" icon="sap-icon://accept" key="confirmation"/>
+                </tnt:NavigationList>
+
+            </tnt:SideNavigation>
+
+
+            <FlexBox height="100%" width="100%" class="whiteBackground" visible="{= ${ApplicationFormInfo>/step} ==='personal'}">
+                <core:Fragment
+                            fragmentName="applicationform.fragment.personal.PersonalInformation"
+                            type="XML"
+                        />
+            </FlexBox>
+
+
+            <FlexBox height="100%" width="100%" class="whiteBackground" visible="{= ${ApplicationFormInfo>/step} ==='academic'}">
+
+                <core:Fragment
+                            fragmentName="applicationform.fragment.academic.AcademicInformation"
+                            type="XML"
+                        />
+            </FlexBox>
+
+
+            <FlexBox height="100%" width="100%" class="whiteBackground" visible="{= ${ApplicationFormInfo>/step} ==='confirmation'}">
+
+                <core:Fragment
+                            fragmentName="applicationform.fragment.confirmation.ConfirmationInformation"
+                            type="XML"
+                        />
+            </FlexBox>
+
+
+            <FlexBox height="100%" width="100%" class="whiteBackground" visible="{= ${ApplicationFormInfo>/step} ==='document'}">
+
+                <core:Fragment
+                            fragmentName="applicationform.fragment.document.DocumentInformation"
+                            type="XML"
+                        />
+            </FlexBox>
+
+
+            <FlexBox height="100%" width="100%" class="whiteBackground" visible="{= ${ApplicationFormInfo>/step} ==='health'}">
+
+                <core:Fragment
+                            fragmentName="applicationform.fragment.health.HealthInformation"
+                            type="XML"
+                        />
+
+            </FlexBox>
+
+
+            <FlexBox height="100%" width="100%" class="whiteBackground" visible="{= ${ApplicationFormInfo>/step} ==='housing'}">
+
+                <core:Fragment
+                            fragmentName="applicationform.fragment.housing.HousingInformation"
+                            type="XML"
+                        />
+            </FlexBox>
+
+            <FlexBox height="100%" width="100%" class="whiteBackground" visible="{= ${ApplicationFormInfo>/step} ==='internship'}">
+
+                <core:Fragment
+                            fragmentName="applicationform.fragment.internship.InternshipInformation"
+                            type="XML"
+                        />
+            </FlexBox>
+        </HBox>
+
+        <footer>
+            <OverflowToolbar enabled="{ChangeLogInfo>/isAdmin}">
+                <ToolbarSpacer/>
+                <Button text="{i18n>generalTextBack}"  press="onApplicationFormBackPress"/>
+                <Button text="{i18n>generalTextNext}" type="Reject" press="onApplicationFormNextPress"/>
+                
+                <Button text="{i18n>generalTextSave}" type="Emphasized" press="onApplicationFormSavePress"/>
+                <Button text="{Upload}" type="Emphasized" press="onApplicationUploadPressTest"/>
+                <!-- <Button text="{i18n>GenericCTAButtonDelete}" type="Reject" press="onDeleteLog" visible="{= !${ChangeLogInfo>/isEditing} }"/>
+                <Button text="{i18n>GenericCTAButtonEdit}"  press="onEditLog" visible="{= !${ChangeLogInfo>/isEditing} }"/>
+                <Button text="{i18n>GenericCTAButtonCancel}"  press="onCancelLog" visible="{ChangeLogInfo>/isEditing}" />
+                <Button text="{i18n>GenericCTAButtonCreate}" type="Emphasized" press="onNewChangeLogDialog" visible="{= !${ChangeLogInfo>/isEditing} }"/> -->
+            </OverflowToolbar>
+        </footer>
+    </Page>
+
+</mvc:View>

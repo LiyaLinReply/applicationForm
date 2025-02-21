@@ -16,6 +16,7 @@ sap.ui.define([
                 busy: true,
                 step : "personal",
                 loadAcademic : false,
+                loadHealth : false,
             });
 
             _this.setModel(applicationFormInfo, "ApplicationFormInfo");
@@ -82,6 +83,7 @@ sap.ui.define([
                     //     return;
                     // }
                     if(!_this._getInternship()){
+                        _this.JModelSetupHealth();
                         nextStep = "health";
                     }else{
                         _this.JModelSetupInternship();
@@ -717,6 +719,8 @@ sap.ui.define([
             _this.onDialogFirstCourseChoiceClose();
         },
 
+        
+
         onSecondCourseSelectPress : function (){
             const _this = this;
             const allCourses = _this.getModel("CourseList").getData();
@@ -977,7 +981,7 @@ sap.ui.define([
 		},
 
         onChooseLanguageProficiency : function(oEvent){
-            this.setPropertyBySelectKey("InternshipInfoNotMandatory", "italianLanguageProficiency_ID", oEvent);
+            this.setPropertyBySelectKey("InternshipInfoNotMandatory", "/italianLanguageProficiency_ID", oEvent);
         },
 
         _checkInternalshipRequired : function(){
@@ -988,11 +992,82 @@ sap.ui.define([
             }
 
             return true;
-        }
+        },
 
         //-----------------Internship ends--------------------------
 
+        //-----------------Health and safety start-----------------------
 
+        JModelSetupHealth : function(){
+            const _this = this;
+            
+            _this.getModel("ApplicationFormInfo").setProperty("/busy", true);
+
+            if(!_this.getModel("ApplicationFormInfo").getData().loadHealth){
+                const healthInfo = {
+                    foodAllergie_ID : null,
+                    otherAllergie_ID : null,
+                    medCond_ID : null
+                };
+
+                _this.setModel(new JSONModel({noteDietaryOther:false, foodAllergieYes:false, otherAllergieYes:false, medicalConditionYes:false}), "HealthInfoNotMandatory");
+    
+                _this.setModel(new JSONModel(healthInfo), "HealthInfo");
+    
+                _this.loadHealthData();
+            }
+
+        },
+
+        loadHealthData : function(){
+            const _this = this;
+            const promises = [_this.oDataGET(_this, "/DietaryPreference", "DietaryPreferenceList", "","", "DietaryPreferenceList").then((data) => {
+                data.results.push({preference:"other", isOther:true});
+                _this.setModel(new JSONModel(data), "DietaryPreferenceList");
+            }),
+            _this.oDataGET(_this, "/FoodAllergie", "FoodAllergieList", "", "","FoodAllergieList"),
+            _this.oDataGET(_this, "/OtherAllergie", "OtherAllergieList", "", "", "OtherAllergieList"),
+            _this.oDataGET(_this, "/MedicalCondition", "MedicalConditionList", "", "", "MedicalConditionList")];
+            Promise.all(promises).then().catch((err) => console.log(err)).finally(() => {
+                _this.getModel("ApplicationFormInfo").setProperty("/busy", false);
+            })
+        },
+
+        onChooseFoodAllergies : function(oEvent){
+            const _this = this;
+            _this.setPropertyBySelectKey("HealthInfo", "/foodAllergie_ID", oEvent);
+            if(oEvent.getSource().getSelectedItem().getText().toLowerCase().includes("yes")){
+                _this.getModel("HealthInfoNotMandatory").setProperty("/foodAllergieYes", true);
+            }else{
+                _this.getModel("HealthInfoNotMandatory").setProperty("/foodAllergieYes", false);
+            }
+        },
+
+        onChooseOtherAllergies : function(oEvent){
+            const _this = this;
+            _this.setPropertyBySelectKey("HealthInfo", "/medCond_ID", oEvent);
+            if(oEvent.getSource().getSelectedItem().getText().toLowerCase().includes("yes")){
+                _this.getModel("HealthInfoNotMandatory").setProperty("/otherAllergieYes", true);
+            }else{
+                _this.getModel("HealthInfoNotMandatory").setProperty("/otherAllergieYes", false);
+            }
+        },
+
+        onChooseHealthImpairments : function(oEvent){
+            const _this = this;
+            _this.setPropertyBySelectKey("HealthInfo", "/foodAllergie_ID", oEvent);
+            if(oEvent.getSource().getSelectedItem().getText().toLowerCase().includes("yes")){
+                _this.getModel("HealthInfoNotMandatory").setProperty("/medicalConditionYes", true);
+            }else{
+                _this.getModel("HealthInfoNotMandatory").setProperty("/medicalConditionYes", false);
+            }
+        },
+
+        onSelectDietaryPreferencesButtonPress : function(){
+            const _this = this;
+        },
+
+        //-----------------Health and safety ends -------------------------------
         //-----------------shared --------------------
         onGeneralSelectDialogSearch : function(oEvent){
             const _this = this;

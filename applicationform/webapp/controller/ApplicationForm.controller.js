@@ -77,11 +77,15 @@ sap.ui.define([
                     _this.JModelSetupAcademicInfo();
                     break;
                 case "academic":
-                    if(!_this._checkAcademicRequired()){
-                        MessageToast.show(_this.getTextFor("GeneralTextNotAllFieldCompiled", []));
-                        return;
+                    // if(!_this._checkAcademicRequired()){
+                    //     MessageToast.show(_this.getTextFor("GeneralTextNotAllFieldCompiled", []));
+                    //     return;
+                    // }
+                    if(!_this._getInternship()){
+                        nextStep = "health";
+                    }else{
+                        nextStep = "internship";
                     }
-                    nextStep = "internship";
                     break;
                 case "internship":
                     nextStep = "health";
@@ -122,7 +126,11 @@ sap.ui.define([
                     nextStep = "academic";
                     break;
                 case "health":
-                    nextStep = "internship";
+                    if(!_this._getInternship()){
+                        nextStep = "academic";
+                    }else{
+                        nextStep = "internship";
+                    }
                     break;
                 case "housing":
                     nextStep = "health";
@@ -928,10 +936,6 @@ sap.ui.define([
         onGpaInputLiveChange : function(oEvent){
             const _this = this;
             const value = oEvent.getParameters().value;
-            if(value.includes(',')){
-                MessageToast.show(_this.getTextFor("AcademicInfoGPASpecialCharacter", []));
-                oEvent.getSource().setValue(value.replace(",", ""));
-            }
         },
 
 
@@ -973,6 +977,16 @@ sap.ui.define([
 
         onApplicationUploadPressTest : async function(){
             await this.postAttachment(this, this.oPassportFile,"/REST/v1/documents");
+        },
+
+        _getInternship : function(){
+            const _this = this;
+            const academicInfo = _this.getModel("AcademicInfo").getData();
+            if(academicInfo && academicInfo.gpa >= 3 && academicInfo.internshipAvailable && academicInfo.internshipRequest){
+                return true;
+            }
+
+            return false;
         },
 
     });

@@ -49,7 +49,7 @@
                 </VBox>
                 <VBox width="30%">
                     <Label text="{i18n>AcademicInfoSelectGPA}" />
-                    <Input value="{AcademicInfo>/gpa}" change="onGpaInputChange" liveChange="onGpaInputLiveChange"/>
+                    <Input value="{AcademicInfo>/gpa}" type="Number" change="onGpaInputChange" liveChange="onGpaInputLiveChange"/>
                 </VBox>
                 <VBox width="30%">
                     <Label text="{i18n>AcademicInfoSelectCredit}" />

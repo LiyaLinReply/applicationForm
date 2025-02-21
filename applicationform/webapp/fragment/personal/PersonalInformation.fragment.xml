@@ -158,12 +158,18 @@
                 </VBox>
                 <VBox width="30%">
                     <Label text="{i18n>PersonalInfoMobilePhoneNumber}" />
-                    <HBox >
-                        <Select forceSelection="false" change="onSelectMobileNumberPrefix" class="sapUiSmallMarginEnd">
-                            <core:Item key="M" text="M"></core:Item>
-                            <core:Item key="F" text="F"></core:Item>
-                        </Select>
-                        <Input value="{PersonalInfo>/mobilePhoneNumber}"/>
+                    <HBox renderType="Bare">
+
+                        <Select 
+                            forceSelection="false"
+                            change="onSelectMobileNumberPrefix" 
+                            items="{
+                                path: 'PrefixList>/results'
+                            }" 
+                           >
+                            <core:Item key="{PrefixList>prefix}" text="{PrefixList>prefix}"/>
+                        </Select>      
+                        <Input value="{PersonalInfo>/mobilePhoneNumber}" type="Tel"/>
                     </HBox>
 
                 </VBox>

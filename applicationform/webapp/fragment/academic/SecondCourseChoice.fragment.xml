@@ -19,8 +19,8 @@
 			<headerToolbar>
 				<OverflowToolbar>
 					<ToolbarSpacer />
-					<SearchField width="40%" search="onSearchSecondCourseName" />
-					<Select maxWidth="40%" forceSelection="false"
+					<SearchField width="30%" search="onSearchSecondCourseName" />
+					<Select maxWidth="30%" forceSelection="false"
 						change="onFilterSecondCourseCredit" 
 						items="{
 							path: 'CourseCreditChoose>/results'

@@ -336,11 +336,11 @@ sap.ui.define([
             const fileName = storedFile.name;
             let attachmentID = "";
 
-            await _this.attachmentUploadFile(_this, storedFile, path).then(async (docID) => {
+            await _this.attachmentUploadFile(_this, storedFile, path).then(async (doc) => {
                 const attachment = {
                     fileName: fileName,
                     isDeleted: false,
-                    guidAttachment_ID: docID
+                    guidAttachment_ID: doc.data
                 };
                 return await _this.oDataPOST(_this, "/Attachment", attachment, "Attachment").then((createdAttachment) => {
                     attachmentID = createdAttachment.ID;

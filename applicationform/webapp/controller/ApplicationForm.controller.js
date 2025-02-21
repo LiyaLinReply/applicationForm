@@ -5,8 +5,9 @@ sap.ui.define([
     "sap/m/ColumnListItem",
     "sap/ui/model/FilterOperator",
     "sap/ui/core/Fragment",
+    "sap/m/MessageBox",
     "sap/m/MessageToast",
-], function (BaseController, JSONModel, Filter, ColumnListItem, FilterOperator, Fragment, MessageToast) {
+], function (BaseController, JSONModel, Filter, ColumnListItem, FilterOperator, Fragment, MessageBox, MessageToast) {
     return BaseController.extend("applicationform.controller.ApplicationForm", {
         onInit: function () {
             const _this = this;
@@ -175,7 +176,9 @@ sap.ui.define([
             _this.oDataGET(_this, "/FindOut", "FindOutList", '', '', 'FindOutList').then((data) => {
             }),
             _this.oDataGET(_this, "/Country", "CountryList", '', '', "CountryList"),
-            _this.oDataGET(_this, "/FirstLanguage", "FirstLanguageList", '', '', "FirstLanguageList")];
+            _this.oDataGET(_this, "/FirstLanguage", "FirstLanguageList", '', '', "FirstLanguageList"),
+            _this.oDataGET(_this, "/Prefix", "PrefixList", "", "", "PrefixList")
+        ];
             Promise.all(
                 promises
             ).then((data) => {
@@ -523,7 +526,6 @@ sap.ui.define([
                 const academicInfo = {
                     major : null,
                     gpa : null,
-                    creditHours : null,
                     yearSchool_ID : null,
                     majorField_ID : null,
                     graduationDate_ID : null,
@@ -549,6 +551,7 @@ sap.ui.define([
         loadAcademicDatas: function(choosedProgram){
             const _this = this;
             const currentYear = new Date().getFullYear();
+
             const listOpe =                 [
                 _this.oDataGET(_this, "/ProgramCourse", "CourseList", [new Filter("program_ID", FilterOperator.EQ, choosedProgram.ID)], "", "CourseGet").then((course) => {
                     count = 0;
@@ -557,7 +560,7 @@ sap.ui.define([
                 _this.oDataGET(_this, "/CourseConstraint", "CourseConstraintList", "", "", "CourseConstraintList"),            
                 _this.oDataGET(_this, "/YearSchool", "YearSchoolList", "", "", "YearSchoolList"),
                 _this.oDataGET(_this, "/MajorField", "MajorFieldList", "", "", "MajorFieldList"),
-                _this.oDataGET(_this, "/GraduationDate", "GraduationDateList", [new Filter("year", FilterOperator.GE, currentYear)], "", "GraduationDateList")];
+                _this.oDataGET(_this, "/GraduationDate", "GraduationDateList", [new Filter("year", FilterOperator.GE, currentYear), new Filter("year", FilterOperator.LE, currentYear +5)], "", "GraduationDateList")];
             Promise.all(    
                 listOpe
             ).then((data) => {
@@ -596,10 +599,10 @@ sap.ui.define([
 
             const academicInfo = _this.getModel("AcademicInfo").getData();
 
-            if(academicInfo.courseCredit == null){
-                MessageToast.show(_this.getTextFor("GeneralTextNotAllFieldCompiled", []));
-                return;
-            }
+            // if(academicInfo.courseCredit == null){
+            //     MessageToast.show(_this.getTextFor("GeneralTextNotAllFieldCompiled", []));
+            //     return;
+            // }
 
             if(!_this._academicFirstChoice){
                 Fragment.load({
@@ -678,7 +681,15 @@ sap.ui.define([
 
             const program = _this.getModel("ProgramChoice").getData();
             if(count < program.minCredits || count > program.maxCredits){
-                MessageToast.show(_this.getTextFor("GeneralTextCreditOutofBounds", []));
+                const confirm = _this.getTextFor("generalTextOkayGotIt"),
+                canc = _this.getTextFor("generalTextCancel");
+                MessageBox.confirm(_this.getTextFor("AcademicCreditOutRange", []), {
+                actions: [canc, confirm],
+                onClose: sAction =>{
+                    if(sAction === confirm){
+                    }
+                }
+                });
                 return;
             }
 
@@ -904,6 +915,25 @@ sap.ui.define([
             return true && choosedFirstCourses;
         },
 
+        onGpaInputChange: function(oEvent) {
+			const _this = this;
+            const value = oEvent.getParameters().value;
+            if(value <= 2.5){
+                MessageToast.show(_this.getTextFor("AcademicGPANotEnough", []));
+            }
+            const academicInfo = _this.getModel("AcademicInfo").getData();
+            academicInfo.gpa = parseFloat(academicInfo.gpa);
+		},
+
+        onGpaInputLiveChange : function(oEvent){
+            const _this = this;
+            const value = oEvent.getParameters().value;
+            if(value.includes(',')){
+                MessageToast.show(_this.getTextFor("AcademicInfoGPASpecialCharacter", []));
+                oEvent.getSource().setValue(value.replace(",", ""));
+            }
+        },
+
 
         //-----------------Academic information endss--------------------------
 
@@ -944,25 +974,6 @@ sap.ui.define([
         onApplicationUploadPressTest : async function(){
             await this.postAttachment(this, this.oPassportFile,"/REST/v1/documents");
         },
-
-		onGpaInputChange: function(oEvent) {
-			const _this = this;
-            const value = oEvent.getParameters().value;
-            if(value <= 2.5){
-                MessageToast.show(_this.getTextFor("AcademicGPANotEnough", []));
-            }
-            const academicInfo = _this.getModel("AcademicInfo").getData();
-            academicInfo.gpa = parseFloat(academicInfo.gpa);
-		},
-
-        onGpaInputLiveChange : function(oEvent){
-            const _this = this;
-            const value = oEvent.getParameters().value;
-            if(value.includes(',')){
-                MessageToast.show(_this.getTextFor("AcademicInfoGPASpecialCharacter", []));
-                oEvent.getSource().setValue(value.replace(",", ""));
-            }
-        }
 
     });
 

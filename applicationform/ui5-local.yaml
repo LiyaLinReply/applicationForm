@@ -33,6 +33,9 @@ server:
           - path: /odata
             url: https://santanna-srv-dev.cfapps.eu20-001.hana.ondemand.com
             destination: SantAnnaCAP
+          - path: /REST
+            url: https://santanna-srv-dev.cfapps.eu20-001.hana.ondemand.com
+            destination: SantAnnaCAP
     - name: sap-fe-mockserver
       beforeMiddleware: csp
       configuration:

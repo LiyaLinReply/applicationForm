@@ -1,0 +1,3491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0"
+xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+xmlns:sap="http://www.sap.com/Protocols/SAPData">
+<edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml"
+xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+<edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+</edmx:Reference>
+<edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml"
+xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+<edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+</edmx:Reference>
+<edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml"
+xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+<edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+</edmx:Reference>
+<edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml"
+xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+<edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+</edmx:Reference>
+<edmx:DataServices m:DataServiceVersion="2.0">
+    <Schema Namespace="StudentService"
+    xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+    <Annotation Term="Core.Links"
+    xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Collection>
+        <Record>
+            <PropertyValue Property="rel" String="author"/>
+            <PropertyValue Property="href" String="https://cap.cloud.sap"/>
+        </Record>
+    </Collection>
+</Annotation>
+<EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
+    <EntitySet Name="Student" EntityType="StudentService.Student"/>
+    <EntitySet Name="StudentFullInfo" EntityType="StudentService.StudentFullInfo"/>
+    <EntitySet Name="Courses" EntityType="StudentService.Courses"/>
+    <EntitySet Name="Program" EntityType="StudentService.Program"/>
+    <EntitySet Name="Session" EntityType="StudentService.Session"/>
+    <EntitySet Name="StudentEmail" EntityType="StudentService.StudentEmail"/>
+    <EntitySet Name="EmailAddress" EntityType="StudentService.EmailAddress"/>
+    <EntitySet Name="ProgramWithoutSession" EntityType="StudentService.ProgramWithoutSession"/>
+    <EntitySet Name="CourseWithoutSession" EntityType="StudentService.CourseWithoutSession"/>
+    <EntitySet Name="StudentHobbie" EntityType="StudentService.StudentHobbie"/>
+    <EntitySet Name="AcademicInformation" EntityType="StudentService.AcademicInformation"/>
+    <EntitySet Name="StudentCourse" EntityType="StudentService.StudentCourse"/>
+    <EntitySet Name="Department" EntityType="StudentService.Department"/>
+    <EntitySet Name="CourseConstraint" EntityType="StudentService.CourseConstraint"/>
+    <EntitySet Name="CourseDepartment" EntityType="StudentService.CourseDepartment"/>
+    <EntitySet Name="Professor" EntityType="StudentService.Professor"/>
+    <EntitySet Name="CourseProfessor" EntityType="StudentService.CourseProfessor"/>
+    <EntitySet Name="ProgramCourse" EntityType="StudentService.ProgramCourse"/>
+    <EntitySet Name="SexOnPassport" EntityType="StudentService.SexOnPassport"/>
+    <EntitySet Name="FieldVisit" EntityType="StudentService.FieldVisit"/>
+    <EntitySet Name="FindOut" EntityType="StudentService.FindOut"/>
+    <EntitySet Name="University" EntityType="StudentService.University"/>
+    <EntitySet Name="Country" EntityType="StudentService.Country"/>
+    <EntitySet Name="Hobbie" EntityType="StudentService.Hobbie"/>
+    <EntitySet Name="YearSchool" EntityType="StudentService.YearSchool"/>
+    <EntitySet Name="MajorField" EntityType="StudentService.MajorField"/>
+    <EntitySet Name="GraduationDate" EntityType="StudentService.GraduationDate"/>
+    <EntitySet Name="Message" EntityType="StudentService.Message"/>
+    <EntitySet Name="CategoryMessage" EntityType="StudentService.CategoryMessage"/>
+    <EntitySet Name="TypeMessage" EntityType="StudentService.TypeMessage"/>
+    <EntitySet Name="StatusMessages" EntityType="StudentService.StatusMessages"/>
+    <EntitySet Name="InternShip" EntityType="StudentService.InternShip"/>
+    <EntitySet Name="FoodAllergie" EntityType="StudentService.FoodAllergie"/>
+    <EntitySet Name="OtherAllergie" EntityType="StudentService.OtherAllergie"/>
+    <EntitySet Name="MedicalCondition" EntityType="StudentService.MedicalCondition"/>
+    <EntitySet Name="DietaryPreference" EntityType="StudentService.DietaryPreference"/>
+    <EntitySet Name="HealthSafetyDietaryPreference" EntityType="StudentService.HealthSafetyDietaryPreference"/>
+    <EntitySet Name="HealthSafety" EntityType="StudentService.HealthSafety"/>
+    <EntitySet Name="StudentHousingPreferences" EntityType="StudentService.StudentHousingPreferences"/>
+    <EntitySet Name="HousingInformation" EntityType="StudentService.HousingInformation"/>
+    <EntitySet Name="TypeAccommodation" EntityType="StudentService.TypeAccommodation"/>
+    <EntitySet Name="RoommateRequest" EntityType="StudentService.RoommateRequest"/>
+    <EntitySet Name="StudentPrefRoomie" EntityType="StudentService.StudentPrefRoomie"/>
+    <EntitySet Name="RoomMatePref" EntityType="StudentService.RoomMatePref"/>
+    <EntitySet Name="priority" EntityType="StudentService.priority"/>
+    <EntitySet Name="Accomodation" EntityType="StudentService.Accomodation"/>
+    <EntitySet Name="Housing" EntityType="StudentService.Housing"/>
+    <EntitySet Name="Room" EntityType="StudentService.Room"/>
+    <EntitySet Name="BedAvailability" EntityType="StudentService.BedAvailability"/>
+    <EntitySet Name="StudentActivity" EntityType="StudentService.StudentActivity"/>
+    <EntitySet Name="MessageRecipient" EntityType="StudentService.MessageRecipient"/>
+    <EntitySet Name="GUIDAttachment" EntityType="StudentService.GUIDAttachment"/>
+    <EntitySet Name="Note" EntityType="StudentService.Note"/>
+    <EntitySet Name="FirstLanguage" EntityType="StudentService.FirstLanguage"/>
+    <EntitySet Name="ItalianLanguageProficiency" EntityType="StudentService.ItalianLanguageProficiency"/>
+    <EntitySet Name="PaymentStatus" EntityType="StudentService.PaymentStatus"/>
+    <EntitySet Name="PaymentType" EntityType="StudentService.PaymentType"/>
+    <EntitySet Name="Payment" EntityType="StudentService.Payment"/>
+    <EntitySet Name="AttachmentType" EntityType="StudentService.AttachmentType"/>
+    <EntitySet Name="AttachmentStatus" EntityType="StudentService.AttachmentStatus"/>
+    <EntitySet Name="Attachment" EntityType="StudentService.Attachment"/>
+    <EntitySet Name="PermanentAddress" EntityType="StudentService.PermanentAddress"/>
+    <EntitySet Name="Tidy" EntityType="StudentService.Tidy"/>
+    <EntitySet Name="Noise" EntityType="StudentService.Noise"/>
+    <EntitySet Name="BedTime" EntityType="StudentService.BedTime"/>
+    <EntitySet Name="StudyHabit" EntityType="StudentService.StudyHabit"/>
+    <EntitySet Name="Frequency" EntityType="StudentService.Frequency"/>
+    <EntitySet Name="Guest" EntityType="StudentService.Guest"/>
+    <EntitySet Name="BathroomCond" EntityType="StudentService.BathroomCond"/>
+    <EntitySet Name="StudentStatus" EntityType="StudentService.StudentStatus"/>
+    <EntitySet Name="Classroom" EntityType="StudentService.Classroom"/>
+    <EntitySet Name="Timeslot" EntityType="StudentService.Timeslot"/>
+    <EntitySet Name="ClassSchedule" EntityType="StudentService.ClassSchedule"/>
+    <EntitySet Name="EventProfessor" EntityType="StudentService.EventProfessor"/>
+    <EntitySet Name="Event" EntityType="StudentService.Event"/>
+    <EntitySet Name="Prefix" EntityType="StudentService.Prefix"/>
+    <EntitySet Name="Provider" EntityType="StudentService.Provider"/>
+    <AssociationSet Name="Student_studentStatus" Association="StudentService.Student_studentStatus">
+        <End Role="Student" EntitySet="Student"/>
+        <End Role="StudentStatus" EntitySet="StudentStatus"/>
+    </AssociationSet>
+    <AssociationSet Name="Student_sexOnPassport" Association="StudentService.Student_sexOnPassport">
+        <End Role="Student" EntitySet="Student"/>
+        <End Role="SexOnPassport" EntitySet="SexOnPassport"/>
+    </AssociationSet>
+    <AssociationSet Name="Student_program" Association="StudentService.Student_program">
+        <End Role="Student" EntitySet="Student"/>
+        <End Role="Program" EntitySet="Program"/>
+    </AssociationSet>
+    <AssociationSet Name="Student_university" Association="StudentService.Student_university">
+        <End Role="Student" EntitySet="Student"/>
+        <End Role="University" EntitySet="University"/>
+    </AssociationSet>
+    <AssociationSet Name="Student_provider" Association="StudentService.Student_provider">
+        <End Role="Student" EntitySet="Student"/>
+        <End Role="Provider" EntitySet="Provider"/>
+    </AssociationSet>
+    <AssociationSet Name="Student_findOut" Association="StudentService.Student_findOut">
+        <End Role="Student" EntitySet="Student"/>
+        <End Role="FindOut" EntitySet="FindOut"/>
+    </AssociationSet>
+    <AssociationSet Name="Student_permanentAddress" Association="StudentService.Student_permanentAddress">
+        <End Role="Student" EntitySet="Student"/>
+        <End Role="PermanentAddress" EntitySet="PermanentAddress"/>
+    </AssociationSet>
+    <AssociationSet Name="Student_country" Association="StudentService.Student_country">
+        <End Role="Student" EntitySet="Student"/>
+        <End Role="Country" EntitySet="Country"/>
+    </AssociationSet>
+    <AssociationSet Name="Student_firstLanguage" Association="StudentService.Student_firstLanguage">
+        <End Role="Student" EntitySet="Student"/>
+        <End Role="FirstLanguage" EntitySet="FirstLanguage"/>
+    </AssociationSet>
+    <AssociationSet Name="Student_prefix" Association="StudentService.Student_prefix">
+        <End Role="Student" EntitySet="Student"/>
+        <End Role="Prefix" EntitySet="Prefix"/>
+    </AssociationSet>
+    <AssociationSet Name="Student_studentEmails" Association="StudentService.Student_studentEmails">
+        <End Role="Student" EntitySet="Student"/>
+        <End Role="StudentEmail" EntitySet="StudentEmail"/>
+    </AssociationSet>
+    <AssociationSet Name="Student_studentHobbies" Association="StudentService.Student_studentHobbies">
+        <End Role="Student" EntitySet="Student"/>
+        <End Role="StudentHobbie" EntitySet="StudentHobbie"/>
+    </AssociationSet>
+    <AssociationSet Name="Student_attachments" Association="StudentService.Student_attachments">
+        <End Role="Student" EntitySet="Student"/>
+        <End Role="Attachment" EntitySet="Attachment"/>
+    </AssociationSet>
+    <AssociationSet Name="Student_studentCourses" Association="StudentService.Student_studentCourses">
+        <End Role="Student" EntitySet="Student"/>
+        <End Role="StudentCourse" EntitySet="StudentCourse"/>
+    </AssociationSet>
+    <AssociationSet Name="Student_notes" Association="StudentService.Student_notes">
+        <End Role="Student" EntitySet="Student"/>
+        <End Role="Note" EntitySet="Note"/>
+    </AssociationSet>
+    <AssociationSet Name="Student_studentActivities" Association="StudentService.Student_studentActivities">
+        <End Role="Student" EntitySet="Student"/>
+        <End Role="StudentActivity" EntitySet="StudentActivity"/>
+    </AssociationSet>
+    <AssociationSet Name="Student_messageRecipients" Association="StudentService.Student_messageRecipients">
+        <End Role="Student" EntitySet="Student"/>
+        <End Role="MessageRecipient" EntitySet="MessageRecipient"/>
+    </AssociationSet>
+    <AssociationSet Name="Student_housingInformations" Association="StudentService.Student_housingInformations">
+        <End Role="Student" EntitySet="Student"/>
+        <End Role="HousingInformation" EntitySet="HousingInformation"/>
+    </AssociationSet>
+    <AssociationSet Name="StudentFullInfo_studentStatus" Association="StudentService.StudentFullInfo_studentStatus">
+        <End Role="StudentFullInfo" EntitySet="StudentFullInfo"/>
+        <End Role="StudentStatus" EntitySet="StudentStatus"/>
+    </AssociationSet>
+    <AssociationSet Name="StudentFullInfo_program" Association="StudentService.StudentFullInfo_program">
+        <End Role="StudentFullInfo" EntitySet="StudentFullInfo"/>
+        <End Role="Program" EntitySet="Program"/>
+    </AssociationSet>
+    <AssociationSet Name="StudentFullInfo_university" Association="StudentService.StudentFullInfo_university">
+        <End Role="StudentFullInfo" EntitySet="StudentFullInfo"/>
+        <End Role="University" EntitySet="University"/>
+    </AssociationSet>
+    <AssociationSet Name="StudentFullInfo_provider" Association="StudentService.StudentFullInfo_provider">
+        <End Role="StudentFullInfo" EntitySet="StudentFullInfo"/>
+        <End Role="Provider" EntitySet="Provider"/>
+    </AssociationSet>
+    <AssociationSet Name="StudentFullInfo_findOut" Association="StudentService.StudentFullInfo_findOut">
+        <End Role="StudentFullInfo" EntitySet="StudentFullInfo"/>
+        <End Role="FindOut" EntitySet="FindOut"/>
+    </AssociationSet>
+    <AssociationSet Name="StudentFullInfo_permanentAddress" Association="StudentService.StudentFullInfo_permanentAddress">
+        <End Role="StudentFullInfo" EntitySet="StudentFullInfo"/>
+        <End Role="PermanentAddress" EntitySet="PermanentAddress"/>
+    </AssociationSet>
+    <AssociationSet Name="StudentFullInfo_country" Association="StudentService.StudentFullInfo_country">
+        <End Role="StudentFullInfo" EntitySet="StudentFullInfo"/>
+        <End Role="Country" EntitySet="Country"/>
+    </AssociationSet>
+    <AssociationSet Name="StudentFullInfo_firstLanguage" Association="StudentService.StudentFullInfo_firstLanguage">
+        <End Role="StudentFullInfo" EntitySet="StudentFullInfo"/>
+        <End Role="FirstLanguage" EntitySet="FirstLanguage"/>
+    </AssociationSet>
+    <AssociationSet Name="StudentFullInfo_prefix" Association="StudentService.StudentFullInfo_prefix">
+        <End Role="StudentFullInfo" EntitySet="StudentFullInfo"/>
+        <End Role="Prefix" EntitySet="Prefix"/>
+    </AssociationSet>
+    <AssociationSet Name="StudentFullInfo_studentEmails" Association="StudentService.StudentFullInfo_studentEmails">
+        <End Role="StudentFullInfo" EntitySet="StudentFullInfo"/>
+        <End Role="StudentEmail" EntitySet="StudentEmail"/>
+    </AssociationSet>
+    <AssociationSet Name="StudentFullInfo_studentHobbies" Association="StudentService.StudentFullInfo_studentHobbies">
+        <End Role="StudentFullInfo" EntitySet="StudentFullInfo"/>
+        <End Role="StudentHobbie" EntitySet="StudentHobbie"/>
+    </AssociationSet>
+    <AssociationSet Name="StudentFullInfo_attachments" Association="StudentService.StudentFullInfo_attachments">
+        <End Role="StudentFullInfo" EntitySet="StudentFullInfo"/>
+        <End Role="Attachment" EntitySet="Attachment"/>
+    </AssociationSet>
+    <AssociationSet Name="StudentFullInfo_studentCourses" Association="StudentService.StudentFullInfo_studentCourses">
+        <End Role="StudentFullInfo" EntitySet="StudentFullInfo"/>
+        <End Role="StudentCourse" EntitySet="StudentCourse"/>
+    </AssociationSet>
+    <AssociationSet Name="StudentFullInfo_notes" Association="StudentService.StudentFullInfo_notes">
+        <End Role="StudentFullInfo" EntitySet="StudentFullInfo"/>
+        <End Role="Note" EntitySet="Note"/>
+    </AssociationSet>
+    <AssociationSet Name="StudentFullInfo_studentActivities" Association="StudentService.StudentFullInfo_studentActivities">
+        <End Role="StudentFullInfo" EntitySet="StudentFullInfo"/>
+        <End Role="StudentActivity" EntitySet="StudentActivity"/>
+    </AssociationSet>
+    <AssociationSet Name="StudentFullInfo_messageRecipients" Association="StudentService.StudentFullInfo_messageRecipients">
+        <End Role="StudentFullInfo" EntitySet="StudentFullInfo"/>
+        <End Role="MessageRecipient" EntitySet="MessageRecipient"/>
+    </AssociationSet>
+    <AssociationSet Name="StudentFullInfo_housingInformations" Association="StudentService.StudentFullInfo_housingInformations">
+        <End Role="StudentFullInfo" EntitySet="StudentFullInfo"/>
+        <End Role="HousingInformation" EntitySet="HousingInformation"/>
+    </AssociationSet>
+    <AssociationSet Name="Courses_attachment" Association="StudentService.Courses_attachment">
+        <End Role="Courses" EntitySet="Courses"/>
+        <End Role="Attachment" EntitySet="Attachment"/>
+    </AssociationSet>
+    <AssociationSet Name="Session_course" Association="StudentService.Session_course">
+        <End Role="Session" EntitySet="Session"/>
+        <End Role="Courses" EntitySet="Courses"/>
+    </AssociationSet>
+    <AssociationSet Name="Session_program" Association="StudentService.Session_program">
+        <End Role="Session" EntitySet="Session"/>
+        <End Role="Program" EntitySet="Program"/>
+    </AssociationSet>
+    <AssociationSet Name="StudentEmail_student" Association="StudentService.StudentEmail_student">
+        <End Role="StudentEmail" EntitySet="StudentEmail"/>
+        <End Role="StudentFullInfo" EntitySet="StudentFullInfo"/>
+    </AssociationSet>
+    <AssociationSet Name="StudentEmail_emailAddress" Association="StudentService.StudentEmail_emailAddress">
+        <End Role="StudentEmail" EntitySet="StudentEmail"/>
+        <End Role="EmailAddress" EntitySet="EmailAddress"/>
+    </AssociationSet>
+    <AssociationSet Name="StudentHobbie_student" Association="StudentService.StudentHobbie_student">
+        <End Role="StudentHobbie" EntitySet="StudentHobbie"/>
+        <End Role="StudentFullInfo" EntitySet="StudentFullInfo"/>
+    </AssociationSet>
+    <AssociationSet Name="StudentHobbie_hobbie" Association="StudentService.StudentHobbie_hobbie">
+        <End Role="StudentHobbie" EntitySet="StudentHobbie"/>
+        <End Role="Hobbie" EntitySet="Hobbie"/>
+    </AssociationSet>
+    <AssociationSet Name="AcademicInformation_student" Association="StudentService.AcademicInformation_student">
+        <End Role="AcademicInformation" EntitySet="AcademicInformation"/>
+        <End Role="StudentFullInfo" EntitySet="StudentFullInfo"/>
+    </AssociationSet>
+    <AssociationSet Name="AcademicInformation_yearSchool" Association="StudentService.AcademicInformation_yearSchool">
+        <End Role="AcademicInformation" EntitySet="AcademicInformation"/>
+        <End Role="YearSchool" EntitySet="YearSchool"/>
+    </AssociationSet>
+    <AssociationSet Name="AcademicInformation_majorField" Association="StudentService.AcademicInformation_majorField">
+        <End Role="AcademicInformation" EntitySet="AcademicInformation"/>
+        <End Role="MajorField" EntitySet="MajorField"/>
+    </AssociationSet>
+    <AssociationSet Name="AcademicInformation_graduationDate" Association="StudentService.AcademicInformation_graduationDate">
+        <End Role="AcademicInformation" EntitySet="AcademicInformation"/>
+        <End Role="GraduationDate" EntitySet="GraduationDate"/>
+    </AssociationSet>
+    <AssociationSet Name="StudentCourse_course" Association="StudentService.StudentCourse_course">
+        <End Role="StudentCourse" EntitySet="StudentCourse"/>
+        <End Role="Courses" EntitySet="Courses"/>
+    </AssociationSet>
+    <AssociationSet Name="StudentCourse_student" Association="StudentService.StudentCourse_student">
+        <End Role="StudentCourse" EntitySet="StudentCourse"/>
+        <End Role="StudentFullInfo" EntitySet="StudentFullInfo"/>
+    </AssociationSet>
+    <AssociationSet Name="StudentCourse_guidCourseOutline" Association="StudentService.StudentCourse_guidCourseOutline">
+        <End Role="StudentCourse" EntitySet="StudentCourse"/>
+        <End Role="GUIDAttachment" EntitySet="GUIDAttachment"/>
+    </AssociationSet>
+    <AssociationSet Name="CourseConstraint_course" Association="StudentService.CourseConstraint_course">
+        <End Role="CourseConstraint" EntitySet="CourseConstraint"/>
+        <End Role="Courses" EntitySet="Courses"/>
+    </AssociationSet>
+    <AssociationSet Name="CourseConstraint_courseBlockedBy" Association="StudentService.CourseConstraint_courseBlockedBy">
+        <End Role="CourseConstraint" EntitySet="CourseConstraint"/>
+        <End Role="Courses" EntitySet="Courses"/>
+    </AssociationSet>
+    <AssociationSet Name="CourseDepartment_department" Association="StudentService.CourseDepartment_department">
+        <End Role="CourseDepartment" EntitySet="CourseDepartment"/>
+        <End Role="Department" EntitySet="Department"/>
+    </AssociationSet>
+    <AssociationSet Name="CourseDepartment_course" Association="StudentService.CourseDepartment_course">
+        <End Role="CourseDepartment" EntitySet="CourseDepartment"/>
+        <End Role="Courses" EntitySet="Courses"/>
+    </AssociationSet>
+    <AssociationSet Name="CourseProfessor_professor" Association="StudentService.CourseProfessor_professor">
+        <End Role="CourseProfessor" EntitySet="CourseProfessor"/>
+        <End Role="Professor" EntitySet="Professor"/>
+    </AssociationSet>
+    <AssociationSet Name="CourseProfessor_course" Association="StudentService.CourseProfessor_course">
+        <End Role="CourseProfessor" EntitySet="CourseProfessor"/>
+        <End Role="Courses" EntitySet="Courses"/>
+    </AssociationSet>
+    <AssociationSet Name="ProgramCourse_course" Association="StudentService.ProgramCourse_course">
+        <End Role="ProgramCourse" EntitySet="ProgramCourse"/>
+        <End Role="Courses" EntitySet="Courses"/>
+    </AssociationSet>
+    <AssociationSet Name="ProgramCourse_program" Association="StudentService.ProgramCourse_program">
+        <End Role="ProgramCourse" EntitySet="ProgramCourse"/>
+        <End Role="Program" EntitySet="Program"/>
+    </AssociationSet>
+    <AssociationSet Name="FieldVisit_course" Association="StudentService.FieldVisit_course">
+        <End Role="FieldVisit" EntitySet="FieldVisit"/>
+        <End Role="Courses" EntitySet="Courses"/>
+    </AssociationSet>
+    <AssociationSet Name="Message_categoryMessage" Association="StudentService.Message_categoryMessage">
+        <End Role="Message" EntitySet="Message"/>
+        <End Role="CategoryMessage" EntitySet="CategoryMessage"/>
+    </AssociationSet>
+    <AssociationSet Name="Message_typeMessage" Association="StudentService.Message_typeMessage">
+        <End Role="Message" EntitySet="Message"/>
+        <End Role="TypeMessage" EntitySet="TypeMessage"/>
+    </AssociationSet>
+    <AssociationSet Name="Message_program" Association="StudentService.Message_program">
+        <End Role="Message" EntitySet="Message"/>
+        <End Role="Program" EntitySet="Program"/>
+    </AssociationSet>
+    <AssociationSet Name="Message_course" Association="StudentService.Message_course">
+        <End Role="Message" EntitySet="Message"/>
+        <End Role="Courses" EntitySet="Courses"/>
+    </AssociationSet>
+    <AssociationSet Name="Message_typeAccomodation" Association="StudentService.Message_typeAccomodation">
+        <End Role="Message" EntitySet="Message"/>
+        <End Role="TypeAccommodation" EntitySet="TypeAccommodation"/>
+    </AssociationSet>
+    <AssociationSet Name="InternShip_student" Association="StudentService.InternShip_student">
+        <End Role="InternShip" EntitySet="InternShip"/>
+        <End Role="StudentFullInfo" EntitySet="StudentFullInfo"/>
+    </AssociationSet>
+    <AssociationSet Name="InternShip_italianLanguageProficiency" Association="StudentService.InternShip_italianLanguageProficiency">
+        <End Role="InternShip" EntitySet="InternShip"/>
+        <End Role="ItalianLanguageProficiency" EntitySet="ItalianLanguageProficiency"/>
+    </AssociationSet>
+    <AssociationSet Name="HealthSafetyDietaryPreference_dietaryPreference" Association="StudentService.HealthSafetyDietaryPreference_dietaryPreference">
+        <End Role="HealthSafetyDietaryPreference" EntitySet="HealthSafetyDietaryPreference"/>
+        <End Role="DietaryPreference" EntitySet="DietaryPreference"/>
+    </AssociationSet>
+    <AssociationSet Name="HealthSafetyDietaryPreference_healthSafety" Association="StudentService.HealthSafetyDietaryPreference_healthSafety">
+        <End Role="HealthSafetyDietaryPreference" EntitySet="HealthSafetyDietaryPreference"/>
+        <End Role="HealthSafety" EntitySet="HealthSafety"/>
+    </AssociationSet>
+    <AssociationSet Name="HealthSafety_student" Association="StudentService.HealthSafety_student">
+        <End Role="HealthSafety" EntitySet="HealthSafety"/>
+        <End Role="StudentFullInfo" EntitySet="StudentFullInfo"/>
+    </AssociationSet>
+    <AssociationSet Name="StudentHousingPreferences_housingInformation" Association="StudentService.StudentHousingPreferences_housingInformation">
+        <End Role="StudentHousingPreferences" EntitySet="StudentHousingPreferences"/>
+        <End Role="HousingInformation" EntitySet="HousingInformation"/>
+    </AssociationSet>
+    <AssociationSet Name="StudentHousingPreferences_typeAccomodation" Association="StudentService.StudentHousingPreferences_typeAccomodation">
+        <End Role="StudentHousingPreferences" EntitySet="StudentHousingPreferences"/>
+        <End Role="TypeAccommodation" EntitySet="TypeAccommodation"/>
+    </AssociationSet>
+    <AssociationSet Name="HousingInformation_student" Association="StudentService.HousingInformation_student">
+        <End Role="HousingInformation" EntitySet="HousingInformation"/>
+        <End Role="StudentFullInfo" EntitySet="StudentFullInfo"/>
+    </AssociationSet>
+    <AssociationSet Name="HousingInformation_priority" Association="StudentService.HousingInformation_priority">
+        <End Role="HousingInformation" EntitySet="HousingInformation"/>
+        <End Role="priority" EntitySet="priority"/>
+    </AssociationSet>
+    <AssociationSet Name="HousingInformation_tidy" Association="StudentService.HousingInformation_tidy">
+        <End Role="HousingInformation" EntitySet="HousingInformation"/>
+        <End Role="Tidy" EntitySet="Tidy"/>
+    </AssociationSet>
+    <AssociationSet Name="HousingInformation_noise" Association="StudentService.HousingInformation_noise">
+        <End Role="HousingInformation" EntitySet="HousingInformation"/>
+        <End Role="Noise" EntitySet="Noise"/>
+    </AssociationSet>
+    <AssociationSet Name="HousingInformation_bedTime" Association="StudentService.HousingInformation_bedTime">
+        <End Role="HousingInformation" EntitySet="HousingInformation"/>
+        <End Role="BedTime" EntitySet="BedTime"/>
+    </AssociationSet>
+    <AssociationSet Name="HousingInformation_studyHabit" Association="StudentService.HousingInformation_studyHabit">
+        <End Role="HousingInformation" EntitySet="HousingInformation"/>
+        <End Role="StudyHabit" EntitySet="StudyHabit"/>
+    </AssociationSet>
+    <AssociationSet Name="HousingInformation_frequency" Association="StudentService.HousingInformation_frequency">
+        <End Role="HousingInformation" EntitySet="HousingInformation"/>
+        <End Role="Frequency" EntitySet="Frequency"/>
+    </AssociationSet>
+    <AssociationSet Name="HousingInformation_guest" Association="StudentService.HousingInformation_guest">
+        <End Role="HousingInformation" EntitySet="HousingInformation"/>
+        <End Role="Guest" EntitySet="Guest"/>
+    </AssociationSet>
+    <AssociationSet Name="HousingInformation_bathroomCond" Association="StudentService.HousingInformation_bathroomCond">
+        <End Role="HousingInformation" EntitySet="HousingInformation"/>
+        <End Role="BathroomCond" EntitySet="BathroomCond"/>
+    </AssociationSet>
+    <AssociationSet Name="RoommateRequest_housingInformation" Association="StudentService.RoommateRequest_housingInformation">
+        <End Role="RoommateRequest" EntitySet="RoommateRequest"/>
+        <End Role="HousingInformation" EntitySet="HousingInformation"/>
+    </AssociationSet>
+    <AssociationSet Name="StudentPrefRoomie_housingInformation" Association="StudentService.StudentPrefRoomie_housingInformation">
+        <End Role="StudentPrefRoomie" EntitySet="StudentPrefRoomie"/>
+        <End Role="HousingInformation" EntitySet="HousingInformation"/>
+    </AssociationSet>
+    <AssociationSet Name="StudentPrefRoomie_roomMatePrf" Association="StudentService.StudentPrefRoomie_roomMatePrf">
+        <End Role="StudentPrefRoomie" EntitySet="StudentPrefRoomie"/>
+        <End Role="RoomMatePref" EntitySet="RoomMatePref"/>
+    </AssociationSet>
+    <AssociationSet Name="Housing_typeAccomodations" Association="StudentService.Housing_typeAccomodations">
+        <End Role="Housing" EntitySet="Housing"/>
+        <End Role="TypeAccommodation" EntitySet="TypeAccommodation"/>
+    </AssociationSet>
+    <AssociationSet Name="Housing_accomodation" Association="StudentService.Housing_accomodation">
+        <End Role="Housing" EntitySet="Housing"/>
+        <End Role="Accomodation" EntitySet="Accomodation"/>
+    </AssociationSet>
+    <AssociationSet Name="Room_housing" Association="StudentService.Room_housing">
+        <End Role="Room" EntitySet="Room"/>
+        <End Role="Housing" EntitySet="Housing"/>
+    </AssociationSet>
+    <AssociationSet Name="BedAvailability_room" Association="StudentService.BedAvailability_room">
+        <End Role="BedAvailability" EntitySet="BedAvailability"/>
+        <End Role="Room" EntitySet="Room"/>
+    </AssociationSet>
+    <AssociationSet Name="BedAvailability_student" Association="StudentService.BedAvailability_student">
+        <End Role="BedAvailability" EntitySet="BedAvailability"/>
+        <End Role="StudentFullInfo" EntitySet="StudentFullInfo"/>
+    </AssociationSet>
+    <AssociationSet Name="StudentActivity_student" Association="StudentService.StudentActivity_student">
+        <End Role="StudentActivity" EntitySet="StudentActivity"/>
+        <End Role="StudentFullInfo" EntitySet="StudentFullInfo"/>
+    </AssociationSet>
+    <AssociationSet Name="MessageRecipient_message" Association="StudentService.MessageRecipient_message">
+        <End Role="MessageRecipient" EntitySet="MessageRecipient"/>
+        <End Role="Message" EntitySet="Message"/>
+    </AssociationSet>
+    <AssociationSet Name="MessageRecipient_student" Association="StudentService.MessageRecipient_student">
+        <End Role="MessageRecipient" EntitySet="MessageRecipient"/>
+        <End Role="StudentFullInfo" EntitySet="StudentFullInfo"/>
+    </AssociationSet>
+    <AssociationSet Name="MessageRecipient_statusMessage" Association="StudentService.MessageRecipient_statusMessage">
+        <End Role="MessageRecipient" EntitySet="MessageRecipient"/>
+        <End Role="StatusMessages" EntitySet="StatusMessages"/>
+    </AssociationSet>
+    <AssociationSet Name="Note_student" Association="StudentService.Note_student">
+        <End Role="Note" EntitySet="Note"/>
+        <End Role="StudentFullInfo" EntitySet="StudentFullInfo"/>
+    </AssociationSet>
+    <AssociationSet Name="Payment_student" Association="StudentService.Payment_student">
+        <End Role="Payment" EntitySet="Payment"/>
+        <End Role="StudentFullInfo" EntitySet="StudentFullInfo"/>
+    </AssociationSet>
+    <AssociationSet Name="Payment_paymentStatus" Association="StudentService.Payment_paymentStatus">
+        <End Role="Payment" EntitySet="Payment"/>
+        <End Role="PaymentStatus" EntitySet="PaymentStatus"/>
+    </AssociationSet>
+    <AssociationSet Name="Payment_paymentType" Association="StudentService.Payment_paymentType">
+        <End Role="Payment" EntitySet="Payment"/>
+        <End Role="PaymentType" EntitySet="PaymentType"/>
+    </AssociationSet>
+    <AssociationSet Name="Attachment_guidAttachment" Association="StudentService.Attachment_guidAttachment">
+        <End Role="Attachment" EntitySet="Attachment"/>
+        <End Role="GUIDAttachment" EntitySet="GUIDAttachment"/>
+    </AssociationSet>
+    <AssociationSet Name="Attachment_student" Association="StudentService.Attachment_student">
+        <End Role="Attachment" EntitySet="Attachment"/>
+        <End Role="StudentFullInfo" EntitySet="StudentFullInfo"/>
+    </AssociationSet>
+    <AssociationSet Name="PermanentAddress_country" Association="StudentService.PermanentAddress_country">
+        <End Role="PermanentAddress" EntitySet="PermanentAddress"/>
+        <End Role="Country" EntitySet="Country"/>
+    </AssociationSet>
+    <AssociationSet Name="Timeslot_classRoom" Association="StudentService.Timeslot_classRoom">
+        <End Role="Timeslot" EntitySet="Timeslot"/>
+        <End Role="Classroom" EntitySet="Classroom"/>
+    </AssociationSet>
+    <AssociationSet Name="Timeslot_professor" Association="StudentService.Timeslot_professor">
+        <End Role="Timeslot" EntitySet="Timeslot"/>
+        <End Role="Professor" EntitySet="Professor"/>
+    </AssociationSet>
+    <AssociationSet Name="ClassSchedule_timeSlots" Association="StudentService.ClassSchedule_timeSlots">
+        <End Role="ClassSchedule" EntitySet="ClassSchedule"/>
+        <End Role="Timeslot" EntitySet="Timeslot"/>
+    </AssociationSet>
+    <AssociationSet Name="EventProfessor_professor" Association="StudentService.EventProfessor_professor">
+        <End Role="EventProfessor" EntitySet="EventProfessor"/>
+        <End Role="Professor" EntitySet="Professor"/>
+    </AssociationSet>
+    <AssociationSet Name="EventProfessor_event" Association="StudentService.EventProfessor_event">
+        <End Role="EventProfessor" EntitySet="EventProfessor"/>
+        <End Role="Event" EntitySet="Event"/>
+    </AssociationSet>
+    <AssociationSet Name="Event_program" Association="StudentService.Event_program">
+        <End Role="Event" EntitySet="Event"/>
+        <End Role="Program" EntitySet="Program"/>
+    </AssociationSet>
+    <AssociationSet Name="Event_course" Association="StudentService.Event_course">
+        <End Role="Event" EntitySet="Event"/>
+        <End Role="Courses" EntitySet="Courses"/>
+    </AssociationSet>
+    <AssociationSet Name="Event_classroom" Association="StudentService.Event_classroom">
+        <End Role="Event" EntitySet="Event"/>
+        <End Role="Classroom" EntitySet="Classroom"/>
+    </AssociationSet>
+</EntityContainer>
+<EntityType Name="Student">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="IDNumber" Type="Edm.String" MaxLength="20"/>
+    <Property Name="firstName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="lastName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="preferredFirstName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="genderIdentity" Type="Edm.String" MaxLength="50"/>
+    <Property Name="submissionDate" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="noteHomeInstituion" Type="Edm.String" MaxLength="50"/>
+    <Property Name="dateBirth" Type="Edm.DateTime" sap:display-format="Date"/>
+    <Property Name="mobilePhoneNumber" Type="Edm.String" MaxLength="20"/>
+    <Property Name="passportNumber" Type="Edm.String" MaxLength="20"/>
+    <Property Name="instagramAccount" Type="Edm.String" MaxLength="50"/>
+    <Property Name="isItaloAmerican" Type="Edm.Boolean"/>
+    <Property Name="isMemberOfNiaf" Type="Edm.Boolean"/>
+    <Property Name="isMemberOfOsdia" Type="Edm.Boolean"/>
+    <Property Name="isGreeklife" Type="Edm.Boolean"/>
+    <Property Name="isClubs" Type="Edm.Boolean"/>
+    <Property Name="noteGreeklife" Type="Edm.String" MaxLength="100"/>
+    <Property Name="noteClubs" Type="Edm.String" MaxLength="100"/>
+    <Property Name="cityOfBirth" Type="Edm.String" MaxLength="50"/>
+    <Property Name="stateOfBirth" Type="Edm.String" MaxLength="50"/>
+    <Property Name="countryOfBirth" Type="Edm.String" MaxLength="50"/>
+    <Property Name="isPoliceRegulationUploaded" Type="Edm.Boolean"/>
+    <Property Name="isSchoolRegistrationUploaded" Type="Edm.Boolean"/>
+    <Property Name="isPermitStayUploaded" Type="Edm.Boolean"/>
+    <Property Name="parentGuardianName" Type="Edm.String" MaxLength="100"/>
+    <Property Name="relationship" Type="Edm.String" MaxLength="100"/>
+    <Property Name="homePhoneParent" Type="Edm.String" MaxLength="100"/>
+    <Property Name="mobilePhoneNumberParent" Type="Edm.String" MaxLength="100"/>
+    <Property Name="emailAddressParent" Type="Edm.String" MaxLength="100"/>
+    <Property Name="permanentAddressParent" Type="Edm.String" MaxLength="100"/>
+    <Property Name="leadershipExperience" Type="Edm.String" MaxLength="100"/>
+    <NavigationProperty Name="studentStatus" Relationship="StudentService.Student_studentStatus" FromRole="Student" ToRole="StudentStatus"/>
+    <Property Name="studentStatus_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="sexOnPassport" Relationship="StudentService.Student_sexOnPassport" FromRole="Student" ToRole="SexOnPassport"/>
+    <Property Name="sexOnPassport_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="program" Relationship="StudentService.Student_program" FromRole="Student" ToRole="Program"/>
+    <Property Name="program_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="university" Relationship="StudentService.Student_university" FromRole="Student" ToRole="University"/>
+    <Property Name="university_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="provider" Relationship="StudentService.Student_provider" FromRole="Student" ToRole="Provider"/>
+    <Property Name="provider_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="findOut" Relationship="StudentService.Student_findOut" FromRole="Student" ToRole="FindOut"/>
+    <Property Name="findOut_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="permanentAddress" Relationship="StudentService.Student_permanentAddress" FromRole="Student" ToRole="PermanentAddress"/>
+    <Property Name="permanentAddress_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="country" Relationship="StudentService.Student_country" FromRole="Student" ToRole="Country"/>
+    <Property Name="country_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="firstLanguage" Relationship="StudentService.Student_firstLanguage" FromRole="Student" ToRole="FirstLanguage"/>
+    <Property Name="firstLanguage_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="prefix" Relationship="StudentService.Student_prefix" FromRole="Student" ToRole="Prefix"/>
+    <Property Name="prefix_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="studentEmails" Relationship="StudentService.Student_studentEmails" FromRole="Student" ToRole="StudentEmail"/>
+    <NavigationProperty Name="studentHobbies" Relationship="StudentService.Student_studentHobbies" FromRole="Student" ToRole="StudentHobbie"/>
+    <NavigationProperty Name="attachments" Relationship="StudentService.Student_attachments" FromRole="Student" ToRole="Attachment"/>
+    <NavigationProperty Name="studentCourses" Relationship="StudentService.Student_studentCourses" FromRole="Student" ToRole="StudentCourse"/>
+    <NavigationProperty Name="notes" Relationship="StudentService.Student_notes" FromRole="Student" ToRole="Note"/>
+    <NavigationProperty Name="studentActivities" Relationship="StudentService.Student_studentActivities" FromRole="Student" ToRole="StudentActivity"/>
+    <NavigationProperty Name="messageRecipients" Relationship="StudentService.Student_messageRecipients" FromRole="Student" ToRole="MessageRecipient"/>
+    <NavigationProperty Name="housingInformations" Relationship="StudentService.Student_housingInformations" FromRole="Student" ToRole="HousingInformation"/>
+    <Property Name="programName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="courseCount" Type="Edm.Int32"/>
+    <Property Name="studentStatusDescription" Type="Edm.String" MaxLength="50"/>
+    <Property Name="providerName" Type="Edm.String" MaxLength="30"/>
+</EntityType>
+<EntityType Name="StudentFullInfo">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="IDNumber" Type="Edm.String" MaxLength="20"/>
+    <Property Name="firstName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="lastName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="preferredFirstName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="genderIdentity" Type="Edm.String" MaxLength="50"/>
+    <Property Name="submissionDate" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="noteHomeInstituion" Type="Edm.String" MaxLength="50"/>
+    <Property Name="dateBirth" Type="Edm.DateTime" sap:display-format="Date"/>
+    <Property Name="mobilePhoneNumber" Type="Edm.String" MaxLength="20"/>
+    <Property Name="passportNumber" Type="Edm.String" MaxLength="20"/>
+    <Property Name="instagramAccount" Type="Edm.String" MaxLength="50"/>
+    <Property Name="isItaloAmerican" Type="Edm.Boolean"/>
+    <Property Name="isMemberOfNiaf" Type="Edm.Boolean"/>
+    <Property Name="isMemberOfOsdia" Type="Edm.Boolean"/>
+    <Property Name="isGreeklife" Type="Edm.Boolean"/>
+    <Property Name="isClubs" Type="Edm.Boolean"/>
+    <Property Name="noteGreeklife" Type="Edm.String" MaxLength="100"/>
+    <Property Name="noteClubs" Type="Edm.String" MaxLength="100"/>
+    <Property Name="cityOfBirth" Type="Edm.String" MaxLength="50"/>
+    <Property Name="stateOfBirth" Type="Edm.String" MaxLength="50"/>
+    <Property Name="countryOfBirth" Type="Edm.String" MaxLength="50"/>
+    <Property Name="isPoliceRegulationUploaded" Type="Edm.Boolean"/>
+    <Property Name="isSchoolRegistrationUploaded" Type="Edm.Boolean"/>
+    <Property Name="isPermitStayUploaded" Type="Edm.Boolean"/>
+    <Property Name="parentGuardianName" Type="Edm.String" MaxLength="100"/>
+    <Property Name="relationship" Type="Edm.String" MaxLength="100"/>
+    <Property Name="homePhoneParent" Type="Edm.String" MaxLength="100"/>
+    <Property Name="mobilePhoneNumberParent" Type="Edm.String" MaxLength="100"/>
+    <Property Name="emailAddressParent" Type="Edm.String" MaxLength="100"/>
+    <Property Name="permanentAddressParent" Type="Edm.String" MaxLength="100"/>
+    <Property Name="leadershipExperience" Type="Edm.String" MaxLength="100"/>
+    <NavigationProperty Name="studentStatus" Relationship="StudentService.StudentFullInfo_studentStatus" FromRole="StudentFullInfo" ToRole="StudentStatus"/>
+    <Property Name="studentStatus_ID" Type="Edm.Guid"/>
+    <Property Name="sexOnPassport" Type="Edm.String" MaxLength="1"/>
+    <NavigationProperty Name="program" Relationship="StudentService.StudentFullInfo_program" FromRole="StudentFullInfo" ToRole="Program"/>
+    <Property Name="program_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="university" Relationship="StudentService.StudentFullInfo_university" FromRole="StudentFullInfo" ToRole="University"/>
+    <Property Name="university_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="provider" Relationship="StudentService.StudentFullInfo_provider" FromRole="StudentFullInfo" ToRole="Provider"/>
+    <Property Name="provider_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="findOut" Relationship="StudentService.StudentFullInfo_findOut" FromRole="StudentFullInfo" ToRole="FindOut"/>
+    <Property Name="findOut_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="permanentAddress" Relationship="StudentService.StudentFullInfo_permanentAddress" FromRole="StudentFullInfo" ToRole="PermanentAddress"/>
+    <Property Name="permanentAddress_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="country" Relationship="StudentService.StudentFullInfo_country" FromRole="StudentFullInfo" ToRole="Country"/>
+    <Property Name="country_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="firstLanguage" Relationship="StudentService.StudentFullInfo_firstLanguage" FromRole="StudentFullInfo" ToRole="FirstLanguage"/>
+    <Property Name="firstLanguage_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="prefix" Relationship="StudentService.StudentFullInfo_prefix" FromRole="StudentFullInfo" ToRole="Prefix"/>
+    <Property Name="prefix_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="studentEmails" Relationship="StudentService.StudentFullInfo_studentEmails" FromRole="StudentFullInfo" ToRole="StudentEmail"/>
+    <NavigationProperty Name="studentHobbies" Relationship="StudentService.StudentFullInfo_studentHobbies" FromRole="StudentFullInfo" ToRole="StudentHobbie"/>
+    <NavigationProperty Name="attachments" Relationship="StudentService.StudentFullInfo_attachments" FromRole="StudentFullInfo" ToRole="Attachment"/>
+    <NavigationProperty Name="studentCourses" Relationship="StudentService.StudentFullInfo_studentCourses" FromRole="StudentFullInfo" ToRole="StudentCourse"/>
+    <NavigationProperty Name="notes" Relationship="StudentService.StudentFullInfo_notes" FromRole="StudentFullInfo" ToRole="Note"/>
+    <NavigationProperty Name="studentActivities" Relationship="StudentService.StudentFullInfo_studentActivities" FromRole="StudentFullInfo" ToRole="StudentActivity"/>
+    <NavigationProperty Name="messageRecipients" Relationship="StudentService.StudentFullInfo_messageRecipients" FromRole="StudentFullInfo" ToRole="MessageRecipient"/>
+    <NavigationProperty Name="housingInformations" Relationship="StudentService.StudentFullInfo_housingInformations" FromRole="StudentFullInfo" ToRole="HousingInformation"/>
+    <Property Name="programName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="courseCount" Type="Edm.Int32"/>
+    <Property Name="primaryEmail" Type="Edm.String" MaxLength="50"/>
+    <Property Name="secondaryEmail" Type="Edm.String" MaxLength="50"/>
+    <Property Name="secondaryEmail_ID" Type="Edm.String" MaxLength="36"/>
+    <Property Name="primaryEmail_ID" Type="Edm.String" MaxLength="36"/>
+    <Property Name="studentStatusDescription" Type="Edm.String" MaxLength="50"/>
+    <Property Name="providerName" Type="Edm.String" MaxLength="30"/>
+    <Property Name="typeProgram" Type="Edm.String" MaxLength="50"/>
+    <Property Name="universityName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="sex" Type="Edm.Guid"/>
+    <Property Name="findoutSource" Type="Edm.String" MaxLength="50"/>
+    <Property Name="permanentaAdressStreet" Type="Edm.String" MaxLength="100"/>
+    <Property Name="permanentaAdressCity" Type="Edm.String" MaxLength="50"/>
+    <Property Name="permanentaAdressZipCode" Type="Edm.String" MaxLength="10"/>
+    <Property Name="permanentaAdressState" Type="Edm.String" MaxLength="50"/>
+    <Property Name="permanentAddressCountryName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="permanentAddressCountry_ID" Type="Edm.Guid"/>
+    <Property Name="prefixCode" Type="Edm.String" MaxLength="5"/>
+</EntityType>
+<EntityType Name="Courses">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+    <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="name" Type="Edm.String" MaxLength="50"/>
+    <Property Name="identificationCode" Type="Edm.String" MaxLength="20"/>
+    <Property Name="numCredits" Type="Edm.Int32"/>
+    <Property Name="note" Type="Edm.String"/>
+    <Property Name="documentLink" Type="Edm.String" MaxLength="100"/>
+    <Property Name="isInternship" Type="Edm.Boolean"/>
+    <NavigationProperty Name="attachment" Relationship="StudentService.Courses_attachment" FromRole="Courses" ToRole="Attachment"/>
+    <Property Name="attachment_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="programCourses" Relationship="StudentService.ProgramCourse_course" FromRole="Courses" ToRole="ProgramCourse"/>
+    <NavigationProperty Name="events" Relationship="StudentService.Event_course" FromRole="Courses" ToRole="Event"/>
+    <NavigationProperty Name="courseProfessors" Relationship="StudentService.CourseProfessor_course" FromRole="Courses" ToRole="CourseProfessor"/>
+    <NavigationProperty Name="courseDepartments" Relationship="StudentService.CourseDepartment_course" FromRole="Courses" ToRole="CourseDepartment"/>
+    <NavigationProperty Name="studentCourses" Relationship="StudentService.StudentCourse_course" FromRole="Courses" ToRole="StudentCourse"/>
+    <NavigationProperty Name="fieldVisits" Relationship="StudentService.FieldVisit_course" FromRole="Courses" ToRole="FieldVisit"/>
+    <NavigationProperty Name="courseConstraints" Relationship="StudentService.CourseConstraint_course" FromRole="Courses" ToRole="CourseConstraint"/>
+    <NavigationProperty Name="CourseConstraintBlockedBy" Relationship="StudentService.CourseConstraint_courseBlockedBy" FromRole="Courses" ToRole="CourseConstraint"/>
+    <NavigationProperty Name="messages" Relationship="StudentService.Message_course" FromRole="Courses" ToRole="Message"/>
+    <Property Name="departmentsName" Type="Edm.String"/>
+    <Property Name="attachmentFileName" Type="Edm.String" MaxLength="100"/>
+    <Property Name="guidAttachmentID" Type="Edm.Guid"/>
+</EntityType>
+<EntityType Name="Program">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+    <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="name" Type="Edm.String" MaxLength="50"/>
+    <Property Name="year" Type="Edm.Int32"/>
+    <Property Name="startDate" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="endDate" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="applicationStartDate" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="applicationEndDate" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="regStartDate" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="regEndDate" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="minCredits" Type="Edm.Int32"/>
+    <Property Name="maxCredits" Type="Edm.Int32"/>
+    <Property Name="typeProgram" Type="Edm.String" MaxLength="50"/>
+    <NavigationProperty Name="messages" Relationship="StudentService.Message_program" FromRole="Program" ToRole="Message"/>
+    <NavigationProperty Name="programCourses" Relationship="StudentService.ProgramCourse_program" FromRole="Program" ToRole="ProgramCourse"/>
+    <NavigationProperty Name="sessions" Relationship="StudentService.Session_program" FromRole="Program" ToRole="Session"/>
+    <NavigationProperty Name="events" Relationship="StudentService.Event_program" FromRole="Program" ToRole="Event"/>
+</EntityType>
+<EntityType Name="Session">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+    <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="numPreferences" Type="Edm.Int32"/>
+    <Property Name="numClasses" Type="Edm.Int32"/>
+    <Property Name="maxStudents" Type="Edm.String" MaxLength="20"/>
+    <NavigationProperty Name="course" Relationship="StudentService.Session_course" FromRole="Session" ToRole="Courses"/>
+    <Property Name="course_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="program" Relationship="StudentService.Session_program" FromRole="Session" ToRole="Program"/>
+    <Property Name="program_ID" Type="Edm.Guid"/>
+    <Property Name="pID" Type="Edm.Guid"/>
+    <Property Name="programName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="programYear" Type="Edm.Int32"/>
+    <Property Name="programStartDate" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="programEndDate" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="courseName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="cID" Type="Edm.Guid"/>
+</EntityType>
+<EntityType Name="StudentEmail">
+    <Key>
+        <PropertyRef Name="ID"/>
+        <PropertyRef Name="student_ID"/>
+        <PropertyRef Name="emailAddress_ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <NavigationProperty Name="student" Relationship="StudentService.StudentEmail_student" FromRole="StudentEmail" ToRole="StudentFullInfo"/>
+    <Property Name="student_ID" Type="Edm.Guid" Nullable="false"/>
+    <NavigationProperty Name="emailAddress" Relationship="StudentService.StudentEmail_emailAddress" FromRole="StudentEmail" ToRole="EmailAddress"/>
+    <Property Name="emailAddress_ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="typeEmail_ID" Type="Edm.Guid"/>
+    <Property Name="email" Type="Edm.String" MaxLength="50"/>
+</EntityType>
+<EntityType Name="EmailAddress">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="emailAddress" Type="Edm.String" MaxLength="50"/>
+    <Property Name="TypeEEMail_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="studentEmails" Relationship="StudentService.StudentEmail_emailAddress" FromRole="EmailAddress" ToRole="StudentEmail"/>
+</EntityType>
+<EntityType Name="ProgramWithoutSession">
+    <Key>
+        <PropertyRef Name="pID"/>
+    </Key>
+    <Property Name="pID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="name" Type="Edm.String" MaxLength="50"/>
+</EntityType>
+<EntityType Name="CourseWithoutSession">
+    <Key>
+        <PropertyRef Name="courseID"/>
+    </Key>
+    <Property Name="courseID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="name" Type="Edm.String" MaxLength="50"/>
+</EntityType>
+<EntityType Name="StudentHobbie">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="noteHobby" Type="Edm.String" MaxLength="200"/>
+    <NavigationProperty Name="student" Relationship="StudentService.StudentHobbie_student" FromRole="StudentHobbie" ToRole="StudentFullInfo"/>
+    <Property Name="student_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="hobbie" Relationship="StudentService.StudentHobbie_hobbie" FromRole="StudentHobbie" ToRole="Hobbie"/>
+    <Property Name="hobbie_ID" Type="Edm.Guid"/>
+    <Property Name="hobbieName" Type="Edm.String" MaxLength="50"/>
+</EntityType>
+<EntityType Name="AcademicInformation">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="noteYear" Type="Edm.String" MaxLength="100"/>
+    <Property Name="major" Type="Edm.String" MaxLength="50"/>
+    <Property Name="minor" Type="Edm.String" MaxLength="50"/>
+    <Property Name="gpa" Type="Edm.Decimal" sap:variable-scale="true"/>
+    <Property Name="creditHours" Type="Edm.Int32"/>
+    <Property Name="noteLearningImpairments" Type="Edm.String" MaxLength="200"/>
+    <Property Name="learningImpairments" Type="Edm.Boolean"/>
+    <NavigationProperty Name="student" Relationship="StudentService.AcademicInformation_student" FromRole="AcademicInformation" ToRole="StudentFullInfo"/>
+    <Property Name="student_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="yearSchool" Relationship="StudentService.AcademicInformation_yearSchool" FromRole="AcademicInformation" ToRole="YearSchool"/>
+    <Property Name="yearSchool_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="majorField" Relationship="StudentService.AcademicInformation_majorField" FromRole="AcademicInformation" ToRole="MajorField"/>
+    <Property Name="majorField_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="graduationDate" Relationship="StudentService.AcademicInformation_graduationDate" FromRole="AcademicInformation" ToRole="GraduationDate"/>
+    <Property Name="graduationDate_ID" Type="Edm.Guid"/>
+    <Property Name="yearSchoolLevel" Type="Edm.String" MaxLength="50"/>
+    <Property Name="majorFieldName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="graduationDateYear" Type="Edm.Int32"/>
+</EntityType>
+<EntityType Name="StudentCourse">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="registrationCourseDate" Type="Edm.DateTimeOffset" Precision="7"/>
+    <NavigationProperty Name="course" Relationship="StudentService.StudentCourse_course" FromRole="StudentCourse" ToRole="Courses"/>
+    <Property Name="course_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="student" Relationship="StudentService.StudentCourse_student" FromRole="StudentCourse" ToRole="StudentFullInfo"/>
+    <Property Name="student_ID" Type="Edm.Guid"/>
+    <Property Name="courseChoiceType_ID" Type="Edm.Guid"/>
+    <Property Name="courseName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="courseIdentificationCode" Type="Edm.String" MaxLength="20"/>
+    <Property Name="courseNumCredits" Type="Edm.Int32"/>
+    <Property Name="courseTypedescription" Type="Edm.String" MaxLength="50"/>
+    <Property Name="fileNameCourseOutline" Type="Edm.String" MaxLength="100"/>
+    <NavigationProperty Name="guidCourseOutline" Relationship="StudentService.StudentCourse_guidCourseOutline" FromRole="StudentCourse" ToRole="GUIDAttachment"/>
+    <Property Name="guidCourseOutline_ID" Type="Edm.Guid"/>
+</EntityType>
+<EntityType Name="Department">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="name" Type="Edm.String" MaxLength="50"/>
+    <NavigationProperty Name="courseDepartments" Relationship="StudentService.CourseDepartment_department" FromRole="Department" ToRole="CourseDepartment"/>
+</EntityType>
+<EntityType Name="CourseConstraint">
+    <Key>
+        <PropertyRef Name="course_ID"/>
+        <PropertyRef Name="courseBlockedBy_ID"/>
+    </Key>
+    <NavigationProperty Name="course" Relationship="StudentService.CourseConstraint_course" FromRole="CourseConstraint" ToRole="Courses"/>
+    <Property Name="course_ID" Type="Edm.Guid" Nullable="false"/>
+    <NavigationProperty Name="courseBlockedBy" Relationship="StudentService.CourseConstraint_courseBlockedBy" FromRole="CourseConstraint" ToRole="Courses"/>
+    <Property Name="courseBlockedBy_ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="cID" Type="Edm.Guid"/>
+    <Property Name="cBlockedByID" Type="Edm.Guid"/>
+    <Property Name="courseBlockedByName" Type="Edm.String" MaxLength="50"/>
+</EntityType>
+<EntityType Name="CourseDepartment">
+    <Key>
+        <PropertyRef Name="department_ID"/>
+        <PropertyRef Name="course_ID"/>
+    </Key>
+    <NavigationProperty Name="department" Relationship="StudentService.CourseDepartment_department" FromRole="CourseDepartment" ToRole="Department"/>
+    <Property Name="department_ID" Type="Edm.Guid" Nullable="false"/>
+    <NavigationProperty Name="course" Relationship="StudentService.CourseDepartment_course" FromRole="CourseDepartment" ToRole="Courses"/>
+    <Property Name="course_ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="cID" Type="Edm.Guid"/>
+    <Property Name="departmentName" Type="Edm.String" MaxLength="50"/>
+</EntityType>
+<EntityType Name="Professor">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+    <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="firstName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="lastName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="department" Type="Edm.String" MaxLength="50"/>
+    <Property Name="emailAddress" Type="Edm.String" MaxLength="50"/>
+    <Property Name="phoneNumber" Type="Edm.String" MaxLength="20"/>
+    <NavigationProperty Name="eventProfessors" Relationship="StudentService.EventProfessor_professor" FromRole="Professor" ToRole="EventProfessor"/>
+    <NavigationProperty Name="courseProfessors" Relationship="StudentService.CourseProfessor_professor" FromRole="Professor" ToRole="CourseProfessor"/>
+</EntityType>
+<EntityType Name="CourseProfessor">
+    <Key>
+        <PropertyRef Name="professor_ID"/>
+        <PropertyRef Name="course_ID"/>
+    </Key>
+    <NavigationProperty Name="professor" Relationship="StudentService.CourseProfessor_professor" FromRole="CourseProfessor" ToRole="Professor"/>
+    <Property Name="professor_ID" Type="Edm.Guid" Nullable="false"/>
+    <NavigationProperty Name="course" Relationship="StudentService.CourseProfessor_course" FromRole="CourseProfessor" ToRole="Courses"/>
+    <Property Name="course_ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="professorFirstName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="professorLastName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="professorDepartment" Type="Edm.String" MaxLength="50"/>
+    <Property Name="professorEmailAddress" Type="Edm.String" MaxLength="50"/>
+    <Property Name="courseName" Type="Edm.String" MaxLength="50"/>
+</EntityType>
+<EntityType Name="ProgramCourse">
+    <Key>
+        <PropertyRef Name="course_ID"/>
+        <PropertyRef Name="program_ID"/>
+    </Key>
+    <NavigationProperty Name="course" Relationship="StudentService.ProgramCourse_course" FromRole="ProgramCourse" ToRole="Courses"/>
+    <Property Name="course_ID" Type="Edm.Guid" Nullable="false"/>
+    <NavigationProperty Name="program" Relationship="StudentService.ProgramCourse_program" FromRole="ProgramCourse" ToRole="Program"/>
+    <Property Name="program_ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="programName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="programYear" Type="Edm.Int32"/>
+    <Property Name="programStartDate" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="programEndDate" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="courseCredit" Type="Edm.Int32"/>
+    <Property Name="courseName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="courseDepartmentNames" Type="Edm.String"/>
+    <Property Name="courseIdentificationCode" Type="Edm.String" MaxLength="20"/>
+    <Property Name="courseDocumentLink" Type="Edm.String" MaxLength="100"/>
+    <Property Name="courseNote" Type="Edm.String"/>
+</EntityType>
+<EntityType Name="SexOnPassport">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="sex" Type="Edm.String" MaxLength="1"/>
+</EntityType>
+<EntityType Name="FieldVisit">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+    <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="name" Type="Edm.String" MaxLength="20"/>
+    <Property Name="location" Type="Edm.String" MaxLength="50"/>
+    <Property Name="description" Type="Edm.String" MaxLength="500"/>
+    <NavigationProperty Name="course" Relationship="StudentService.FieldVisit_course" FromRole="FieldVisit" ToRole="Courses"/>
+    <Property Name="course_ID" Type="Edm.Guid"/>
+</EntityType>
+<EntityType Name="FindOut">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="source" Type="Edm.String" MaxLength="50"/>
+</EntityType>
+<EntityType Name="University">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="name" Type="Edm.String" MaxLength="50"/>
+    <Property Name="city" Type="Edm.String" MaxLength="50"/>
+    <Property Name="state" Type="Edm.String" MaxLength="50"/>
+    <Property Name="contactPerson" Type="Edm.String" MaxLength="50"/>
+    <Property Name="isDefault" Type="Edm.Boolean"/>
+</EntityType>
+<EntityType Name="Country">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="name" Type="Edm.String" MaxLength="50"/>
+</EntityType>
+<EntityType Name="Hobbie">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="name" Type="Edm.String" MaxLength="50"/>
+    <Property Name="isDefault" Type="Edm.Boolean"/>
+    <NavigationProperty Name="studentHobbies" Relationship="StudentService.StudentHobbie_hobbie" FromRole="Hobbie" ToRole="StudentHobbie"/>
+</EntityType>
+<EntityType Name="YearSchool">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="academicYear" Type="Edm.String" MaxLength="50"/>
+</EntityType>
+<EntityType Name="MajorField">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="name" Type="Edm.String" MaxLength="50"/>
+</EntityType>
+<EntityType Name="GraduationDate">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="year" Type="Edm.Int32"/>
+</EntityType>
+<EntityType Name="Message">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="subject" Type="Edm.String" MaxLength="255"/>
+    <Property Name="dataSent" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="alert" Type="Edm.Boolean"/>
+    <Property Name="creationDate" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="body" Type="Edm.String"/>
+    <NavigationProperty Name="categoryMessage" Relationship="StudentService.Message_categoryMessage" FromRole="Message" ToRole="CategoryMessage"/>
+    <Property Name="categoryMessage_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="typeMessage" Relationship="StudentService.Message_typeMessage" FromRole="Message" ToRole="TypeMessage"/>
+    <Property Name="typeMessage_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="program" Relationship="StudentService.Message_program" FromRole="Message" ToRole="Program"/>
+    <Property Name="program_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="course" Relationship="StudentService.Message_course" FromRole="Message" ToRole="Courses"/>
+    <Property Name="course_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="typeAccomodation" Relationship="StudentService.Message_typeAccomodation" FromRole="Message" ToRole="TypeAccommodation"/>
+    <Property Name="typeAccomodation_ID" Type="Edm.Guid"/>
+    <Property Name="createdBy_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="messageRecipients" Relationship="StudentService.MessageRecipient_message" FromRole="Message" ToRole="MessageRecipient"/>
+    <Property Name="tMessageID" Type="Edm.Guid"/>
+    <Property Name="tMessageDescription" Type="Edm.String" MaxLength="50"/>
+    <Property Name="cMessageID" Type="Edm.Guid"/>
+    <Property Name="cMessageDescription" Type="Edm.String" MaxLength="50"/>
+    <Property Name="pID" Type="Edm.Guid"/>
+    <Property Name="programName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="cID" Type="Edm.Guid"/>
+    <Property Name="courseName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="tAccomodationID" Type="Edm.Guid"/>
+    <Property Name="tAccomodationName" Type="Edm.String" MaxLength="50"/>
+</EntityType>
+<EntityType Name="CategoryMessage">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="description" Type="Edm.String" MaxLength="50"/>
+    <Property Name="isDeleted" Type="Edm.Boolean"/>
+</EntityType>
+<EntityType Name="TypeMessage">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="description" Type="Edm.String" MaxLength="50"/>
+    <Property Name="isDeleted" Type="Edm.Boolean"/>
+</EntityType>
+<EntityType Name="StatusMessages">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="description" Type="Edm.String" MaxLength="50"/>
+    <Property Name="isDeleted" Type="Edm.Boolean"/>
+</EntityType>
+<EntityType Name="InternShip">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="internShip" Type="Edm.Boolean"/>
+    <Property Name="numCredits" Type="Edm.Int32"/>
+    <Property Name="intPlacement" Type="Edm.String" MaxLength="50"/>
+    <Property Name="relevantCoursework" Type="Edm.String" MaxLength="200"/>
+    <Property Name="urlBlog" Type="Edm.String" MaxLength="200"/>
+    <Property Name="campusInvolvement" Type="Edm.String" MaxLength="200"/>
+    <NavigationProperty Name="student" Relationship="StudentService.InternShip_student" FromRole="InternShip" ToRole="StudentFullInfo"/>
+    <Property Name="student_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="italianLanguageProficiency" Relationship="StudentService.InternShip_italianLanguageProficiency" FromRole="InternShip" ToRole="ItalianLanguageProficiency"/>
+    <Property Name="italianLanguageProficiency_ID" Type="Edm.Guid"/>
+</EntityType>
+<EntityType Name="FoodAllergie">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="foodAllergie" Type="Edm.String" MaxLength="30"/>
+</EntityType>
+<EntityType Name="OtherAllergie">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="otherAllergie" Type="Edm.String" MaxLength="30"/>
+</EntityType>
+<EntityType Name="MedicalCondition">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="medCond" Type="Edm.String" MaxLength="30"/>
+</EntityType>
+<EntityType Name="DietaryPreference">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="preference" Type="Edm.String" MaxLength="200"/>
+    <NavigationProperty Name="dietaryPreferences" Relationship="StudentService.HealthSafetyDietaryPreference_dietaryPreference" FromRole="DietaryPreference" ToRole="HealthSafetyDietaryPreference"/>
+</EntityType>
+<EntityType Name="HealthSafetyDietaryPreference">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <NavigationProperty Name="dietaryPreference" Relationship="StudentService.HealthSafetyDietaryPreference_dietaryPreference" FromRole="HealthSafetyDietaryPreference" ToRole="DietaryPreference"/>
+    <Property Name="dietaryPreference_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="healthSafety" Relationship="StudentService.HealthSafetyDietaryPreference_healthSafety" FromRole="HealthSafetyDietaryPreference" ToRole="HealthSafety"/>
+    <Property Name="healthSafety_ID" Type="Edm.Guid"/>
+    <Property Name="dietaryPreferenceDescription" Type="Edm.String" MaxLength="200"/>
+</EntityType>
+<EntityType Name="HealthSafety">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="noteDietary" Type="Edm.String" MaxLength="200"/>
+    <Property Name="noteFoodAllergie" Type="Edm.String" MaxLength="200"/>
+    <Property Name="noteAllergie" Type="Edm.String" MaxLength="200"/>
+    <Property Name="noteMedCond" Type="Edm.String" MaxLength="20"/>
+    <NavigationProperty Name="student" Relationship="StudentService.HealthSafety_student" FromRole="HealthSafety" ToRole="StudentFullInfo"/>
+    <Property Name="student_ID" Type="Edm.Guid"/>
+    <Property Name="foodAllergie" Type="Edm.String" MaxLength="30"/>
+    <Property Name="otherAllergie" Type="Edm.String" MaxLength="30"/>
+    <Property Name="medCond" Type="Edm.String" MaxLength="30"/>
+    <NavigationProperty Name="healths" Relationship="StudentService.HealthSafetyDietaryPreference_healthSafety" FromRole="HealthSafety" ToRole="HealthSafetyDietaryPreference"/>
+    <Property Name="foodAllergie_ID" Type="Edm.Guid"/>
+    <Property Name="medCond_ID" Type="Edm.Guid"/>
+    <Property Name="otherAllergie_ID" Type="Edm.Guid"/>
+</EntityType>
+<EntityType Name="StudentHousingPreferences">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <NavigationProperty Name="housingInformation" Relationship="StudentService.StudentHousingPreferences_housingInformation" FromRole="StudentHousingPreferences" ToRole="HousingInformation"/>
+    <Property Name="housingInformation_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="typeAccomodation" Relationship="StudentService.StudentHousingPreferences_typeAccomodation" FromRole="StudentHousingPreferences" ToRole="TypeAccommodation"/>
+    <Property Name="typeAccomodation_ID" Type="Edm.Guid"/>
+    <Property Name="typeChoice_ID" Type="Edm.Guid"/>
+    <Property Name="typeAccomodationName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="typeChoiceDescription" Type="Edm.String" MaxLength="20"/>
+</EntityType>
+<EntityType Name="HousingInformation">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="noteRoomMateReq" Type="Edm.String" MaxLength="200"/>
+    <Property Name="selfDescription" Type="Edm.String" MaxLength="200"/>
+    <Property Name="walkingPref" Type="Edm.Boolean"/>
+    <Property Name="firstExperienceAcc" Type="Edm.Boolean"/>
+    <Property Name="additionalInfo" Type="Edm.Boolean"/>
+    <Property Name="noteAddInfo" Type="Edm.String" MaxLength="200"/>
+    <NavigationProperty Name="student" Relationship="StudentService.HousingInformation_student" FromRole="HousingInformation" ToRole="StudentFullInfo"/>
+    <Property Name="student_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="priority" Relationship="StudentService.HousingInformation_priority" FromRole="HousingInformation" ToRole="priority"/>
+    <Property Name="priority_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="tidy" Relationship="StudentService.HousingInformation_tidy" FromRole="HousingInformation" ToRole="Tidy"/>
+    <Property Name="tidy_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="noise" Relationship="StudentService.HousingInformation_noise" FromRole="HousingInformation" ToRole="Noise"/>
+    <Property Name="noise_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="bedTime" Relationship="StudentService.HousingInformation_bedTime" FromRole="HousingInformation" ToRole="BedTime"/>
+    <Property Name="bedTime_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="studyHabit" Relationship="StudentService.HousingInformation_studyHabit" FromRole="HousingInformation" ToRole="StudyHabit"/>
+    <Property Name="studyHabit_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="frequency" Relationship="StudentService.HousingInformation_frequency" FromRole="HousingInformation" ToRole="Frequency"/>
+    <Property Name="frequency_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="guest" Relationship="StudentService.HousingInformation_guest" FromRole="HousingInformation" ToRole="Guest"/>
+    <Property Name="guest_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="bathroomCond" Relationship="StudentService.HousingInformation_bathroomCond" FromRole="HousingInformation" ToRole="BathroomCond"/>
+    <Property Name="bathroomCond_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="roommateRequests" Relationship="StudentService.RoommateRequest_housingInformation" FromRole="HousingInformation" ToRole="RoommateRequest"/>
+    <NavigationProperty Name="studentHousingPreferences" Relationship="StudentService.StudentHousingPreferences_housingInformation" FromRole="HousingInformation" ToRole="StudentHousingPreferences"/>
+    <NavigationProperty Name="studentPrefRoomies" Relationship="StudentService.StudentPrefRoomie_housingInformation" FromRole="HousingInformation" ToRole="StudentPrefRoomie"/>
+    <Property Name="priorityDescription" Type="Edm.String" MaxLength="100"/>
+    <Property Name="tidyLevel" Type="Edm.String" MaxLength="100"/>
+    <Property Name="noiseLevel" Type="Edm.String" MaxLength="100"/>
+    <Property Name="bedTimeLevel" Type="Edm.String" MaxLength="100"/>
+    <Property Name="studyHabitLevel" Type="Edm.String" MaxLength="100"/>
+    <Property Name="frequencyLevel" Type="Edm.String" MaxLength="100"/>
+    <Property Name="policyLevel" Type="Edm.String" MaxLength="100"/>
+    <Property Name="bathroomCondLevel" Type="Edm.String" MaxLength="100"/>
+</EntityType>
+<EntityType Name="TypeAccommodation">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="name" Type="Edm.String" MaxLength="50"/>
+    <Property Name="typeRoom" Type="Edm.String" MaxLength="50"/>
+    <NavigationProperty Name="housing" Relationship="StudentService.Housing_typeAccomodations" FromRole="TypeAccommodation" ToRole="Housing"/>
+    <NavigationProperty Name="studentHousingPreferences" Relationship="StudentService.StudentHousingPreferences_typeAccomodation" FromRole="TypeAccommodation" ToRole="StudentHousingPreferences"/>
+    <NavigationProperty Name="messages" Relationship="StudentService.Message_typeAccomodation" FromRole="TypeAccommodation" ToRole="Message"/>
+</EntityType>
+<EntityType Name="RoommateRequest">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <NavigationProperty Name="housingInformation" Relationship="StudentService.RoommateRequest_housingInformation" FromRole="RoommateRequest" ToRole="HousingInformation"/>
+    <Property Name="housingInformation_ID" Type="Edm.Guid"/>
+    <Property Name="name" Type="Edm.String" MaxLength="50"/>
+    <Property Name="arePreferncesIndicated" Type="Edm.Boolean"/>
+    <Property Name="typeRoommate_ID" Type="Edm.Guid"/>
+    <Property Name="typeRoommateDescription" Type="Edm.String" MaxLength="20"/>
+</EntityType>
+<EntityType Name="StudentPrefRoomie">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <NavigationProperty Name="housingInformation" Relationship="StudentService.StudentPrefRoomie_housingInformation" FromRole="StudentPrefRoomie" ToRole="HousingInformation"/>
+    <Property Name="housingInformation_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="roomMatePrf" Relationship="StudentService.StudentPrefRoomie_roomMatePrf" FromRole="StudentPrefRoomie" ToRole="RoomMatePref"/>
+    <Property Name="roomMatePrf_ID" Type="Edm.Guid"/>
+</EntityType>
+<EntityType Name="RoomMatePref">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="roomMatePref" Type="Edm.String" MaxLength="100"/>
+    <NavigationProperty Name="studentPrefRoomies" Relationship="StudentService.StudentPrefRoomie_roomMatePrf" FromRole="RoomMatePref" ToRole="StudentPrefRoomie"/>
+</EntityType>
+<EntityType Name="priority">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="priority" Type="Edm.String" MaxLength="100"/>
+</EntityType>
+<EntityType Name="Accomodation">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="description" Type="Edm.String" MaxLength="50"/>
+    <NavigationProperty Name="housing" Relationship="StudentService.Housing_accomodation" FromRole="Accomodation" ToRole="Housing"/>
+</EntityType>
+<EntityType Name="Housing">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="structureName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="address" Type="Edm.String" MaxLength="50"/>
+    <Property Name="director" Type="Edm.String" MaxLength="50"/>
+    <Property Name="phoneNumber" Type="Edm.String" MaxLength="20"/>
+    <Property Name="emailAddress" Type="Edm.String" MaxLength="50"/>
+    <Property Name="distanceInstitute" Type="Edm.String" MaxLength="50"/>
+    <Property Name="managementAllergies" Type="Edm.Boolean"/>
+    <Property Name="service" Type="Edm.String" MaxLength="200"/>
+    <Property Name="notePet" Type="Edm.String" MaxLength="200"/>
+    <NavigationProperty Name="typeAccomodations" Relationship="StudentService.Housing_typeAccomodations" FromRole="Housing" ToRole="TypeAccommodation"/>
+    <Property Name="typeAccomodations_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="rooms" Relationship="StudentService.Room_housing" FromRole="Housing" ToRole="Room"/>
+    <NavigationProperty Name="accomodation" Relationship="StudentService.Housing_accomodation" FromRole="Housing" ToRole="Accomodation"/>
+    <Property Name="accomodation_ID" Type="Edm.Guid"/>
+</EntityType>
+<EntityType Name="Room">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="name" Type="Edm.String" MaxLength="20"/>
+    <Property Name="numberBed" Type="Edm.String" MaxLength="20"/>
+    <Property Name="weeklyCleaning" Type="Edm.String" MaxLength="20"/>
+    <Property Name="kitchenStation" Type="Edm.String" MaxLength="20"/>
+    <NavigationProperty Name="housing" Relationship="StudentService.Room_housing" FromRole="Room" ToRole="Housing"/>
+    <Property Name="housing_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="bedAvailabilities" Relationship="StudentService.BedAvailability_room" FromRole="Room" ToRole="BedAvailability"/>
+    <Property Name="housingStructureName" Type="Edm.String" MaxLength="50"/>
+</EntityType>
+<EntityType Name="BedAvailability">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="code" Type="Edm.String" MaxLength="20"/>
+    <Property Name="occupancyPeriodStart" Type="Edm.DateTime" sap:display-format="Date"/>
+    <Property Name="occupancyPeriodEnd" Type="Edm.DateTime" sap:display-format="Date"/>
+    <NavigationProperty Name="room" Relationship="StudentService.BedAvailability_room" FromRole="BedAvailability" ToRole="Room"/>
+    <Property Name="room_ID" Type="Edm.Guid"/>
+    <Property Name="statusBed_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="student" Relationship="StudentService.BedAvailability_student" FromRole="BedAvailability" ToRole="StudentFullInfo"/>
+    <Property Name="student_ID" Type="Edm.Guid"/>
+    <Property Name="roomName" Type="Edm.String" MaxLength="20"/>
+    <Property Name="numRoomClean" Type="Edm.String" MaxLength="20"/>
+    <Property Name="numKitchen" Type="Edm.String" MaxLength="20"/>
+</EntityType>
+<EntityType Name="StudentActivity">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <NavigationProperty Name="student" Relationship="StudentService.StudentActivity_student" FromRole="StudentActivity" ToRole="StudentFullInfo"/>
+    <Property Name="student_ID" Type="Edm.Guid"/>
+    <Property Name="activity_ID" Type="Edm.Guid"/>
+    <Property Name="activityName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="activityLocation" Type="Edm.String" MaxLength="50"/>
+    <Property Name="activityEventDate" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="activityClubName" Type="Edm.String" MaxLength="50"/>
+</EntityType>
+<EntityType Name="MessageRecipient">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <NavigationProperty Name="message" Relationship="StudentService.MessageRecipient_message" FromRole="MessageRecipient" ToRole="Message"/>
+    <Property Name="message_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="student" Relationship="StudentService.MessageRecipient_student" FromRole="MessageRecipient" ToRole="StudentFullInfo"/>
+    <Property Name="student_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="statusMessage" Relationship="StudentService.MessageRecipient_statusMessage" FromRole="MessageRecipient" ToRole="StatusMessages"/>
+    <Property Name="statusMessage_ID" Type="Edm.Guid"/>
+    <Property Name="messageSubject" Type="Edm.String" MaxLength="255"/>
+    <Property Name="messageDataSend" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="messageCretedFrom" Type="Edm.String" MaxLength="50"/>
+</EntityType>
+<EntityType Name="GUIDAttachment">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="description" Type="Edm.String" MaxLength="100"/>
+    <Property Name="isDeleted" Type="Edm.Boolean"/>
+</EntityType>
+<EntityType Name="Note">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+    <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <NavigationProperty Name="student" Relationship="StudentService.Note_student" FromRole="Note" ToRole="StudentFullInfo"/>
+    <Property Name="student_ID" Type="Edm.Guid"/>
+    <Property Name="note" Type="Edm.String"/>
+</EntityType>
+<EntityType Name="FirstLanguage">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="name" Type="Edm.String" MaxLength="50"/>
+</EntityType>
+<EntityType Name="ItalianLanguageProficiency">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="description" Type="Edm.String" MaxLength="30"/>
+</EntityType>
+<EntityType Name="PaymentStatus">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="description" Type="Edm.String" MaxLength="50"/>
+    <Property Name="isDeleted" Type="Edm.Boolean"/>
+</EntityType>
+<EntityType Name="PaymentType">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="description" Type="Edm.String" MaxLength="50"/>
+    <Property Name="isDeleted" Type="Edm.Boolean"/>
+</EntityType>
+<EntityType Name="Payment">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+    <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="amount" Type="Edm.String" MaxLength="50"/>
+    <Property Name="note" Type="Edm.String"/>
+    <NavigationProperty Name="student" Relationship="StudentService.Payment_student" FromRole="Payment" ToRole="StudentFullInfo"/>
+    <Property Name="student_ID" Type="Edm.Guid"/>
+    <Property Name="payer_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="paymentStatus" Relationship="StudentService.Payment_paymentStatus" FromRole="Payment" ToRole="PaymentStatus"/>
+    <Property Name="paymentStatus_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="paymentType" Relationship="StudentService.Payment_paymentType" FromRole="Payment" ToRole="PaymentType"/>
+    <Property Name="paymentType_ID" Type="Edm.Guid"/>
+    <Property Name="payerName" Type="Edm.String" MaxLength="100"/>
+</EntityType>
+<EntityType Name="AttachmentType">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="description" Type="Edm.String" MaxLength="100"/>
+    <Property Name="isDeleted" Type="Edm.Boolean"/>
+</EntityType>
+<EntityType Name="AttachmentStatus">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="description" Type="Edm.String" MaxLength="100"/>
+</EntityType>
+<EntityType Name="Attachment">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="isDeleted" Type="Edm.Boolean"/>
+    <Property Name="fileName" Type="Edm.String" MaxLength="100"/>
+    <NavigationProperty Name="guidAttachment" Relationship="StudentService.Attachment_guidAttachment" FromRole="Attachment" ToRole="GUIDAttachment"/>
+    <Property Name="guidAttachment_ID" Type="Edm.Guid"/>
+    <Property Name="attachmentType" Type="Edm.String" MaxLength="100"/>
+    <Property Name="attachmentStatus" Type="Edm.String" MaxLength="100"/>
+    <NavigationProperty Name="student" Relationship="StudentService.Attachment_student" FromRole="Attachment" ToRole="StudentFullInfo"/>
+    <Property Name="student_ID" Type="Edm.Guid"/>
+    <Property Name="fileDescription" Type="Edm.String" MaxLength="100"/>
+    <Property Name="attachmentType_ID" Type="Edm.Guid"/>
+    <Property Name="attachmentStatus_ID" Type="Edm.Guid"/>
+</EntityType>
+<EntityType Name="PermanentAddress">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="street" Type="Edm.String" MaxLength="100"/>
+    <Property Name="city" Type="Edm.String" MaxLength="50"/>
+    <Property Name="state" Type="Edm.String" MaxLength="50"/>
+    <Property Name="zipcode" Type="Edm.String" MaxLength="10"/>
+    <NavigationProperty Name="country" Relationship="StudentService.PermanentAddress_country" FromRole="PermanentAddress" ToRole="Country"/>
+    <Property Name="country_ID" Type="Edm.Guid"/>
+</EntityType>
+<EntityType Name="Tidy">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="tidnessLevel" Type="Edm.String" MaxLength="100"/>
+</EntityType>
+<EntityType Name="Noise">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="noise" Type="Edm.String" MaxLength="100"/>
+</EntityType>
+<EntityType Name="BedTime">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="hour" Type="Edm.String" MaxLength="100"/>
+</EntityType>
+<EntityType Name="StudyHabit">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="habits" Type="Edm.String" MaxLength="100"/>
+</EntityType>
+<EntityType Name="Frequency">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="levelFrequency" Type="Edm.String" MaxLength="100"/>
+</EntityType>
+<EntityType Name="Guest">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="policy" Type="Edm.String" MaxLength="100"/>
+</EntityType>
+<EntityType Name="BathroomCond">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="bathRoomCond" Type="Edm.String" MaxLength="100"/>
+</EntityType>
+<EntityType Name="StudentStatus">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="description" Type="Edm.String" MaxLength="50"/>
+    <Property Name="isDeleted" Type="Edm.Boolean"/>
+</EntityType>
+<EntityType Name="Classroom">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+    <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="classroom" Type="Edm.String" MaxLength="20"/>
+    <Property Name="address" Type="Edm.String" MaxLength="50"/>
+    <Property Name="floor" Type="Edm.String" MaxLength="20"/>
+    <Property Name="capacity" Type="Edm.Int32"/>
+    <NavigationProperty Name="events" Relationship="StudentService.Event_classroom" FromRole="Classroom" ToRole="Event"/>
+</EntityType>
+<EntityType Name="Timeslot">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+    <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="day" Type="Edm.String" MaxLength="20"/>
+    <Property Name="startTime" Type="Edm.Time"/>
+    <Property Name="endTime" Type="Edm.Time"/>
+    <NavigationProperty Name="classRoom" Relationship="StudentService.Timeslot_classRoom" FromRole="Timeslot" ToRole="Classroom"/>
+    <Property Name="classRoom_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="professor" Relationship="StudentService.Timeslot_professor" FromRole="Timeslot" ToRole="Professor"/>
+    <Property Name="professor_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="classSchedule" Relationship="StudentService.ClassSchedule_timeSlots" FromRole="Timeslot" ToRole="ClassSchedule"/>
+    <Property Name="classRoomName" Type="Edm.String" MaxLength="20"/>
+    <Property Name="professorFirstName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="professorLastName" Type="Edm.String" MaxLength="50"/>
+</EntityType>
+<EntityType Name="ClassSchedule">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="classe_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="timeSlots" Relationship="StudentService.ClassSchedule_timeSlots" FromRole="ClassSchedule" ToRole="Timeslot"/>
+    <Property Name="timeSlots_ID" Type="Edm.Guid"/>
+    <Property Name="className" Type="Edm.String" MaxLength="50"/>
+    <Property Name="classSessionCourseName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="classSessionProgramName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="timeslotStartTime" Type="Edm.Time"/>
+    <Property Name="timeslotEndTime" Type="Edm.Time"/>
+    <Property Name="timeslotClassroomName" Type="Edm.String" MaxLength="20"/>
+    <Property Name="timeslotProfessorFistName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="timeslotProfessorLastName" Type="Edm.String" MaxLength="50"/>
+</EntityType>
+<EntityType Name="EventProfessor">
+    <Key>
+        <PropertyRef Name="professor_ID"/>
+        <PropertyRef Name="event_ID"/>
+    </Key>
+    <NavigationProperty Name="professor" Relationship="StudentService.EventProfessor_professor" FromRole="EventProfessor" ToRole="Professor"/>
+    <Property Name="professor_ID" Type="Edm.Guid" Nullable="false"/>
+    <NavigationProperty Name="event" Relationship="StudentService.EventProfessor_event" FromRole="EventProfessor" ToRole="Event"/>
+    <Property Name="event_ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="professorFirstName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="professorLastName" Type="Edm.String" MaxLength="50"/>
+</EntityType>
+<EntityType Name="Event">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+    <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="title" Type="Edm.String" MaxLength="50"/>
+    <Property Name="dataStart" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="dataEnd" Type="Edm.DateTimeOffset" Precision="7"/>
+    <Property Name="note" Type="Edm.String" MaxLength="100"/>
+    <NavigationProperty Name="program" Relationship="StudentService.Event_program" FromRole="Event" ToRole="Program"/>
+    <Property Name="program_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="course" Relationship="StudentService.Event_course" FromRole="Event" ToRole="Courses"/>
+    <Property Name="course_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="classroom" Relationship="StudentService.Event_classroom" FromRole="Event" ToRole="Classroom"/>
+    <Property Name="classroom_ID" Type="Edm.Guid"/>
+    <NavigationProperty Name="eventProfessors" Relationship="StudentService.EventProfessor_event" FromRole="Event" ToRole="EventProfessor"/>
+    <Property Name="programName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="courseName" Type="Edm.String" MaxLength="50"/>
+    <Property Name="classroomName" Type="Edm.String" MaxLength="20"/>
+</EntityType>
+<EntityType Name="Prefix">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="prefix" Type="Edm.String" MaxLength="5"/>
+</EntityType>
+<EntityType Name="Provider">
+    <Key>
+        <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+    <Property Name="name" Type="Edm.String" MaxLength="30"/>
+    <Property Name="emailAddress" Type="Edm.String" MaxLength="50"/>
+    <Property Name="phone" Type="Edm.String" MaxLength="20"/>
+    <Property Name="address" Type="Edm.String" MaxLength="50"/>
+</EntityType>
+<Association Name="Student_studentStatus">
+    <End Role="Student" Type="StudentService.Student" Multiplicity="*"/>
+    <End Role="StudentStatus" Type="StudentService.StudentStatus" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="StudentStatus">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Student">
+            <PropertyRef Name="studentStatus_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Student_sexOnPassport">
+    <End Role="Student" Type="StudentService.Student" Multiplicity="*"/>
+    <End Role="SexOnPassport" Type="StudentService.SexOnPassport" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="SexOnPassport">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Student">
+            <PropertyRef Name="sexOnPassport_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Student_program">
+    <End Role="Student" Type="StudentService.Student" Multiplicity="*"/>
+    <End Role="Program" Type="StudentService.Program" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Program">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Student">
+            <PropertyRef Name="program_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Student_university">
+    <End Role="Student" Type="StudentService.Student" Multiplicity="*"/>
+    <End Role="University" Type="StudentService.University" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="University">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Student">
+            <PropertyRef Name="university_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Student_provider">
+    <End Role="Student" Type="StudentService.Student" Multiplicity="*"/>
+    <End Role="Provider" Type="StudentService.Provider" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Provider">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Student">
+            <PropertyRef Name="provider_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Student_findOut">
+    <End Role="Student" Type="StudentService.Student" Multiplicity="*"/>
+    <End Role="FindOut" Type="StudentService.FindOut" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="FindOut">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Student">
+            <PropertyRef Name="findOut_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Student_permanentAddress">
+    <End Role="Student" Type="StudentService.Student" Multiplicity="*"/>
+    <End Role="PermanentAddress" Type="StudentService.PermanentAddress" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="PermanentAddress">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Student">
+            <PropertyRef Name="permanentAddress_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Student_country">
+    <End Role="Student" Type="StudentService.Student" Multiplicity="*"/>
+    <End Role="Country" Type="StudentService.Country" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Country">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Student">
+            <PropertyRef Name="country_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Student_firstLanguage">
+    <End Role="Student" Type="StudentService.Student" Multiplicity="*"/>
+    <End Role="FirstLanguage" Type="StudentService.FirstLanguage" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="FirstLanguage">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Student">
+            <PropertyRef Name="firstLanguage_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Student_prefix">
+    <End Role="Student" Type="StudentService.Student" Multiplicity="*"/>
+    <End Role="Prefix" Type="StudentService.Prefix" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Prefix">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Student">
+            <PropertyRef Name="prefix_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Student_studentEmails">
+    <End Role="Student" Type="StudentService.Student" Multiplicity="*"/>
+    <End Role="StudentEmail" Type="StudentService.StudentEmail" Multiplicity="*"/>
+</Association>
+<Association Name="Student_studentHobbies">
+    <End Role="Student" Type="StudentService.Student" Multiplicity="*"/>
+    <End Role="StudentHobbie" Type="StudentService.StudentHobbie" Multiplicity="*"/>
+</Association>
+<Association Name="Student_attachments">
+    <End Role="Student" Type="StudentService.Student" Multiplicity="*"/>
+    <End Role="Attachment" Type="StudentService.Attachment" Multiplicity="*"/>
+</Association>
+<Association Name="Student_studentCourses">
+    <End Role="Student" Type="StudentService.Student" Multiplicity="*"/>
+    <End Role="StudentCourse" Type="StudentService.StudentCourse" Multiplicity="*"/>
+</Association>
+<Association Name="Student_notes">
+    <End Role="Student" Type="StudentService.Student" Multiplicity="*"/>
+    <End Role="Note" Type="StudentService.Note" Multiplicity="*"/>
+</Association>
+<Association Name="Student_studentActivities">
+    <End Role="Student" Type="StudentService.Student" Multiplicity="*"/>
+    <End Role="StudentActivity" Type="StudentService.StudentActivity" Multiplicity="*"/>
+</Association>
+<Association Name="Student_messageRecipients">
+    <End Role="Student" Type="StudentService.Student" Multiplicity="*"/>
+    <End Role="MessageRecipient" Type="StudentService.MessageRecipient" Multiplicity="*"/>
+</Association>
+<Association Name="Student_housingInformations">
+    <End Role="Student" Type="StudentService.Student" Multiplicity="*"/>
+    <End Role="HousingInformation" Type="StudentService.HousingInformation" Multiplicity="*"/>
+</Association>
+<Association Name="StudentFullInfo_studentStatus">
+    <End Role="StudentFullInfo" Type="StudentService.StudentFullInfo" Multiplicity="*"/>
+    <End Role="StudentStatus" Type="StudentService.StudentStatus" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="StudentStatus">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="StudentFullInfo">
+            <PropertyRef Name="studentStatus_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="StudentFullInfo_program">
+    <End Role="StudentFullInfo" Type="StudentService.StudentFullInfo" Multiplicity="*"/>
+    <End Role="Program" Type="StudentService.Program" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Program">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="StudentFullInfo">
+            <PropertyRef Name="program_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="StudentFullInfo_university">
+    <End Role="StudentFullInfo" Type="StudentService.StudentFullInfo" Multiplicity="*"/>
+    <End Role="University" Type="StudentService.University" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="University">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="StudentFullInfo">
+            <PropertyRef Name="university_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="StudentFullInfo_provider">
+    <End Role="StudentFullInfo" Type="StudentService.StudentFullInfo" Multiplicity="*"/>
+    <End Role="Provider" Type="StudentService.Provider" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Provider">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="StudentFullInfo">
+            <PropertyRef Name="provider_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="StudentFullInfo_findOut">
+    <End Role="StudentFullInfo" Type="StudentService.StudentFullInfo" Multiplicity="*"/>
+    <End Role="FindOut" Type="StudentService.FindOut" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="FindOut">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="StudentFullInfo">
+            <PropertyRef Name="findOut_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="StudentFullInfo_permanentAddress">
+    <End Role="StudentFullInfo" Type="StudentService.StudentFullInfo" Multiplicity="*"/>
+    <End Role="PermanentAddress" Type="StudentService.PermanentAddress" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="PermanentAddress">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="StudentFullInfo">
+            <PropertyRef Name="permanentAddress_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="StudentFullInfo_country">
+    <End Role="StudentFullInfo" Type="StudentService.StudentFullInfo" Multiplicity="*"/>
+    <End Role="Country" Type="StudentService.Country" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Country">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="StudentFullInfo">
+            <PropertyRef Name="country_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="StudentFullInfo_firstLanguage">
+    <End Role="StudentFullInfo" Type="StudentService.StudentFullInfo" Multiplicity="*"/>
+    <End Role="FirstLanguage" Type="StudentService.FirstLanguage" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="FirstLanguage">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="StudentFullInfo">
+            <PropertyRef Name="firstLanguage_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="StudentFullInfo_prefix">
+    <End Role="StudentFullInfo" Type="StudentService.StudentFullInfo" Multiplicity="*"/>
+    <End Role="Prefix" Type="StudentService.Prefix" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Prefix">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="StudentFullInfo">
+            <PropertyRef Name="prefix_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="StudentFullInfo_studentEmails">
+    <End Role="StudentFullInfo" Type="StudentService.StudentFullInfo" Multiplicity="*"/>
+    <End Role="StudentEmail" Type="StudentService.StudentEmail" Multiplicity="*"/>
+</Association>
+<Association Name="StudentFullInfo_studentHobbies">
+    <End Role="StudentFullInfo" Type="StudentService.StudentFullInfo" Multiplicity="*"/>
+    <End Role="StudentHobbie" Type="StudentService.StudentHobbie" Multiplicity="*"/>
+</Association>
+<Association Name="StudentFullInfo_attachments">
+    <End Role="StudentFullInfo" Type="StudentService.StudentFullInfo" Multiplicity="*"/>
+    <End Role="Attachment" Type="StudentService.Attachment" Multiplicity="*"/>
+</Association>
+<Association Name="StudentFullInfo_studentCourses">
+    <End Role="StudentFullInfo" Type="StudentService.StudentFullInfo" Multiplicity="*"/>
+    <End Role="StudentCourse" Type="StudentService.StudentCourse" Multiplicity="*"/>
+</Association>
+<Association Name="StudentFullInfo_notes">
+    <End Role="StudentFullInfo" Type="StudentService.StudentFullInfo" Multiplicity="*"/>
+    <End Role="Note" Type="StudentService.Note" Multiplicity="*"/>
+</Association>
+<Association Name="StudentFullInfo_studentActivities">
+    <End Role="StudentFullInfo" Type="StudentService.StudentFullInfo" Multiplicity="*"/>
+    <End Role="StudentActivity" Type="StudentService.StudentActivity" Multiplicity="*"/>
+</Association>
+<Association Name="StudentFullInfo_messageRecipients">
+    <End Role="StudentFullInfo" Type="StudentService.StudentFullInfo" Multiplicity="*"/>
+    <End Role="MessageRecipient" Type="StudentService.MessageRecipient" Multiplicity="*"/>
+</Association>
+<Association Name="StudentFullInfo_housingInformations">
+    <End Role="StudentFullInfo" Type="StudentService.StudentFullInfo" Multiplicity="*"/>
+    <End Role="HousingInformation" Type="StudentService.HousingInformation" Multiplicity="*"/>
+</Association>
+<Association Name="Courses_attachment">
+    <End Role="Courses" Type="StudentService.Courses" Multiplicity="*"/>
+    <End Role="Attachment" Type="StudentService.Attachment" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Attachment">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Courses">
+            <PropertyRef Name="attachment_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Session_course">
+    <End Role="Session" Type="StudentService.Session" Multiplicity="*"/>
+    <End Role="Courses" Type="StudentService.Courses" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Courses">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Session">
+            <PropertyRef Name="course_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Session_program">
+    <End Role="Session" Type="StudentService.Session" Multiplicity="*"/>
+    <End Role="Program" Type="StudentService.Program" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Program">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Session">
+            <PropertyRef Name="program_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="StudentEmail_student">
+    <End Role="StudentEmail" Type="StudentService.StudentEmail" Multiplicity="*"/>
+    <End Role="StudentFullInfo" Type="StudentService.StudentFullInfo" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="StudentFullInfo">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="StudentEmail">
+            <PropertyRef Name="student_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="StudentEmail_emailAddress">
+    <End Role="StudentEmail" Type="StudentService.StudentEmail" Multiplicity="*"/>
+    <End Role="EmailAddress" Type="StudentService.EmailAddress" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="EmailAddress">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="StudentEmail">
+            <PropertyRef Name="emailAddress_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="StudentHobbie_student">
+    <End Role="StudentHobbie" Type="StudentService.StudentHobbie" Multiplicity="*"/>
+    <End Role="StudentFullInfo" Type="StudentService.StudentFullInfo" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="StudentFullInfo">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="StudentHobbie">
+            <PropertyRef Name="student_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="StudentHobbie_hobbie">
+    <End Role="StudentHobbie" Type="StudentService.StudentHobbie" Multiplicity="*"/>
+    <End Role="Hobbie" Type="StudentService.Hobbie" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Hobbie">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="StudentHobbie">
+            <PropertyRef Name="hobbie_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="AcademicInformation_student">
+    <End Role="AcademicInformation" Type="StudentService.AcademicInformation" Multiplicity="*"/>
+    <End Role="StudentFullInfo" Type="StudentService.StudentFullInfo" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="StudentFullInfo">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="AcademicInformation">
+            <PropertyRef Name="student_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="AcademicInformation_yearSchool">
+    <End Role="AcademicInformation" Type="StudentService.AcademicInformation" Multiplicity="*"/>
+    <End Role="YearSchool" Type="StudentService.YearSchool" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="YearSchool">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="AcademicInformation">
+            <PropertyRef Name="yearSchool_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="AcademicInformation_majorField">
+    <End Role="AcademicInformation" Type="StudentService.AcademicInformation" Multiplicity="*"/>
+    <End Role="MajorField" Type="StudentService.MajorField" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="MajorField">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="AcademicInformation">
+            <PropertyRef Name="majorField_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="AcademicInformation_graduationDate">
+    <End Role="AcademicInformation" Type="StudentService.AcademicInformation" Multiplicity="*"/>
+    <End Role="GraduationDate" Type="StudentService.GraduationDate" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="GraduationDate">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="AcademicInformation">
+            <PropertyRef Name="graduationDate_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="StudentCourse_course">
+    <End Role="StudentCourse" Type="StudentService.StudentCourse" Multiplicity="*"/>
+    <End Role="Courses" Type="StudentService.Courses" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Courses">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="StudentCourse">
+            <PropertyRef Name="course_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="StudentCourse_student">
+    <End Role="StudentCourse" Type="StudentService.StudentCourse" Multiplicity="*"/>
+    <End Role="StudentFullInfo" Type="StudentService.StudentFullInfo" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="StudentFullInfo">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="StudentCourse">
+            <PropertyRef Name="student_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="StudentCourse_guidCourseOutline">
+    <End Role="StudentCourse" Type="StudentService.StudentCourse" Multiplicity="*"/>
+    <End Role="GUIDAttachment" Type="StudentService.GUIDAttachment" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="GUIDAttachment">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="StudentCourse">
+            <PropertyRef Name="guidCourseOutline_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="CourseConstraint_course">
+    <End Role="CourseConstraint" Type="StudentService.CourseConstraint" Multiplicity="*"/>
+    <End Role="Courses" Type="StudentService.Courses" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Courses">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="CourseConstraint">
+            <PropertyRef Name="course_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="CourseConstraint_courseBlockedBy">
+    <End Role="CourseConstraint" Type="StudentService.CourseConstraint" Multiplicity="*"/>
+    <End Role="Courses" Type="StudentService.Courses" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Courses">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="CourseConstraint">
+            <PropertyRef Name="courseBlockedBy_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="CourseDepartment_department">
+    <End Role="CourseDepartment" Type="StudentService.CourseDepartment" Multiplicity="*"/>
+    <End Role="Department" Type="StudentService.Department" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Department">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="CourseDepartment">
+            <PropertyRef Name="department_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="CourseDepartment_course">
+    <End Role="CourseDepartment" Type="StudentService.CourseDepartment" Multiplicity="*"/>
+    <End Role="Courses" Type="StudentService.Courses" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Courses">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="CourseDepartment">
+            <PropertyRef Name="course_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="CourseProfessor_professor">
+    <End Role="CourseProfessor" Type="StudentService.CourseProfessor" Multiplicity="*"/>
+    <End Role="Professor" Type="StudentService.Professor" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Professor">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="CourseProfessor">
+            <PropertyRef Name="professor_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="CourseProfessor_course">
+    <End Role="CourseProfessor" Type="StudentService.CourseProfessor" Multiplicity="*"/>
+    <End Role="Courses" Type="StudentService.Courses" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Courses">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="CourseProfessor">
+            <PropertyRef Name="course_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="ProgramCourse_course">
+    <End Role="ProgramCourse" Type="StudentService.ProgramCourse" Multiplicity="*"/>
+    <End Role="Courses" Type="StudentService.Courses" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Courses">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="ProgramCourse">
+            <PropertyRef Name="course_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="ProgramCourse_program">
+    <End Role="ProgramCourse" Type="StudentService.ProgramCourse" Multiplicity="*"/>
+    <End Role="Program" Type="StudentService.Program" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Program">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="ProgramCourse">
+            <PropertyRef Name="program_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="FieldVisit_course">
+    <End Role="FieldVisit" Type="StudentService.FieldVisit" Multiplicity="*"/>
+    <End Role="Courses" Type="StudentService.Courses" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Courses">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="FieldVisit">
+            <PropertyRef Name="course_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Message_categoryMessage">
+    <End Role="Message" Type="StudentService.Message" Multiplicity="*"/>
+    <End Role="CategoryMessage" Type="StudentService.CategoryMessage" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="CategoryMessage">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Message">
+            <PropertyRef Name="categoryMessage_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Message_typeMessage">
+    <End Role="Message" Type="StudentService.Message" Multiplicity="*"/>
+    <End Role="TypeMessage" Type="StudentService.TypeMessage" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="TypeMessage">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Message">
+            <PropertyRef Name="typeMessage_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Message_program">
+    <End Role="Message" Type="StudentService.Message" Multiplicity="*"/>
+    <End Role="Program" Type="StudentService.Program" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Program">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Message">
+            <PropertyRef Name="program_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Message_course">
+    <End Role="Message" Type="StudentService.Message" Multiplicity="*"/>
+    <End Role="Courses" Type="StudentService.Courses" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Courses">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Message">
+            <PropertyRef Name="course_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Message_typeAccomodation">
+    <End Role="Message" Type="StudentService.Message" Multiplicity="*"/>
+    <End Role="TypeAccommodation" Type="StudentService.TypeAccommodation" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="TypeAccommodation">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Message">
+            <PropertyRef Name="typeAccomodation_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="InternShip_student">
+    <End Role="InternShip" Type="StudentService.InternShip" Multiplicity="*"/>
+    <End Role="StudentFullInfo" Type="StudentService.StudentFullInfo" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="StudentFullInfo">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="InternShip">
+            <PropertyRef Name="student_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="InternShip_italianLanguageProficiency">
+    <End Role="InternShip" Type="StudentService.InternShip" Multiplicity="*"/>
+    <End Role="ItalianLanguageProficiency" Type="StudentService.ItalianLanguageProficiency" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="ItalianLanguageProficiency">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="InternShip">
+            <PropertyRef Name="italianLanguageProficiency_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="HealthSafetyDietaryPreference_dietaryPreference">
+    <End Role="HealthSafetyDietaryPreference" Type="StudentService.HealthSafetyDietaryPreference" Multiplicity="*"/>
+    <End Role="DietaryPreference" Type="StudentService.DietaryPreference" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="DietaryPreference">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="HealthSafetyDietaryPreference">
+            <PropertyRef Name="dietaryPreference_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="HealthSafetyDietaryPreference_healthSafety">
+    <End Role="HealthSafetyDietaryPreference" Type="StudentService.HealthSafetyDietaryPreference" Multiplicity="*"/>
+    <End Role="HealthSafety" Type="StudentService.HealthSafety" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="HealthSafety">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="HealthSafetyDietaryPreference">
+            <PropertyRef Name="healthSafety_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="HealthSafety_student">
+    <End Role="HealthSafety" Type="StudentService.HealthSafety" Multiplicity="*"/>
+    <End Role="StudentFullInfo" Type="StudentService.StudentFullInfo" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="StudentFullInfo">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="HealthSafety">
+            <PropertyRef Name="student_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="StudentHousingPreferences_housingInformation">
+    <End Role="StudentHousingPreferences" Type="StudentService.StudentHousingPreferences" Multiplicity="*"/>
+    <End Role="HousingInformation" Type="StudentService.HousingInformation" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="HousingInformation">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="StudentHousingPreferences">
+            <PropertyRef Name="housingInformation_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="StudentHousingPreferences_typeAccomodation">
+    <End Role="StudentHousingPreferences" Type="StudentService.StudentHousingPreferences" Multiplicity="*"/>
+    <End Role="TypeAccommodation" Type="StudentService.TypeAccommodation" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="TypeAccommodation">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="StudentHousingPreferences">
+            <PropertyRef Name="typeAccomodation_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="HousingInformation_student">
+    <End Role="HousingInformation" Type="StudentService.HousingInformation" Multiplicity="*"/>
+    <End Role="StudentFullInfo" Type="StudentService.StudentFullInfo" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="StudentFullInfo">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="HousingInformation">
+            <PropertyRef Name="student_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="HousingInformation_priority">
+    <End Role="HousingInformation" Type="StudentService.HousingInformation" Multiplicity="*"/>
+    <End Role="priority" Type="StudentService.priority" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="priority">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="HousingInformation">
+            <PropertyRef Name="priority_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="HousingInformation_tidy">
+    <End Role="HousingInformation" Type="StudentService.HousingInformation" Multiplicity="*"/>
+    <End Role="Tidy" Type="StudentService.Tidy" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Tidy">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="HousingInformation">
+            <PropertyRef Name="tidy_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="HousingInformation_noise">
+    <End Role="HousingInformation" Type="StudentService.HousingInformation" Multiplicity="*"/>
+    <End Role="Noise" Type="StudentService.Noise" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Noise">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="HousingInformation">
+            <PropertyRef Name="noise_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="HousingInformation_bedTime">
+    <End Role="HousingInformation" Type="StudentService.HousingInformation" Multiplicity="*"/>
+    <End Role="BedTime" Type="StudentService.BedTime" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="BedTime">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="HousingInformation">
+            <PropertyRef Name="bedTime_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="HousingInformation_studyHabit">
+    <End Role="HousingInformation" Type="StudentService.HousingInformation" Multiplicity="*"/>
+    <End Role="StudyHabit" Type="StudentService.StudyHabit" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="StudyHabit">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="HousingInformation">
+            <PropertyRef Name="studyHabit_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="HousingInformation_frequency">
+    <End Role="HousingInformation" Type="StudentService.HousingInformation" Multiplicity="*"/>
+    <End Role="Frequency" Type="StudentService.Frequency" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Frequency">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="HousingInformation">
+            <PropertyRef Name="frequency_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="HousingInformation_guest">
+    <End Role="HousingInformation" Type="StudentService.HousingInformation" Multiplicity="*"/>
+    <End Role="Guest" Type="StudentService.Guest" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Guest">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="HousingInformation">
+            <PropertyRef Name="guest_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="HousingInformation_bathroomCond">
+    <End Role="HousingInformation" Type="StudentService.HousingInformation" Multiplicity="*"/>
+    <End Role="BathroomCond" Type="StudentService.BathroomCond" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="BathroomCond">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="HousingInformation">
+            <PropertyRef Name="bathroomCond_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="RoommateRequest_housingInformation">
+    <End Role="RoommateRequest" Type="StudentService.RoommateRequest" Multiplicity="*"/>
+    <End Role="HousingInformation" Type="StudentService.HousingInformation" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="HousingInformation">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="RoommateRequest">
+            <PropertyRef Name="housingInformation_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="StudentPrefRoomie_housingInformation">
+    <End Role="StudentPrefRoomie" Type="StudentService.StudentPrefRoomie" Multiplicity="*"/>
+    <End Role="HousingInformation" Type="StudentService.HousingInformation" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="HousingInformation">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="StudentPrefRoomie">
+            <PropertyRef Name="housingInformation_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="StudentPrefRoomie_roomMatePrf">
+    <End Role="StudentPrefRoomie" Type="StudentService.StudentPrefRoomie" Multiplicity="*"/>
+    <End Role="RoomMatePref" Type="StudentService.RoomMatePref" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="RoomMatePref">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="StudentPrefRoomie">
+            <PropertyRef Name="roomMatePrf_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Housing_typeAccomodations">
+    <End Role="Housing" Type="StudentService.Housing" Multiplicity="*"/>
+    <End Role="TypeAccommodation" Type="StudentService.TypeAccommodation" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="TypeAccommodation">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Housing">
+            <PropertyRef Name="typeAccomodations_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Housing_accomodation">
+    <End Role="Housing" Type="StudentService.Housing" Multiplicity="*"/>
+    <End Role="Accomodation" Type="StudentService.Accomodation" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Accomodation">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Housing">
+            <PropertyRef Name="accomodation_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Room_housing">
+    <End Role="Room" Type="StudentService.Room" Multiplicity="*"/>
+    <End Role="Housing" Type="StudentService.Housing" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Housing">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Room">
+            <PropertyRef Name="housing_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="BedAvailability_room">
+    <End Role="BedAvailability" Type="StudentService.BedAvailability" Multiplicity="*"/>
+    <End Role="Room" Type="StudentService.Room" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Room">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="BedAvailability">
+            <PropertyRef Name="room_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="BedAvailability_student">
+    <End Role="BedAvailability" Type="StudentService.BedAvailability" Multiplicity="*"/>
+    <End Role="StudentFullInfo" Type="StudentService.StudentFullInfo" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="StudentFullInfo">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="BedAvailability">
+            <PropertyRef Name="student_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="StudentActivity_student">
+    <End Role="StudentActivity" Type="StudentService.StudentActivity" Multiplicity="*"/>
+    <End Role="StudentFullInfo" Type="StudentService.StudentFullInfo" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="StudentFullInfo">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="StudentActivity">
+            <PropertyRef Name="student_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="MessageRecipient_message">
+    <End Role="MessageRecipient" Type="StudentService.MessageRecipient" Multiplicity="*"/>
+    <End Role="Message" Type="StudentService.Message" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Message">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="MessageRecipient">
+            <PropertyRef Name="message_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="MessageRecipient_student">
+    <End Role="MessageRecipient" Type="StudentService.MessageRecipient" Multiplicity="*"/>
+    <End Role="StudentFullInfo" Type="StudentService.StudentFullInfo" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="StudentFullInfo">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="MessageRecipient">
+            <PropertyRef Name="student_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="MessageRecipient_statusMessage">
+    <End Role="MessageRecipient" Type="StudentService.MessageRecipient" Multiplicity="*"/>
+    <End Role="StatusMessages" Type="StudentService.StatusMessages" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="StatusMessages">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="MessageRecipient">
+            <PropertyRef Name="statusMessage_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Note_student">
+    <End Role="Note" Type="StudentService.Note" Multiplicity="*"/>
+    <End Role="StudentFullInfo" Type="StudentService.StudentFullInfo" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="StudentFullInfo">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Note">
+            <PropertyRef Name="student_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Payment_student">
+    <End Role="Payment" Type="StudentService.Payment" Multiplicity="*"/>
+    <End Role="StudentFullInfo" Type="StudentService.StudentFullInfo" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="StudentFullInfo">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Payment">
+            <PropertyRef Name="student_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Payment_paymentStatus">
+    <End Role="Payment" Type="StudentService.Payment" Multiplicity="*"/>
+    <End Role="PaymentStatus" Type="StudentService.PaymentStatus" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="PaymentStatus">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Payment">
+            <PropertyRef Name="paymentStatus_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Payment_paymentType">
+    <End Role="Payment" Type="StudentService.Payment" Multiplicity="*"/>
+    <End Role="PaymentType" Type="StudentService.PaymentType" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="PaymentType">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Payment">
+            <PropertyRef Name="paymentType_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Attachment_guidAttachment">
+    <End Role="Attachment" Type="StudentService.Attachment" Multiplicity="*"/>
+    <End Role="GUIDAttachment" Type="StudentService.GUIDAttachment" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="GUIDAttachment">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Attachment">
+            <PropertyRef Name="guidAttachment_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Attachment_student">
+    <End Role="Attachment" Type="StudentService.Attachment" Multiplicity="*"/>
+    <End Role="StudentFullInfo" Type="StudentService.StudentFullInfo" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="StudentFullInfo">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Attachment">
+            <PropertyRef Name="student_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="PermanentAddress_country">
+    <End Role="PermanentAddress" Type="StudentService.PermanentAddress" Multiplicity="*"/>
+    <End Role="Country" Type="StudentService.Country" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Country">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="PermanentAddress">
+            <PropertyRef Name="country_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Timeslot_classRoom">
+    <End Role="Timeslot" Type="StudentService.Timeslot" Multiplicity="*"/>
+    <End Role="Classroom" Type="StudentService.Classroom" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Classroom">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Timeslot">
+            <PropertyRef Name="classRoom_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Timeslot_professor">
+    <End Role="Timeslot" Type="StudentService.Timeslot" Multiplicity="*"/>
+    <End Role="Professor" Type="StudentService.Professor" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Professor">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Timeslot">
+            <PropertyRef Name="professor_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="ClassSchedule_timeSlots">
+    <End Role="ClassSchedule" Type="StudentService.ClassSchedule" Multiplicity="*"/>
+    <End Role="Timeslot" Type="StudentService.Timeslot" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Timeslot">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="ClassSchedule">
+            <PropertyRef Name="timeSlots_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="EventProfessor_professor">
+    <End Role="EventProfessor" Type="StudentService.EventProfessor" Multiplicity="*"/>
+    <End Role="Professor" Type="StudentService.Professor" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Professor">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="EventProfessor">
+            <PropertyRef Name="professor_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="EventProfessor_event">
+    <End Role="EventProfessor" Type="StudentService.EventProfessor" Multiplicity="*"/>
+    <End Role="Event" Type="StudentService.Event" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Event">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="EventProfessor">
+            <PropertyRef Name="event_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Event_program">
+    <End Role="Event" Type="StudentService.Event" Multiplicity="*"/>
+    <End Role="Program" Type="StudentService.Program" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Program">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Event">
+            <PropertyRef Name="program_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Event_course">
+    <End Role="Event" Type="StudentService.Event" Multiplicity="*"/>
+    <End Role="Courses" Type="StudentService.Courses" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Courses">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Event">
+            <PropertyRef Name="course_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Association Name="Event_classroom">
+    <End Role="Event" Type="StudentService.Event" Multiplicity="*"/>
+    <End Role="Classroom" Type="StudentService.Classroom" Multiplicity="0..1"/>
+    <ReferentialConstraint>
+        <Principal Role="Classroom">
+            <PropertyRef Name="ID"/>
+        </Principal>
+        <Dependent Role="Event">
+            <PropertyRef Name="classroom_ID"/>
+        </Dependent>
+    </ReferentialConstraint>
+</Association>
+<Annotations Target="StudentService.Student/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.Student/courseCount"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.Computed" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.StudentFullInfo/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.StudentFullInfo/courseCount"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.Computed" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.StudentFullInfo/primaryEmail"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.Computed" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.StudentFullInfo/secondaryEmail"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.Computed" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.StudentFullInfo/secondaryEmail_ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.Computed" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.StudentFullInfo/primaryEmail_ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.Computed" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.Courses"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.Description" String="Aspect to capture changes by user and name&#xA;&#xA;See https://cap.cloud.sap/docs/cds/common#aspect-managed"/>
+</Annotations>
+<Annotations Target="StudentService.Courses/createdAt"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Immutable" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Common.Label" String="Created On"/>
+</Annotations>
+<Annotations Target="StudentService.Courses/createdBy"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Immutable" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Core.Description" String="A user's unique ID"/>
+<Annotation Term="Common.Label" String="Created By"/>
+</Annotations>
+<Annotations Target="StudentService.Courses/modifiedAt"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Common.Label" String="Changed On"/>
+</Annotations>
+<Annotations Target="StudentService.Courses/modifiedBy"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Core.Description" String="A user's unique ID"/>
+<Annotation Term="Common.Label" String="Changed By"/>
+</Annotations>
+<Annotations Target="StudentService.Courses/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.Courses/departmentsName"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.Computed" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.Program"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.Description" String="Aspect to capture changes by user and name&#xA;&#xA;See https://cap.cloud.sap/docs/cds/common#aspect-managed"/>
+</Annotations>
+<Annotations Target="StudentService.Program/createdAt"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Immutable" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Common.Label" String="Created On"/>
+</Annotations>
+<Annotations Target="StudentService.Program/createdBy"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Immutable" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Core.Description" String="A user's unique ID"/>
+<Annotation Term="Common.Label" String="Created By"/>
+</Annotations>
+<Annotations Target="StudentService.Program/modifiedAt"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Common.Label" String="Changed On"/>
+</Annotations>
+<Annotations Target="StudentService.Program/modifiedBy"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Core.Description" String="A user's unique ID"/>
+<Annotation Term="Common.Label" String="Changed By"/>
+</Annotations>
+<Annotations Target="StudentService.Program/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.Session"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.Description" String="Aspect to capture changes by user and name&#xA;&#xA;See https://cap.cloud.sap/docs/cds/common#aspect-managed"/>
+</Annotations>
+<Annotations Target="StudentService.Session/createdAt"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Immutable" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Common.Label" String="Created On"/>
+</Annotations>
+<Annotations Target="StudentService.Session/createdBy"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Immutable" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Core.Description" String="A user's unique ID"/>
+<Annotation Term="Common.Label" String="Created By"/>
+</Annotations>
+<Annotations Target="StudentService.Session/modifiedAt"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Common.Label" String="Changed On"/>
+</Annotations>
+<Annotations Target="StudentService.Session/modifiedBy"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Core.Description" String="A user's unique ID"/>
+<Annotation Term="Common.Label" String="Changed By"/>
+</Annotations>
+<Annotations Target="StudentService.Session/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.StudentEmail/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.EmailAddress/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.ProgramWithoutSession"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.Description" String="Aspect to capture changes by user and name&#xA;&#xA;See https://cap.cloud.sap/docs/cds/common#aspect-managed"/>
+</Annotations>
+<Annotations Target="StudentService.EntityContainer/ProgramWithoutSession"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Capabilities.DeleteRestrictions">
+    <Record Type="Capabilities.DeleteRestrictionsType">
+        <PropertyValue Property="Deletable" Bool="false"/>
+    </Record>
+</Annotation>
+<Annotation Term="Capabilities.InsertRestrictions">
+    <Record Type="Capabilities.InsertRestrictionsType">
+        <PropertyValue Property="Insertable" Bool="false"/>
+    </Record>
+</Annotation>
+<Annotation Term="Capabilities.UpdateRestrictions">
+    <Record Type="Capabilities.UpdateRestrictionsType">
+        <PropertyValue Property="Updatable" Bool="false"/>
+    </Record>
+</Annotation>
+</Annotations>
+<Annotations Target="StudentService.ProgramWithoutSession/pID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.CourseWithoutSession"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.Description" String="Aspect to capture changes by user and name&#xA;&#xA;See https://cap.cloud.sap/docs/cds/common#aspect-managed"/>
+</Annotations>
+<Annotations Target="StudentService.EntityContainer/CourseWithoutSession"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Capabilities.DeleteRestrictions">
+    <Record Type="Capabilities.DeleteRestrictionsType">
+        <PropertyValue Property="Deletable" Bool="false"/>
+    </Record>
+</Annotation>
+<Annotation Term="Capabilities.InsertRestrictions">
+    <Record Type="Capabilities.InsertRestrictionsType">
+        <PropertyValue Property="Insertable" Bool="false"/>
+    </Record>
+</Annotation>
+<Annotation Term="Capabilities.UpdateRestrictions">
+    <Record Type="Capabilities.UpdateRestrictionsType">
+        <PropertyValue Property="Updatable" Bool="false"/>
+    </Record>
+</Annotation>
+</Annotations>
+<Annotations Target="StudentService.CourseWithoutSession/courseID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.StudentHobbie/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.AcademicInformation/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.StudentCourse/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.Department/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.Professor"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.Description" String="Aspect to capture changes by user and name&#xA;&#xA;See https://cap.cloud.sap/docs/cds/common#aspect-managed"/>
+</Annotations>
+<Annotations Target="StudentService.Professor/createdAt"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Immutable" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Common.Label" String="Created On"/>
+</Annotations>
+<Annotations Target="StudentService.Professor/createdBy"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Immutable" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Core.Description" String="A user's unique ID"/>
+<Annotation Term="Common.Label" String="Created By"/>
+</Annotations>
+<Annotations Target="StudentService.Professor/modifiedAt"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Common.Label" String="Changed On"/>
+</Annotations>
+<Annotations Target="StudentService.Professor/modifiedBy"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Core.Description" String="A user's unique ID"/>
+<Annotation Term="Common.Label" String="Changed By"/>
+</Annotations>
+<Annotations Target="StudentService.Professor/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.ProgramCourse/courseDepartmentNames"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.Computed" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.SexOnPassport/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.FieldVisit"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.Description" String="Aspect to capture changes by user and name&#xA;&#xA;See https://cap.cloud.sap/docs/cds/common#aspect-managed"/>
+</Annotations>
+<Annotations Target="StudentService.FieldVisit/createdAt"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Immutable" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Common.Label" String="Created On"/>
+</Annotations>
+<Annotations Target="StudentService.FieldVisit/createdBy"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Immutable" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Core.Description" String="A user's unique ID"/>
+<Annotation Term="Common.Label" String="Created By"/>
+</Annotations>
+<Annotations Target="StudentService.FieldVisit/modifiedAt"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Common.Label" String="Changed On"/>
+</Annotations>
+<Annotations Target="StudentService.FieldVisit/modifiedBy"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Core.Description" String="A user's unique ID"/>
+<Annotation Term="Common.Label" String="Changed By"/>
+</Annotations>
+<Annotations Target="StudentService.FieldVisit/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.FindOut/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.University/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.Country/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.Hobbie/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.YearSchool/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.MajorField/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.GraduationDate/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.Message/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.CategoryMessage/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.TypeMessage/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.StatusMessages/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.InternShip/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.FoodAllergie/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.OtherAllergie/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.MedicalCondition/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.DietaryPreference/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.HealthSafetyDietaryPreference/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.HealthSafety/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.StudentHousingPreferences/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.HousingInformation/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.TypeAccommodation/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.RoommateRequest/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.StudentPrefRoomie/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.RoomMatePref/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.priority/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.Accomodation/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.Housing/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.Room/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.BedAvailability/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.StudentActivity/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.MessageRecipient/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.GUIDAttachment/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.Note"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.Description" String="Aspect to capture changes by user and name&#xA;&#xA;See https://cap.cloud.sap/docs/cds/common#aspect-managed"/>
+</Annotations>
+<Annotations Target="StudentService.Note/createdAt"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Immutable" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Common.Label" String="Created On"/>
+</Annotations>
+<Annotations Target="StudentService.Note/createdBy"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Immutable" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Core.Description" String="A user's unique ID"/>
+<Annotation Term="Common.Label" String="Created By"/>
+</Annotations>
+<Annotations Target="StudentService.Note/modifiedAt"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Common.Label" String="Changed On"/>
+</Annotations>
+<Annotations Target="StudentService.Note/modifiedBy"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Core.Description" String="A user's unique ID"/>
+<Annotation Term="Common.Label" String="Changed By"/>
+</Annotations>
+<Annotations Target="StudentService.Note/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.FirstLanguage/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.ItalianLanguageProficiency/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.PaymentStatus/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.PaymentType/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.Payment"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.Description" String="Aspect to capture changes by user and name&#xA;&#xA;See https://cap.cloud.sap/docs/cds/common#aspect-managed"/>
+</Annotations>
+<Annotations Target="StudentService.Payment/createdAt"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Immutable" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Common.Label" String="Created On"/>
+</Annotations>
+<Annotations Target="StudentService.Payment/createdBy"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Immutable" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Core.Description" String="A user's unique ID"/>
+<Annotation Term="Common.Label" String="Created By"/>
+</Annotations>
+<Annotations Target="StudentService.Payment/modifiedAt"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Common.Label" String="Changed On"/>
+</Annotations>
+<Annotations Target="StudentService.Payment/modifiedBy"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Core.Description" String="A user's unique ID"/>
+<Annotation Term="Common.Label" String="Changed By"/>
+</Annotations>
+<Annotations Target="StudentService.Payment/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.AttachmentType/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.AttachmentStatus/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.Attachment/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.PermanentAddress/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.Tidy/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.Noise/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.BedTime/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.StudyHabit/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.Frequency/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.Guest/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.BathroomCond/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.StudentStatus/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.Classroom"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.Description" String="Aspect to capture changes by user and name&#xA;&#xA;See https://cap.cloud.sap/docs/cds/common#aspect-managed"/>
+</Annotations>
+<Annotations Target="StudentService.Classroom/createdAt"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Immutable" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Common.Label" String="Created On"/>
+</Annotations>
+<Annotations Target="StudentService.Classroom/createdBy"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Immutable" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Core.Description" String="A user's unique ID"/>
+<Annotation Term="Common.Label" String="Created By"/>
+</Annotations>
+<Annotations Target="StudentService.Classroom/modifiedAt"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Common.Label" String="Changed On"/>
+</Annotations>
+<Annotations Target="StudentService.Classroom/modifiedBy"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Core.Description" String="A user's unique ID"/>
+<Annotation Term="Common.Label" String="Changed By"/>
+</Annotations>
+<Annotations Target="StudentService.Classroom/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.Timeslot"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.Description" String="Aspect to capture changes by user and name&#xA;&#xA;See https://cap.cloud.sap/docs/cds/common#aspect-managed"/>
+</Annotations>
+<Annotations Target="StudentService.Timeslot/createdAt"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Immutable" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Common.Label" String="Created On"/>
+</Annotations>
+<Annotations Target="StudentService.Timeslot/createdBy"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Immutable" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Core.Description" String="A user's unique ID"/>
+<Annotation Term="Common.Label" String="Created By"/>
+</Annotations>
+<Annotations Target="StudentService.Timeslot/modifiedAt"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Common.Label" String="Changed On"/>
+</Annotations>
+<Annotations Target="StudentService.Timeslot/modifiedBy"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Core.Description" String="A user's unique ID"/>
+<Annotation Term="Common.Label" String="Changed By"/>
+</Annotations>
+<Annotations Target="StudentService.Timeslot/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.ClassSchedule/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.Event"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.Description" String="Aspect to capture changes by user and name&#xA;&#xA;See https://cap.cloud.sap/docs/cds/common#aspect-managed"/>
+</Annotations>
+<Annotations Target="StudentService.Event/createdAt"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Immutable" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Common.Label" String="Created On"/>
+</Annotations>
+<Annotations Target="StudentService.Event/createdBy"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Immutable" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Core.Description" String="A user's unique ID"/>
+<Annotation Term="Common.Label" String="Created By"/>
+</Annotations>
+<Annotations Target="StudentService.Event/modifiedAt"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Common.Label" String="Changed On"/>
+</Annotations>
+<Annotations Target="StudentService.Event/modifiedBy"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="UI.HiddenFilter" Bool="true"/>
+<Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+<Annotation Term="Core.Computed" Bool="true"/>
+<Annotation Term="Core.Description" String="A user's unique ID"/>
+<Annotation Term="Common.Label" String="Changed By"/>
+</Annotations>
+<Annotations Target="StudentService.Event/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.Prefix/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+<Annotations Target="StudentService.Provider/ID"
+xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+</Annotations>
+</Schema>
+</edmx:DataServices>
+</edmx:Edmx>

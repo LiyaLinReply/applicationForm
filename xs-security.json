@@ -16,5 +16,10 @@
         "uaa.user"
       ]
     }
-  ]
+  ],
+  "oauth2-configuration": {
+    "token-validity": 900,
+    "redirect-uris": ["https://*.cfapps.eu20-001.hana.ondemand.com/**"],
+    "credential-types": ["binding-secret","x509"]
+  }
 }

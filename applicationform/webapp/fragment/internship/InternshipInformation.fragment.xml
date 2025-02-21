@@ -5,35 +5,43 @@
     xmlns:u="sap.ui.unified"
 >
 
-    <VBox  width="100%">
+    <VBox  width="100%" height="100%">
         <VBox width="100%" class="sapUiContentPadding">
-            <Title class="sapUiSmallMarginBottom"  text="Internship" />
+            <Title class="sapUiSmallMarginBottom"  text="{i18n>InternshipTitle}" />
             <HBox class="sapUiSmallMarginBottom"  justifyContent="SpaceBetween">
                 <VBox width="30%" >
-                    <Label text="{i18n>PersonalInfoSelectYourProgram}"/>
-                    <Select forceSelection="false"
-                        change="onChooseProgram" 
-                        items="{
-                            path: 'ProgramList>/results'
-                        }" 
-                        width="100%">
-                        <core:Item key="{ProgramList>ID}" text="{ProgramList>name}"/>
-                    </Select>
+                    <Label text="{i18n>InternshipRelevantCourse}" wrapping="true"/>
+                    <TextArea rows="3" width="100%" value="{InternshipInfo>/relevantCoursework}"/>
                 </VBox>
                 <VBox width="30%" >
-                    <Label text="{i18n>PersonalInfoFacultyLedProgram}" visible="{ProgramChoice>/isFaculty}"/>
-                    <Select 
-                        forceSelection="false"
-                        visible="{ProgramChoice>/isFaculty}"
-                        change="onChooseProgram" 
-                        items="{
-                            path: 'FacultyProgramList>/results'
-                        }" 
-                        width="100%">
-                        <core:Item key="{FacultyProgramList>name}" text="{FacultyProgramList>name}"/>
-                    </Select>
+                    <Label text="{i18n>InternshipUrlPersonal}" wrapping="true" visible="{ProgramChoice>/isFaculty}"/>
+                    <TextArea rows="3" width="100%" value="{internshipInfoNotMandatory>/urlBlog}"/>
+
                 </VBox>
                 <VBox width="30%">
+                    <Label text="{i18n>InternshipCampusInvolvement}" wrapping="true" visible="{ProgramChoice>/isFaculty}"/>
+                    <TextArea rows="3" width="100%" value="{internshipInfoNotMandatory>/campusInvolvement}"/>
+                </VBox>
+            </HBox>
+            <HBox class="sapUiSmallMarginBottom"  justifyContent="SpaceBetween">
+                <VBox width="30%" >
+                    <Label text="{i18n>InternshipLanguageProficiency}" wrapping="true"/>
+                    <Select 
+                        forceSelection="false"
+                        change="onChooseLanguageProficiency" 
+                        items="{
+                            path: 'ItalianLanguageProficiencyList>/results'
+                        }" 
+                        width="100%">
+                        <core:Item key="{ItalianLanguageProficiencyList>ID}" text="{ItalianLanguageProficiencyList>description}"/>
+                    </Select>
+                    
+                </VBox>
+                <VBox width="30%" >
+
+                </VBox>
+                <VBox width="30%">
+
                 </VBox>
             </HBox>
 

@@ -7,7 +7,7 @@
 
     <VBox  width="100%">
         <VBox width="100%" class="sapUiContentPadding">
-            <Title class="sapUiSmallMarginBottom"  text="Housing" />
+            <Title class="sapUiSmallMarginBottom"  text="{i18n>}" />
             <HBox class="sapUiSmallMarginBottom"  justifyContent="SpaceBetween">
                 <VBox width="30%" >
                     <Label text="{i18n>PersonalInfoSelectYourProgram}"/>

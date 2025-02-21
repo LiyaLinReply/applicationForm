@@ -84,10 +84,15 @@ sap.ui.define([
                     if(!_this._getInternship()){
                         nextStep = "health";
                     }else{
+                        _this.JModelSetupInternship();
                         nextStep = "internship";
                     }
                     break;
                 case "internship":
+                    if(!_this._checkInternalshipRequired()){
+                        MessageToast.show(_this.getTextFor("GeneralTextNotAllFieldCompiled", []));
+                        return;
+                    }
                     nextStep = "health";
                     break;
                 case "health":
@@ -110,6 +115,7 @@ sap.ui.define([
             oSideNavigation.setSelectedKey(nextStep);
             currentStep.setProperty("/step", nextStep);
         },
+
         onApplicationFormBackPress : function(){
             const _this = this;
 
@@ -560,6 +566,9 @@ sap.ui.define([
             const _this = this;
             const currentYear = new Date().getFullYear();
 
+            _this.getModel("ApplicationFormInfo").setProperty("/busy", true);
+
+
             const listOpe =                 [
                 _this.oDataGET(_this, "/ProgramCourse", "CourseList", [new Filter("program_ID", FilterOperator.EQ, choosedProgram.ID)], "", "CourseGet").then((course) => {
                     count = 0;
@@ -606,11 +615,6 @@ sap.ui.define([
             const _this = this;
 
             const academicInfo = _this.getModel("AcademicInfo").getData();
-
-            // if(academicInfo.courseCredit == null){
-            //     MessageToast.show(_this.getTextFor("GeneralTextNotAllFieldCompiled", []));
-            //     return;
-            // }
 
             if(!_this._academicFirstChoice){
                 Fragment.load({
@@ -941,6 +945,54 @@ sap.ui.define([
 
         //-----------------Academic information endss--------------------------
 
+
+        //-----------------Internship starts---------------------------
+
+        _getInternship : function(){
+            const _this = this;
+            const academicInfo = _this.getModel("AcademicInfo").getData();
+            if(academicInfo && academicInfo.gpa >= 3 && academicInfo.internshipAvailable && academicInfo.internshipRequest){
+                return true;
+            }
+
+            return false;
+        },
+
+        JModelSetupInternship: function() {
+            const _this = this;
+
+            _this.getModel("ApplicationFormInfo").setProperty("/busy", true);
+
+            const internshipInfo = {
+                relevantCoursework : null,
+            };
+
+            _this.setModel(new JSONModel(internshipInfo), "InternshipInfo");
+            _this.setModel(new JSONModel({}), "InternshipInfoNotMandatory")
+
+            _this.oDataGET(_this, "/ItalianLanguageProficiency", "ItalianLanguageProficiencyList", "","","ItalianLanguageProficiencyList").finally(() => {
+                _this.getModel("ApplicationFormInfo").setProperty("/busy", false);
+            });
+
+		},
+
+        onChooseLanguageProficiency : function(oEvent){
+            this.setPropertyBySelectKey("InternshipInfoNotMandatory", "italianLanguageProficiency_ID", oEvent);
+        },
+
+        _checkInternalshipRequired : function(){
+
+            const internshipInfo = _this.getModel("InternshipInfo").getData();
+            if(!_this._checkAllObjectKey(internshipInfo)){
+                return false;
+            }
+
+            return true;
+        }
+
+        //-----------------Internship ends--------------------------
+
+
         //-----------------shared --------------------
         onGeneralSelectDialogSearch : function(oEvent){
             const _this = this;
@@ -973,20 +1025,6 @@ sap.ui.define([
         onGeneralSearchDialog : function(oEvent){
             const _this = this;
             _this.generalSelectDialogSearchManage(_this, oEvent, ["courseName"]);
-        },
-
-        onApplicationUploadPressTest : async function(){
-            await this.postAttachment(this, this.oPassportFile,"/REST/v1/documents");
-        },
-
-        _getInternship : function(){
-            const _this = this;
-            const academicInfo = _this.getModel("AcademicInfo").getData();
-            if(academicInfo && academicInfo.gpa >= 3 && academicInfo.internshipAvailable && academicInfo.internshipRequest){
-                return true;
-            }
-
-            return false;
         },
 
     });

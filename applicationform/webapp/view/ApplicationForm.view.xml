@@ -8,10 +8,10 @@
 
     <Page title="applicationForm" busy="{ApplicationFormInfo>/busy}">
 
-        <HBox width="100%" class="backgroundSideNavigation">
+        <HBox width="100%" >
             
-            <tnt:SideNavigation id="applicationFormSideNavigation" selectedKey="personal" expanded="true" >
-                <tnt:NavigationList class="fixedProperty" width="250px" itemSelect="onNavigationItemSelect">
+            <tnt:SideNavigation  id="applicationFormSideNavigation" selectedKey="personal" expanded="true" >
+                <tnt:NavigationList class="fixedProperty backgroundSideNavigation" width="250px" itemSelect="onNavigationItemSelect">
                     <tnt:NavigationListItem text="Personal informations" icon="sap-icon://customer" key="personal"/>
                     <tnt:NavigationListItem text="Academic information" icon="sap-icon://education" key="academic"/>
                     <tnt:NavigationListItem text="Internship" icon="sap-icon://basket" key="internship"/>

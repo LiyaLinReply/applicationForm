@@ -22,6 +22,7 @@
                         width="100%">
                         <core:Item key="{YearSchoolList>ID}" text="{YearSchoolList>academicYear}"/>
                     </Select>
+                    <TextArea rows="3" width="100%" visible="{AcademicInfoNotMandatory>/otherYear}" value="{AcademicInfoNotMandatory>/noteYear}"/>
                 </VBox>
                 <VBox width="30%" >
                     <Label  text="{i18n>AcademicInfoSelectMajorField}" />
@@ -49,7 +50,7 @@
                 </VBox>
                 <VBox width="30%">
                     <Label text="{i18n>AcademicInfoSelectGPA}" />
-                    <Input value="{AcademicInfo>/gpa}" type="Number" change="onGpaInputChange" liveChange="onGpaInputLiveChange"/>
+                    <Input value="{AcademicInfo>/gpa}" change="onGpaInputChange"/>
                 </VBox>
                 <VBox width="30%">
                     <Label text="{i18n>AcademicInfoSelectCredit}" />
@@ -81,8 +82,8 @@
                     <u:FileUploader visible="{AcademicInfo>/learningImpairments}" id="impairmentsDocumentUpload" change="onUploadLearningImpairment" value="{AcademicInfoNotMandatory>/filename}"></u:FileUploader>
                 </VBox>
                 <VBox width="30%">
-                    <CheckBox visible="{= ${AcademicInfo>/internshipAvailable} === true &amp;&amp; ${AcademicInfo>/gpa} >= 3}" text="{i18n>AcademicInfoInternshipCheckBox}" selected="{AcademicInfo>/internshipRequest}"/>
-                    <Label visible="{= ${AcademicInfo>/internshipAvailable} === true &amp;&amp; ${AcademicInfo>/gpa} >= 3}" text="{i18n>AcademicInfoInternshipText}" wrapping="true" />
+                    <CheckBox  text="{i18n>AcademicInfoInternshipCheckBox}" selected="{AcademicInfo>/internshipRequest}"/>
+                    <Label text="{i18n>AcademicInfoInternshipText}" wrapping="true" />
                 </VBox>
             </HBox>
 
@@ -148,6 +149,9 @@
                                     <Text text="{i18n>AcademicInfoCourseSelectionDocumentLink}" />
                                 </Column>
                                 <Column>
+                                    <Text text="{i18n>AcademicInfoCourseSelectInternship}" />
+                                </Column>
+                                <Column>
                                     <Text text="{i18n>AcademicInfoCourseSelectionNote}" />
                                 </Column>
                                 <Column>
@@ -161,6 +165,7 @@
                                         <Text text="{CourseList>courseCredit}"/>
                                         <Text text="{CourseList>courseDepartmentNames}"/>
                                         <Text text="{CourseList>courseDocumentLink}"/>
+								        <Text text="{CourseList>internship}"/>
                                         <Text text="{CourseList>courseNote}"/>
                                         <Button icon="sap-icon://delete" press="onFirstCourseDeleteButtonPress"/>
 
@@ -217,6 +222,9 @@
                                     <Text text="{i18n>AcademicInfoCourseSelectionDocumentLink}" />
                                 </Column>
                                 <Column>
+                                    <Text text="{i18n>AcademicInfoCourseSelectInternship}" />
+                                </Column>
+                                <Column>
                                     <Text text="{i18n>AcademicInfoCourseSelectionNote}" />
                                 </Column>
                                 <Column>
@@ -230,6 +238,7 @@
                                         <Text text="{CourseList>courseCredit}"/>
                                         <Text text="{CourseList>courseDepartmentNames}"/>
                                         <Text text="{CourseList>courseDocumentLink}"/>
+								        <Text text="{CourseList>internship}"/>
                                         <Text text="{CourseList>courseNote}"/>
                                         <Button icon="sap-icon://delete" press="onSecondCourseDeleteButtonPress"/>
                                     </cells>

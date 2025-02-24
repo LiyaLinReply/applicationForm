@@ -8,7 +8,8 @@
         title="{i18n>AcademicInfoCourseFirstCourseChoice}"
         contentWidth="70%"
         contentHeight="70%"
-        afterClose="onDialogFirstCourseChoiceClose">
+        afterClose="onDialogFirstCourseChoiceClose"
+		afterOpen="onDialogFirstCourseAfterOpen">
 		
 		<content>
 			<VBox
@@ -54,6 +55,9 @@
 							<Text text="{i18n>AcademicInfoCourseSelectionDocumentLink}" />
 						</Column>
 						<Column>
+							<Text text="{i18n>AcademicInfoCourseSelectInternship}" />
+						</Column>
+						<Column>
 							<Text text="{i18n>AcademicInfoCourseSelectionNote}" />
 						</Column>
 					</columns>
@@ -66,6 +70,7 @@
 								<Text text="{CourseList>courseCredit}"/>
 								<Text text="{CourseList>courseDepartmentNames}"/>
 								<Text text="{CourseList>courseDocumentLink}"/>
+								<Text text="{CourseList>internship}"/>
 								<Text text="{CourseList>courseNote}"/>
 							</cells>
 						</ColumnListItem>
@@ -79,13 +84,13 @@
 			<Toolbar>
 				<content>
 					<ToolbarSpacer />
-					<Button type="Accept"
-							text="{i18n>generalTextSave}"
-							press="onFirstCourseChoiceConfirm" />
 					<Button 
 						text="{i18n>generalTextCancel}"
 						press="onDialogFirstCourseChoiceClose"
 						 />
+					<Button type="Accept"
+							text="{i18n>generalTextSave}"
+							press="onFirstCourseChoiceConfirm" />
 				</content>
 			</Toolbar>
 		</footer>

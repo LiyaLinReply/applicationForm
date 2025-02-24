@@ -7,7 +7,8 @@
         title="{i18n>AcademicInfoCourseSecondCourseChoice}"
         contentWidth="70%"
         contentHeight="70%"
-        afterClose="onDialogSecondCourseChoiceClose">
+        afterClose="onDialogSecondCourseChoiceClose"
+		afterOpen="onDialogSecondCourseOpen">
 
 		<Table
 			id="secondChoiceCourseTable"
@@ -50,6 +51,9 @@
 					<Text text="{i18n>AcademicInfoCourseSelectionDocumentLink}" />
 				</Column>
 				<Column>
+					<Text text="{i18n>AcademicInfoCourseSelectInternship}" />
+				</Column>
+				<Column>
 					<Text text="{i18n>AcademicInfoCourseSelectionNote}" />
 				</Column>
 			</columns>
@@ -62,6 +66,7 @@
 						<Text text="{CourseList>courseCredit}"/>
 						<Text text="{CourseList>courseDepartmentNames}"/>
 						<Text text="{CourseList>courseDocumentLink}"/>
+						<Text text="{CourseList>internship}"/>
 						<Text text="{CourseList>courseNote}"/>
 					</cells>
 				</ColumnListItem>
@@ -71,13 +76,13 @@
 			<Toolbar>
 				<content>
 					<ToolbarSpacer />
-					<Button type="Accept"
-							text="{i18n>generalTextSave}"
-							press="onSecondCourseChoiceConfirm" />
 					<Button 
 						text="{i18n>generalTextCancel}"
 						press="onDialogSecondCourseChoiceClose"
 						 />
+					<Button type="Accept"
+							text="{i18n>generalTextSave}"
+							press="onSecondCourseChoiceConfirm" />
 				</content>
 			</Toolbar>
 		</footer>

@@ -29,15 +29,51 @@ sap.ui.define([
 
         onNavigationItemSelect : function(oEvent){
             const _this = this;
+            const currentStep = _this.getModel("ApplicationFormInfo");
+            var oSideNavigation = _this.byId("applicationFormSideNavigation");
             let selectedStep = oEvent.getParameter("item").getKey();
-            _this.getModel("ApplicationFormInfo").setProperty("/step", selectedStep);
-            switch (selectedStep) {
-                case 'academic':
-                    _this.JModelSetupAcademicInfo();
-                    break;
+            let nextStep = selectedStep;
+            try {
+                switch (selectedStep) {
+                    case 'academic':
+                        // if(!_this._checkPersonalRequired()){
+                        //     MessageBox.warning(_this.getTextFor("GeneralTextNotAllFieldCompiled", []));
+                        //     return;
+                        // }
+                        _this.JModelSetupAcademicInfo();
+                        break;
+                    case "internship":
+                        if(!_this._checkAcademicRequired() || !_this._getInternship()){
+                            throw new Error("Not all field compiled");
+                        }
+                        _this.JModelSetupHealth();
+                        break;
+                    default:
+                        break;
+                }
+            } catch (error) {
+                console.log(error);
+                nextStep = currentStep.getData().step;
+                MessageBox.warning(_this.getTextFor("GeneralTextNotAllFieldCompiled", []));
+            }
+
+            currentStep.setProperty("/step", nextStep);
+            setTimeout(function() {
+                currentStep.setProperty("/step", nextStep);
+            }, 0); 
             
-                default:
-                    break;
+        },
+
+        _getNavigationItemByKey : function(key){
+            switch (key) {
+                case 'personal' : return "__item3";
+                case 'academic' : return "__item4";
+                case 'internship' : return "__item5";
+                case 'health' : return "__item6";
+                case 'housing' : return "__item7";
+                case 'document' : return "__item8";
+                case 'confirmation' : return "__item9";
+                default: return "__item3";
             }
         },
 
@@ -48,7 +84,7 @@ sap.ui.define([
             const notMandatory = _this.getModel("PersonalInfoNotMandatory").getData();
 
             if(!_this._checkPersonalRequired()){
-                MessageToast.show(_this.getTextFor("GeneralTextNotAllFieldCompiled", []));
+                MessageBox.warning(_this.getTextFor("GeneralTextNotAllFieldCompiled", []));
                 return;
             }
             
@@ -71,7 +107,7 @@ sap.ui.define([
             switch (currentKey) {
                 case "personal":
                     // if(!_this._checkPersonalRequired()){
-                    //     MessageToast.show(_this.getTextFor("GeneralTextNotAllFieldCompiled", []));
+                    //     MessageBox.warning(_this.getTextFor("GeneralTextNotAllFieldCompiled", []));
                     //     return;
                     // }
                     nextStep = "academic";
@@ -79,7 +115,7 @@ sap.ui.define([
                     break;
                 case "academic":
                     // if(!_this._checkAcademicRequired()){
-                    //     MessageToast.show(_this.getTextFor("GeneralTextNotAllFieldCompiled", []));
+                    //     MessageBox.warning(_this.getTextFor("GeneralTextNotAllFieldCompiled", []));
                     //     return;
                     // }
                     if(!_this._getInternship()){
@@ -92,7 +128,7 @@ sap.ui.define([
                     break;
                 case "internship":
                     if(!_this._checkInternalshipRequired()){
-                        MessageToast.show(_this.getTextFor("GeneralTextNotAllFieldCompiled", []));
+                        MessageBox.warning(_this.getTextFor("GeneralTextNotAllFieldCompiled", []));
                         return;
                     }
                     nextStep = "health";
@@ -489,7 +525,7 @@ sap.ui.define([
                 
                 // If the user is under 18, show an error message
                 if (age < 18) {
-                    MessageToast.show("You must be at least 18 years old.");
+                    MessageBox.warning("You must be at least 18 years old.");
                     oDatePicker.setDateValue(null);  // Reset value state if valid
                 }
             }
@@ -552,9 +588,8 @@ sap.ui.define([
                 };
 
                 _this.setModel(new JSONModel(academicInfo), "AcademicInfo");
-                _this.setModel(new JSONModel({noteLearningImpairments:null}), "AcademicInfoNotMandatory");
+                _this.setModel(new JSONModel({noteLearningImpairments:null, otherYear : false}), "AcademicInfoNotMandatory");
                 _this.setModel(new JSONModel({results : []}), "ChoosedCourse");
-                _this.setModel(new JSONModel({results : []}), "CourseListToShow");
                 _this.setModel(new JSONModel({results : []}), "BlockedCourse");
                 _this.loadAcademicDatas(choosedProgram);
 
@@ -574,10 +609,13 @@ sap.ui.define([
             const listOpe =                 [
                 _this.oDataGET(_this, "/ProgramCourse", "CourseList", [new Filter("program_ID", FilterOperator.EQ, choosedProgram.ID)], "", "CourseGet").then((course) => {
                     count = 0;
-                    course.results.map(item => {item.isFirstConfirmed=false; item.isFirstSelected = false; item.isSecondConfirmed = false; item.isSecondSelected = false; item.isConstrained = false; item.firstRank=count; item.secondRank=count++;})
+                    course.results.map(item => {item.internship = (item.courseInternship || item.courseInternshipConstraints); item.isFirstConfirmed=false; item.isFirstSelected = false; item.isSecondConfirmed = false; item.isSecondSelected = false; item.isConstrained = false; item.firstRank=count; item.secondRank=count++;})
                 }),
                 _this.oDataGET(_this, "/CourseConstraint", "CourseConstraintList", "", "", "CourseConstraintList"),            
-                _this.oDataGET(_this, "/YearSchool", "YearSchoolList", "", "", "YearSchoolList"),
+                _this.oDataGET(_this, "/YearSchool", "YearSchoolList", "", "", "YearSchoolList").then(data => {
+                    data.results.push({academicYear : "Other", isOther : true, ID : 'other'});
+                    _this.setModel(new JSONModel(data), "YearSchoolList");
+                }),
                 _this.oDataGET(_this, "/MajorField", "MajorFieldList", "", "", "MajorFieldList"),
                 _this.oDataGET(_this, "/GraduationDate", "GraduationDateList", [new Filter("year", FilterOperator.GE, currentYear), new Filter("year", FilterOperator.LE, currentYear +5)], "", "GraduationDateList")];
             Promise.all(    
@@ -594,7 +632,13 @@ sap.ui.define([
 
         onChooseAcademicInfo : function(oEvent){
             const _this = this;
-            _this.setPropertyBySelectKey("AcademicInfo", "/yearSchool_ID", oEvent);
+            let selectedYear = oEvent.getSource().getSelectedItem().getBindingContext("YearSchoolList").getObject();
+            if(selectedYear.isOther){
+                _this.getModel("AcademicInfoNotMandatory").setProperty("/otherYear", true);
+            }else{
+                _this.getModel("AcademicInfoNotMandatory").setProperty("/otherYear", false);
+                _this.setPropertyBySelectKey("AcademicInfo", "/yearSchool_ID", oEvent);
+            }
             let selectedValue = oEvent.getSource().getSelectedItem();
             _this.getModel("AcademicInfo").setProperty("/internshipAvailable", ["junior", "senior"].includes(selectedValue.getText().toLowerCase()));
         },
@@ -616,8 +660,6 @@ sap.ui.define([
 
             const _this = this;
 
-            const academicInfo = _this.getModel("AcademicInfo").getData();
-
             if(!_this._academicFirstChoice){
                 Fragment.load({
                     name: "applicationform.fragment.academic.FirstCourseChoice",
@@ -632,6 +674,26 @@ sap.ui.define([
                 _this._academicFirstChoice.open();
             }
 
+            
+            _this._filterTableByInternship("idFirstCourseDialog", "firstChoiceCourseTable");
+
+        },
+
+        _filterTableByInternship : function(id, fragmentName){
+            const oTable = sap.ui.core.Fragment.byId(id, fragmentName);
+            if(oTable){
+                const oFilter = new Filter("courseInternship", FilterOperator.EQ, this._canSeeInternshipCourse());
+                oTable.getBinding("items").filter([oFilter]);
+            }
+        },
+
+        _canSeeInternshipCourse : function(){
+            const _this = this;
+            const academicInfo = _this.getModel("AcademicInfo").getData();
+            if(academicInfo && academicInfo.gpa >= 3 && academicInfo.internshipAvailable){
+                return true;
+            }            
+            return false;
         },
 
         onDialogFirstCourseChoiceClose : function(){
@@ -669,7 +731,7 @@ sap.ui.define([
             const oTable = sap.ui.core.Fragment.byId("idFirstCourseDialog", "firstChoiceCourseTable");
             const oFilter = new Filter("courseName", FilterOperator.Contains, sQuery);
             const oBinding = oTable.getBinding("items");
-            oBinding.filter([oFilter]);
+            oBinding.filter([oFilter, new Filter("courseInternship", FilterOperator.EQ, this._canSeeInternshipCourse())]);
         },
 
         onFilterFirstCourseCredit : function(oEvent){
@@ -678,10 +740,10 @@ sap.ui.define([
             const oBinding = oTable.getBinding("items");
 
             if(selectedValue.getText()===""){
-                oBinding.filter([]);
+                oBinding.filter([new Filter("courseInternship", FilterOperator.EQ, this._canSeeInternshipCourse())]);
             }else{
                 const oFilter = new Filter("courseCredit", FilterOperator.EQ, selectedValue.getText());
-                oBinding.filter([oFilter]);
+                oBinding.filter([oFilter, new Filter("courseInternship", FilterOperator.EQ, this._canSeeInternshipCourse())]);
             }
 
         },
@@ -695,16 +757,7 @@ sap.ui.define([
 
             const program = _this.getModel("ProgramChoice").getData();
             if(count < program.minCredits || count > program.maxCredits){
-                const confirm = _this.getTextFor("generalTextOkayGotIt"),
-                canc = _this.getTextFor("generalTextCancel");
-                MessageBox.confirm(_this.getTextFor("AcademicCreditOutRange", []), {
-                actions: [canc, confirm],
-                onClose: sAction =>{
-                    if(sAction === confirm){
-                    }
-                }
-                });
-                return;
+                MessageBox.warning(_this.getTextFor("AcademicCreditOutRange", []));
             }
 
             allCourses.results.map(item => {
@@ -733,7 +786,7 @@ sap.ui.define([
             });
 
             if(choosedFirstCourse){
-                MessageToast.show(_this.getTextFor("GeneralTextFirstCoursesNotChoosen", []));
+                MessageBox.warning(_this.getTextFor("GeneralTextFirstCoursesNotChoosen", []));
                 return;
             }
 
@@ -750,6 +803,9 @@ sap.ui.define([
             }else{
                 _this._academicSecondChoice.open();
             }
+
+            _this._filterTableByInternship("idSecondCourseDialog", "secondChoiceCourseTable");
+
         },
 
         
@@ -862,7 +918,7 @@ sap.ui.define([
             const oTable = sap.ui.core.Fragment.byId("idSecondCourseDialog", "secondChoiceCourseTable");
             const oFilter = new Filter("courseName", FilterOperator.Contains, sQuery);
             const oBinding = oTable.getBinding("items");
-            oBinding.filter([oFilter]);
+            oBinding.filter([oFilter, new Filter("courseInternship", FilterOperator.EQ, this._canSeeInternshipCourse())]);
 		},
 
 		onFilterSecondCourseCredit: function(oEvent) {
@@ -871,10 +927,10 @@ sap.ui.define([
             const oBinding = oTable.getBinding("items");
 
             if(selectedValue.getText()===""){
-                oBinding.filter([]);
+                oBinding.filter([new Filter("courseInternship", FilterOperator.EQ, this._canSeeInternshipCourse())]);
             }else{
                 const oFilter = new Filter("courseCredit", FilterOperator.EQ, selectedValue.getText());
-                oBinding.filter([oFilter]);
+                oBinding.filter([oFilter, new Filter("courseInternship", FilterOperator.EQ, this._canSeeInternshipCourse())]);
             }
 		},
 
@@ -928,24 +984,31 @@ sap.ui.define([
                 }
             })
 
-            return true && choosedFirstCourses;
+            return choosedFirstCourses;
         },
 
         onGpaInputChange: function(oEvent) {
 			const _this = this;
+            const REGEX_GPA = /^\d+(\.\d+)?$/;
             const value = oEvent.getParameters().value;
-            if(value <= 2.5){
-                MessageToast.show(_this.getTextFor("AcademicGPANotEnough", []));
+            const floatValue = parseFloat(value);
+            if(floatValue <= 2.5){
+                MessageBox.warning(_this.getTextFor("AcademicGPANotEnough", []));
+            }
+            if(REGEX_GPA.test(value)===false){
+                MessageBox.warning(_this.getTextFor("AcademicInfoGPAErrorMsg", []));
             }
             const academicInfo = _this.getModel("AcademicInfo").getData();
-            academicInfo.gpa = parseFloat(academicInfo.gpa);
+            academicInfo.gpa = floatValue
 		},
 
-        onGpaInputLiveChange : function(oEvent){
-            const _this = this;
-            const value = oEvent.getParameters().value;
+        onDialogFirstCourseAfterOpen : function(oEvent){
+            this._filterTableByInternship("idFirstCourseDialog", "firstChoiceCourseTable");
         },
 
+        onDialogSecondCourseOpen : function(oEvent){
+            this._filterTableByInternship("idSecondCourseDialog", "secondChoiceCourseTable");
+        },
 
         //-----------------Academic information endss--------------------------
 
@@ -955,7 +1018,16 @@ sap.ui.define([
         _getInternship : function(){
             const _this = this;
             const academicInfo = _this.getModel("AcademicInfo").getData();
-            if(academicInfo && academicInfo.gpa >= 3 && academicInfo.internshipAvailable && academicInfo.internshipRequest){
+            const courseList = _this.getModel("CourseList").getData();
+
+            var internshipCourse = false;
+
+            courseList.results.forEach(item => {
+                if(item.isFirstConfirmed && (item.courseInternship)){
+                    internshipCourse = true;
+                }
+            })
+            if(academicInfo && academicInfo.internshipAvailable && academicInfo.gpa >= 3 && academicInfo.internshipAvailable && internshipCourse){
                 return true;
             }
 
@@ -986,6 +1058,7 @@ sap.ui.define([
 
         _checkInternalshipRequired : function(){
 
+            const _this = this;
             const internshipInfo = _this.getModel("InternshipInfo").getData();
             if(!_this._checkAllObjectKey(internshipInfo)){
                 return false;
@@ -1065,6 +1138,39 @@ sap.ui.define([
 
         onSelectDietaryPreferencesButtonPress : function(){
             const _this = this;
+
+            if(!_this._chooseDietaryDialog){
+                Fragment.load({
+                    name: "applicationform.fragment.health.ChooseDietary",
+                    controller: _this,
+                    id: "idChooseDietaryDialog"
+                }).then(function (_dialog) {
+                    _this._chooseDietaryDialog = _dialog
+                    _this.getView().addDependent(_this._chooseDietaryDialog);
+                    _this._chooseDietaryDialog.open();
+                }.bind(_this));
+            }else{
+                _this._chooseDietaryDialog.open();
+            }
+        },
+
+        onChooseDietarySelectConfirm : function(oEvent){
+            const _this = this;
+            const selectedDietaries = _this.retrieveSelectedContexts(oEvent);
+            const dietaries = [];
+            let isOther = false;
+            let choosedValues = "";
+            if(selectedDietaries){
+                selectedDietaries.forEach(item => {
+                    dietaries.push(item);
+                    if(item.isOther){
+                        isOther = true;
+                    }
+                    choosedValues += " " + item.preference;
+                });
+            }
+            _this.setModel(new JSONModel({dietaries : dietaries, choosedValues : choosedValues}), "SelectedDietaries");
+            _this.getModel("HealthInfoNotMandatory").setProperty("/noteDietaryOther", isOther);
         },
 
         //-----------------Health and safety ends -------------------------------

@@ -331,10 +331,10 @@
                 <VBox width="30%">
                     <Label  wrapping="true" text="{i18n>PersonalInformationHobby}"/>
                     <Button text="ChooseHobbies" press="onChooseHobbiesPress"/>
-                    <TextArea width="100%" rows="3" visible="{=!${PersonalInfo>/isOtherHobby}}" enabled="false" value="{PersonalInfoNotMandatory>/choosedHobbies}" />
+                    <TextArea width="100%" rows="3" enabled="false" value="{PersonalInfoNotMandatory>/choosedHobbies}" />
                     <TextArea  width="100%" rows="3" visible="{=${PersonalInfo>/isOtherHobby} === true}" value="{PersonalInfoNotMandatory>/otherHobby}"/>
                     <CheckBox text="Others" visible="{=${PersonalInfo>/isOtherHobby} === true}" selected="{PersonalInfoNotMandatory>/isUlteriorHobby}"/>
-                    <TextArea  width="100%" rows="3" visible="{=${PersonalInfoNotMandatory>/isUlteriorHobby} === true}" value="{PersonalInfoNotMandatory>/ulteriorHobby}"/>
+                    <TextArea  width="100%" rows="3" visible="{=${PersonalInfoNotMandatory>/isUlteriorHobby} === true &amp;&amp; ${PersonalInfo>/isOtherHobby} === true}" value="{PersonalInfoNotMandatory>/ulteriorHobby}"/>
 
                 </VBox>
             </HBox>

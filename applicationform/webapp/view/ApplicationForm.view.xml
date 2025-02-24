@@ -10,7 +10,7 @@
 
         <HBox width="100%" >
             
-            <tnt:SideNavigation  id="applicationFormSideNavigation" selectedKey="personal" expanded="true" >
+            <tnt:SideNavigation  id="applicationFormSideNavigation" selectedKey="{ApplicationFormInfo>/step}" expanded="true" >
                 <tnt:NavigationList class="fixedProperty backgroundSideNavigation" width="250px" itemSelect="onNavigationItemSelect">
                     <tnt:NavigationListItem text="Personal informations" icon="sap-icon://customer" key="personal"/>
                     <tnt:NavigationListItem text="Academic information" icon="sap-icon://education" key="academic"/>
@@ -93,11 +93,7 @@
                 <Button text="{i18n>generalTextNext}" type="Reject" press="onApplicationFormNextPress"/>
                 
                 <Button text="{i18n>generalTextSave}" type="Emphasized" press="onApplicationFormSavePress"/>
-                <Button text="{Upload}" type="Emphasized" press="onApplicationUploadPressTest"/>
-                <!-- <Button text="{i18n>GenericCTAButtonDelete}" type="Reject" press="onDeleteLog" visible="{= !${ChangeLogInfo>/isEditing} }"/>
-                <Button text="{i18n>GenericCTAButtonEdit}"  press="onEditLog" visible="{= !${ChangeLogInfo>/isEditing} }"/>
-                <Button text="{i18n>GenericCTAButtonCancel}"  press="onCancelLog" visible="{ChangeLogInfo>/isEditing}" />
-                <Button text="{i18n>GenericCTAButtonCreate}" type="Emphasized" press="onNewChangeLogDialog" visible="{= !${ChangeLogInfo>/isEditing} }"/> -->
+
             </OverflowToolbar>
         </footer>
     </Page>

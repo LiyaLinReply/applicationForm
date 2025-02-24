@@ -10,9 +10,10 @@
             <Title class="sapUiSmallMarginBottom"  text="{i18n>HealthInfoTitle}" />
             <HBox class="sapUiSmallMarginBottom"  justifyContent="SpaceBetween">
                 <VBox width="30%" >
-                    <Label text="{i18n>PersonalInfoSelectYourProgram}" wrapping="true"/>
-                    <Button text="{i18n>HealthInfoChooseDietary}" press="onSelectDietaryPreferencesButtonPress"/>
-                    <TextArea rows="3" visible="{HealthInfoNotMandatory>/noteDietaryOther}" value="{HealthInfoNotMandatory>/noteDietary}"/>
+                    <Label text="{i18n>HealthInfoChooseDietaryPreferences}" wrapping="true"/>
+                    <Button width="100%" text="{i18n>HealthInfoChooseDietary}" press="onSelectDietaryPreferencesButtonPress"/>
+                    <TextArea rows="3" width="100%" visible="{HealthInfoNotMandatory>/noteDietaryOther}" value="{HealthInfoNotMandatory>/noteDietary}"/>
+                    <TextArea rows="3" width="100%" visible="{=${HealthInfoNotMandatory>/noteDietaryOther} === false}" editable="false" value="{SelectedDietaries>/choosedValues}"/>
                 </VBox>
                 <VBox width="30%" >
                     <Label text="{i18n>HealthFoodAllergies}" wrapping="true"/>
@@ -24,7 +25,7 @@
                         width="100%">
                         <core:Item key="{FoodAllergieList>ID}" text="{FoodAllergieList>foodAllergie}"/>
                     </Select>
-                    <TextArea rows="3" visible="{HealthInfoNotMandatory>/foodAllergieYes}" value="{HealthInfoNotMandatory>/noteFoodAllergie}"/>
+                    <TextArea rows="3" width="100%" visible="{HealthInfoNotMandatory>/foodAllergieYes}" value="{HealthInfoNotMandatory>/noteFoodAllergie}"/>
                 </VBox>
                 <VBox width="30%" >
                     <Label text="{i18n>HealthOtherAllergies}" wrapping="true"/>
@@ -36,7 +37,7 @@
                         width="100%">
                         <core:Item key="{OtherAllergieList>ID}" text="{OtherAllergieList>otherAllergie}"/>
                     </Select>
-                    <TextArea rows="3" visible="{HealthInfoNotMandatory>/otherAllergieYes}" value="{HealthInfoNotMandatory>/noteAllergie}"/>
+                    <TextArea rows="3" width="100%" visible="{HealthInfoNotMandatory>/otherAllergieYes}" value="{HealthInfoNotMandatory>/noteAllergie}"/>
 
                 </VBox>
             </HBox>
@@ -51,7 +52,7 @@
                         width="100%">
                         <core:Item key="{MedicalConditionList>ID}" text="{MedicalConditionList>medCond}"/>
                     </Select>
-                    <TextArea rows="3" visible="{HealthInfoNotMandatory>/medicalConditionYes}" value="{HealthInfoNotMandatory>/noteAllergie}"/>
+                    <TextArea width="100%" rows="3" visible="{HealthInfoNotMandatory>/medicalConditionYes}" value="{HealthInfoNotMandatory>/noteAllergie}"/>
                 </VBox>
                 <VBox width="30%" >
 

@@ -167,7 +167,7 @@
                                 path: 'PrefixList>/results'
                             }" 
                            >
-                            <core:Item key="{PrefixList>prefix}" text="{PrefixList>prefix}"/>
+                            <core:Item key="{PrefixList>ID}" text="{PrefixList>prefix}"/>
                         </Select>      
                         <Input value="{PersonalInfo>/mobilePhoneNumber}" type="Tel"/>
                     </HBox>
@@ -179,7 +179,7 @@
             <HBox class="sapUiSmallMarginBottom" justifyContent="SpaceBetween" >
                 <VBox width="30%">
                     <Label text="{i18n>PersonalInfoInstagramAccount}" />
-                    <Input value="{PersonalInfo>/emailAddress}" />
+                    <Input value="{PersonalInfoNotMandatory>/instagramAccount}" />
                 </VBox>
                 <VBox width="30%">
                     <Label text="{i18n>PersonalInfoPassportNumber}" />
@@ -266,7 +266,14 @@
                 </VBox>
                 <VBox width="30%">
                     <Label  text="{i18n>PersonalInformationAddressCountry}"/>
-                    <Input value="{PermanentAddressInfo>/country}"/>
+                    <Select forceSelection="false"
+                        change="onSelectCountryPermanentAddress" 
+                        items="{
+                            path: 'CountryList>/results'
+                        }" 
+                        width="100%">
+                        <core:Item key="{CountryList>ID}" text="{CountryList>name}"/>
+                    </Select>
                 </VBox>
                 <VBox width="30%">
                 </VBox>

@@ -12,8 +12,8 @@
                 <VBox width="30%" >
                     <Label text="{i18n>HealthInfoChooseDietaryPreferences}" wrapping="true"/>
                     <Button width="100%" text="{i18n>HealthInfoChooseDietary}" press="onSelectDietaryPreferencesButtonPress"/>
+                    <TextArea rows="3" width="100%" editable="false" value="{SelectedDietaries>/choosedValues}"/>
                     <TextArea rows="3" width="100%" visible="{HealthInfoNotMandatory>/noteDietaryOther}" value="{HealthInfoNotMandatory>/noteDietary}"/>
-                    <TextArea rows="3" width="100%" visible="{=${HealthInfoNotMandatory>/noteDietaryOther} === false}" editable="false" value="{SelectedDietaries>/choosedValues}"/>
                 </VBox>
                 <VBox width="30%" >
                     <Label text="{i18n>HealthFoodAllergies}" wrapping="true"/>

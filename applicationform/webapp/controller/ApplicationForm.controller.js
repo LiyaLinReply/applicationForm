@@ -46,7 +46,18 @@ sap.ui.define([
                         if(!_this._checkAcademicRequired() || !_this._getInternship()){
                             throw new Error("Not all field compiled");
                         }
+                        _this.JModelSetupInternship();
+                        break;
+                    case "health":
+                        if(!_this._getInternship() && !_this._checkAcademicRequired()){
+                            throw new Error("Not all field compiled");
+                        }
+                        if(!_this._checkInternalshipRequired()){
+                            throw new Error("Not all field compiled");
+                        }
+
                         _this.JModelSetupHealth();
+                        
                         break;
                     default:
                         break;
@@ -55,12 +66,13 @@ sap.ui.define([
                 console.log(error);
                 nextStep = currentStep.getData().step;
                 MessageBox.warning(_this.getTextFor("GeneralTextNotAllFieldCompiled", []));
+                setTimeout(function() {
+                    currentStep.setProperty("/step", nextStep);
+                }, 0); 
             }
 
             currentStep.setProperty("/step", nextStep);
-            setTimeout(function() {
-                currentStep.setProperty("/step", nextStep);
-            }, 0); 
+            _this.byId("idApplicationFormPage").scrollTo(0);
             
         },
 
@@ -83,10 +95,10 @@ sap.ui.define([
             const programChoice = _this.getModel("ProgramChoice").getData();
             const notMandatory = _this.getModel("PersonalInfoNotMandatory").getData();
 
-            if(!_this._checkPersonalRequired()){
-                MessageBox.warning(_this.getTextFor("GeneralTextNotAllFieldCompiled", []));
-                return;
-            }
+            // if(!_this._checkPersonalRequired()){
+            //     MessageBox.warning(_this.getTextFor("GeneralTextNotAllFieldCompiled", []));
+            //     return;
+            // }
             
             _this.savePersonalInformation(personalInformation,  programChoice, notMandatory);
         },
@@ -152,6 +164,8 @@ sap.ui.define([
 
             oSideNavigation.setSelectedKey(nextStep);
             currentStep.setProperty("/step", nextStep);
+            _this.byId("idApplicationFormPage").scrollTo(0);
+
         },
 
         onApplicationFormBackPress : function(){
@@ -194,6 +208,8 @@ sap.ui.define([
             };
             oSideNavigation.setSelectedKey(nextStep);
             currentStep.setProperty("/step", nextStep);
+            _this.byId("idApplicationFormPage").scrollTo(0);
+
         },
 
         onExit: function () {
@@ -267,6 +283,7 @@ sap.ui.define([
                 firstLanguage_ID : null,
                 alternativeEmailAddress : null,
                 sexOnPassport_ID: null,
+                prefix_ID: null,
                 isItaloAmerican : null,
                 guardianName: null,
                 passportLater : false,
@@ -281,11 +298,12 @@ sap.ui.define([
                 findOut_ID : null,
             };
 
-            _this.setModel(new JSONModel({results : [{name:"Culinary", }]}), "HobbySet")
+            _this.setModel(new JSONModel({results : [{name:"Culinary"}]}), "HobbySet")
             
             _this.setModel(new JSONModel(personalInfo), "PersonalInfo");
             _this.setModel(new JSONModel({}), "PersonalInfoNotMandatory");
-            _this.setModel(new JSONModel({street: null, city :null, state : null, zipcode : null, country : null}), "PermanentAddressInfo");
+            _this.setModel(new JSONModel({street: null, city :null, state : null, zipcode : null, country_ID : null}), "PermanentAddressInfo");
+            _this.setModel(new JSONModel({}), "HobbyIds")
             _this.setModel(new JSONModel({}), "PermanentAddressCountryInfo");
             _this.setModel(new JSONModel({}), "EmergencyContact");
             
@@ -303,21 +321,27 @@ sap.ui.define([
         savePersonalInformation : async function (personalInformation, program, notMandatory) {
             const _this = this;
             const allPersonalInfo = {...personalInformation, ...notMandatory, program_ID : program.ID};
-            const attachmentID = await _this.postAttachment(_this, _this.oPassportFile,"/REST/v1/documents");
 
+            _this.getModel("ApplicationFormInfo").setProperty("/busy", true);
             const permanentAddress = _this.getModel("PermanentAddressInfo").getData();
             let permanentID = null;
 
-            await _this.oDataPOST(_this, "/PermanentAddress", permanentAddress, "PermanentAddressPOST").then((data) => permanentID = data.ID);
+            await _this.oDataPOST(_this, "/PermanentAddress", permanentAddress, "PermanentAddressPOST")
+                .then((data) => {
+                    permanentID = data.ID;
+                });
+            let studentStatus = null;
+            await _this.oDataPOST(_this, "/StudentStatus", {description : "PENDING", isDeleted : false}).then((data) => {
+                studentStatus = data.ID;
+            })
 
-            allPersonalInfo.mobilePhoneNumber = allPersonalInfo.mobileNumberPrefix + allPersonalInfo.mobilePhoneNumber;
             const postStudent = {firstName : allPersonalInfo.firstName, lastName : allPersonalInfo.lastName, preferredFirstName : allPersonalInfo.preferredFirstName, isMemberOfOsdia : allPersonalInfo.isMemberOfOsdia,
                 genderIdentity : allPersonalInfo.genderIdentity, dateBirth : allPersonalInfo.dateBirth, cityOfBirth : allPersonalInfo.cityOfBirth, stateOfBirth : allPersonalInfo.stateOfBirth, country_ID : allPersonalInfo.country_ID,
-                countryOfBirth : allPersonalInfo.countryOfBirth, mobilePhoneNumber : allPersonalInfo.mobilePhoneNumber, passportNumber : allPersonalInfo.passportNumber, isMemberOfNiaf : allPersonalInfo.isMemberOfNiaf,
-                firstLanguage_ID : allPersonalInfo.firstLanguage_ID, sexOnPassport_ID : allPersonalInfo.sexOnPassport_ID, isItaloAmerican : allPersonalInfo.isItaloAmerican, parentGuardianName : allPersonalInfo.parentGuardianName,
+                countryOfBirth : allPersonalInfo.countryOfBirth, mobilePhoneNumber : allPersonalInfo.mobilePhoneNumber.toString(), passportNumber : allPersonalInfo.passportNumber, isMemberOfNiaf : allPersonalInfo.isMemberOfNiaf,
+                firstLanguage_ID : allPersonalInfo.firstLanguage_ID, sexOnPassport_ID : allPersonalInfo.sexOnPassport_ID, isItaloAmerican : allPersonalInfo.isItaloAmerican, parentGuardianName : allPersonalInfo.guardianName,
                 relationship : allPersonalInfo.relationship, mobilePhoneNumberParent : allPersonalInfo.mobilePhoneNumberParent, emailAddressParent : allPersonalInfo.emailAddressParent, permanentAddressParent : allPersonalInfo.permanentAddressParent,
                 isGreeklife : allPersonalInfo.isGreeklife, isClubs : allPersonalInfo.isClubs, findOut_ID : allPersonalInfo.findOut_ID, homePhoneParent : allPersonalInfo.homePhoneParent, program_ID : allPersonalInfo.program_ID, 
-                university_ID : allPersonalInfo.university_ID, permanentAddress_ID : permanentID
+                university_ID : allPersonalInfo.university_ID, permanentAddress_ID : permanentID, prefix_ID : allPersonalInfo.prefix_ID, studentStatus_ID : studentStatus, instagramAccount : allPersonalInfo.instagramAccount,
             }
 
             if(allPersonalInfo.isGreeklife){
@@ -331,30 +355,46 @@ sap.ui.define([
                 postStudent.noteHomeInstituion = allPersonalInfo.noteHomeInstituion;
             }
 
+            const allPosts = [];
             _this.oDataPOST(_this, "/Student", postStudent, "StudentPost").then((student) => {
-                _this.oDataPOST(_this, "/EmailAddress", {emailAddress : allPersonalInfo.primaryEmailAddress}, "EmailAddressPOST").then((email) => {
+                allPosts.push(_this.oDataPOST(_this, "/EmailAddress", {emailAddress : allPersonalInfo.primaryEmailAddress}, "EmailAddressPOST").then((email) => {
                     _this.oDataPOST(_this, "/StudentEmail", {student_ID : student.ID, emailAddress_ID : email.ID}, "StudentEmailPost")
-                });
-                _this.oDataPOST(_this, "/EmailAddress", {emailAddress : allPersonalInfo.alternativeEmailAddress}, "EmailAddressPOST").then((email) => {
+                }));
+                allPosts.push(_this.oDataPOST(_this, "/EmailAddress", {emailAddress : allPersonalInfo.alternativeEmailAddress}, "EmailAddressPOST").then((email) => {
                     _this.oDataPOST(_this, "/StudentEmail", {student_ID : student.ID, emailAddress_ID : email.ID},  "StudentEmailPost")
-                });
+                }));
 
                 if(allPersonalInfo.isOtherHobby){
-                    _this.oDataPOST(_this, "/Hobbie", {name:allPersonalInfo.otherHobby, isDefault:false}, "HobbyPost").then((hobbie) => {
+                    allPosts.push(_this.oDataPOST(_this, "/Hobbie", {name:allPersonalInfo.otherHobby, isDefault:false}, "HobbyPost").then((hobbie) => {
                         _this.oDataPOST(_this, "/StudentHobbie", {student_ID : student.ID, hobbie_ID : hobbie.ID}, "StudentHobbiePOST");
-                    })
+                    }));
                     if(allPersonalInfo.isUlteriorHobby){
-                        _this.oDataPOST(_this, "/Hobbie", {name:allPersonalInfo.ulteriorHobby, isDefault:false}, "HobbiePOST").then((hobbie) => {
+                        allPosts.push(_this.oDataPOST(_this, "/Hobbie", {name:allPersonalInfo.ulteriorHobby, isDefault:false}, "HobbiePOST").then((hobbie) => {
                             _this.oDataPOST(_this, "/StudentHobbie", {student_ID : student.ID, hobbie_ID : hobbie.ID}, "StudentHobbiePOST");
-                        })
+                        }));
                     }
-                }else{
-                    const hobbies = _this.getModel("choosedHobbies").getData();
+                }
+                const hobbies = _this.getModel("HobbyIds").getData();
 
-                    Promise.all(hobbies.map(item => _this.oDataPOST(_this, "/StudentHobbie", {student_ID : student.ID, hobbie_ID : item}, msg)));
+                hobbies.forEach(item => allPosts.push(_this.oDataPOST(_this, "/StudentHobbie", {student_ID : student.ID, hobbie_ID : item}, "StudentHobbiePOST")));
+
+                if(_this.oPassportFile){
+                    allPosts.push(_this.postAttachment(_this, _this.oPassportFile,"/REST/v1/documents"));
                 }
 
+
+            }).catch((err) => {
+                console.log(err);
+            })
+            .finally(() => {
+                Promise.all(allPosts)
+                .catch(err => {console.log(err)})
+                .finally(() => {
+                    _this.getModel("ApplicationFormInfo").setProperty("/busy", false);
+                })
             });
+
+
         },
 
         // Drag Over event handler (showing drag effect)
@@ -410,7 +450,7 @@ sap.ui.define([
         onSelectMobileNumberPrefix : function (oEvent) {
             const _this = this;
             let selectedPrefix = oEvent.getSource().getSelectedItem();
-            _this.getModel("PersonalInfo").setProperty("/mobileNumberPrefix", selectedPrefix.getText());
+            _this.getModel("PersonalInfo").setProperty("/prefix_ID", selectedPrefix.getKey());
         },
         
         onSelectUniversity : function(oEvent){
@@ -450,6 +490,10 @@ sap.ui.define([
         //// Profile Information
         onSelectSex : function(oEvent) {
             this.setPropertyBySelectKey("PersonalInfo", "/sexOnPassport_ID", oEvent);     
+        },
+
+        onSelectCountryPermanentAddress : function(oEvent){
+            this.setPropertyBySelectKey("PermanentAddressInfo", "/country_ID", oEvent);     
         },
 
         onSelectCountryCitizenship : function(oEvent){
@@ -609,7 +653,7 @@ sap.ui.define([
             const listOpe =                 [
                 _this.oDataGET(_this, "/ProgramCourse", "CourseList", [new Filter("program_ID", FilterOperator.EQ, choosedProgram.ID)], "", "CourseGet").then((course) => {
                     count = 0;
-                    course.results.map(item => {item.internship = (item.courseInternship || item.courseInternshipConstraints); item.isFirstConfirmed=false; item.isFirstSelected = false; item.isSecondConfirmed = false; item.isSecondSelected = false; item.isConstrained = false; item.firstRank=count; item.secondRank=count++;})
+                    course.results.map(item => {item.toShow = true; item.internship = (item.courseInternship || item.courseInternshipConstraints); item.isFirstConfirmed=false; item.isFirstSelected = false; item.isSecondConfirmed = false; item.isSecondSelected = false; item.isConstrained = false; item.firstRank=count; item.secondRank=count++;})
                 }),
                 _this.oDataGET(_this, "/CourseConstraint", "CourseConstraintList", "", "", "CourseConstraintList"),            
                 _this.oDataGET(_this, "/YearSchool", "YearSchoolList", "", "", "YearSchoolList").then(data => {
@@ -660,6 +704,20 @@ sap.ui.define([
 
             const _this = this;
 
+            const internshipAvailable = _this._canSeeInternshipCourse();
+
+            const allCourses = _this.getModel("CourseList").getData();
+
+            allCourses.results.map(item => {
+                if(item.courseInternship && !internshipAvailable){
+                    item.toShow = false;
+                }else{
+                    item.toShow = true;
+                }
+            });
+
+            _this.setModel(new JSONModel(allCourses), "CourseList");
+
             if(!_this._academicFirstChoice){
                 Fragment.load({
                     name: "applicationform.fragment.academic.FirstCourseChoice",
@@ -675,17 +733,9 @@ sap.ui.define([
             }
 
             
-            _this._filterTableByInternship("idFirstCourseDialog", "firstChoiceCourseTable");
 
         },
 
-        _filterTableByInternship : function(id, fragmentName){
-            const oTable = sap.ui.core.Fragment.byId(id, fragmentName);
-            if(oTable){
-                const oFilter = new Filter("courseInternship", FilterOperator.EQ, this._canSeeInternshipCourse());
-                oTable.getBinding("items").filter([oFilter]);
-            }
-        },
 
         _canSeeInternshipCourse : function(){
             const _this = this;
@@ -731,7 +781,7 @@ sap.ui.define([
             const oTable = sap.ui.core.Fragment.byId("idFirstCourseDialog", "firstChoiceCourseTable");
             const oFilter = new Filter("courseName", FilterOperator.Contains, sQuery);
             const oBinding = oTable.getBinding("items");
-            oBinding.filter([oFilter, new Filter("courseInternship", FilterOperator.EQ, this._canSeeInternshipCourse())]);
+            oBinding.filter([oFilter, new Filter("toShow", FilterOperator.EQ, true)]);
         },
 
         onFilterFirstCourseCredit : function(oEvent){
@@ -740,10 +790,10 @@ sap.ui.define([
             const oBinding = oTable.getBinding("items");
 
             if(selectedValue.getText()===""){
-                oBinding.filter([new Filter("courseInternship", FilterOperator.EQ, this._canSeeInternshipCourse())]);
+                oBinding.filter([new Filter("toShow", FilterOperator.EQ, true)]);
             }else{
                 const oFilter = new Filter("courseCredit", FilterOperator.EQ, selectedValue.getText());
-                oBinding.filter([oFilter, new Filter("courseInternship", FilterOperator.EQ, this._canSeeInternshipCourse())]);
+                oBinding.filter([oFilter, new Filter("toShow", FilterOperator.EQ, true)]);
             }
 
         },
@@ -758,6 +808,7 @@ sap.ui.define([
             const program = _this.getModel("ProgramChoice").getData();
             if(count < program.minCredits || count > program.maxCredits){
                 MessageBox.warning(_this.getTextFor("AcademicCreditOutRange", []));
+                return;
             }
 
             allCourses.results.map(item => {
@@ -790,6 +841,18 @@ sap.ui.define([
                 return;
             }
 
+            const internshipAvailable = _this._canSeeInternshipCourse();
+
+            allCourses.results.map(item => {
+                if(item.courseInternship && !internshipAvailable){
+                    item.toShow = false;
+                }else{
+                    item.toShow = true;
+                }
+            });
+
+            _this.setModel(new JSONModel(allCourses), "CourseList");
+
             if(!_this._academicSecondChoice){
                 Fragment.load({
                     name: "applicationform.fragment.academic.SecondCourseChoice",
@@ -803,9 +866,7 @@ sap.ui.define([
             }else{
                 _this._academicSecondChoice.open();
             }
-
-            _this._filterTableByInternship("idSecondCourseDialog", "secondChoiceCourseTable");
-
+            
         },
 
         
@@ -918,7 +979,7 @@ sap.ui.define([
             const oTable = sap.ui.core.Fragment.byId("idSecondCourseDialog", "secondChoiceCourseTable");
             const oFilter = new Filter("courseName", FilterOperator.Contains, sQuery);
             const oBinding = oTable.getBinding("items");
-            oBinding.filter([oFilter, new Filter("courseInternship", FilterOperator.EQ, this._canSeeInternshipCourse())]);
+            oBinding.filter([oFilter, new Filter("toShow", FilterOperator.EQ, true)]);
 		},
 
 		onFilterSecondCourseCredit: function(oEvent) {
@@ -927,10 +988,10 @@ sap.ui.define([
             const oBinding = oTable.getBinding("items");
 
             if(selectedValue.getText()===""){
-                oBinding.filter([new Filter("courseInternship", FilterOperator.EQ, this._canSeeInternshipCourse())]);
+                oBinding.filter([new Filter("toShow", FilterOperator.EQ, true)]);
             }else{
                 const oFilter = new Filter("courseCredit", FilterOperator.EQ, selectedValue.getText());
-                oBinding.filter([oFilter, new Filter("courseInternship", FilterOperator.EQ, this._canSeeInternshipCourse())]);
+                oBinding.filter([oFilter, new Filter("toShow", FilterOperator.EQ, true)]);
             }
 		},
 
@@ -1002,14 +1063,6 @@ sap.ui.define([
             academicInfo.gpa = floatValue
 		},
 
-        onDialogFirstCourseAfterOpen : function(oEvent){
-            this._filterTableByInternship("idFirstCourseDialog", "firstChoiceCourseTable");
-        },
-
-        onDialogSecondCourseOpen : function(oEvent){
-            this._filterTableByInternship("idSecondCourseDialog", "secondChoiceCourseTable");
-        },
-
         //-----------------Academic information endss--------------------------
 
 
@@ -1023,7 +1076,7 @@ sap.ui.define([
             var internshipCourse = false;
 
             courseList.results.forEach(item => {
-                if(item.isFirstConfirmed && (item.courseInternship)){
+                if((item.isFirstConfirmed && (item.courseInternship || item.courseInternshipConstraints)) || (item.isSecondConfirmed && (item.courseInternship || item.courseInternshipConstraints))){
                     internshipCourse = true;
                 }
             })

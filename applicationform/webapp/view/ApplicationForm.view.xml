@@ -6,13 +6,13 @@
     xmlns:core="sap.ui.core"
     xmlns="sap.m">
 
-    <Page title="applicationForm" busy="{ApplicationFormInfo>/busy}">
+    <Page title="applicationForm" busy="{ApplicationFormInfo>/busy}" id="idApplicationFormPage">
 
         <HBox width="100%" >
-            
-            <tnt:SideNavigation  id="applicationFormSideNavigation" selectedKey="{ApplicationFormInfo>/step}" expanded="true" >
+            <VBox width="250px" class="backgroundSideNavigation ">
+                <tnt:SideNavigation  id="applicationFormSideNavigation" selectedKey="{ApplicationFormInfo>/step}" expanded="true" >
                 <tnt:NavigationList class="fixedProperty backgroundSideNavigation" width="250px" itemSelect="onNavigationItemSelect">
-                    <tnt:NavigationListItem text="Personal informations" icon="sap-icon://customer" key="personal"/>
+                    <tnt:NavigationListItem  text="Personal informations" icon="sap-icon://customer" key="personal"/>
                     <tnt:NavigationListItem text="Academic information" icon="sap-icon://education" key="academic"/>
                     <tnt:NavigationListItem text="Internship" icon="sap-icon://basket" key="internship"/>
                     <tnt:NavigationListItem text="Health and safety" icon="sap-icon://validate" key="health"/>
@@ -20,8 +20,9 @@
                     <tnt:NavigationListItem text="Documents" icon="sap-icon://document" key="document"/>
                     <tnt:NavigationListItem text="Confirmation" icon="sap-icon://accept" key="confirmation"/>
                 </tnt:NavigationList>
-
             </tnt:SideNavigation>
+            </VBox>
+
 
 
             <FlexBox height="100%" width="100%" class="whiteBackground" visible="{= ${ApplicationFormInfo>/step} ==='personal'}">

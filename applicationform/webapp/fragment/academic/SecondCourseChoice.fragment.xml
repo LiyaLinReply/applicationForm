@@ -7,13 +7,15 @@
         title="{i18n>AcademicInfoCourseSecondCourseChoice}"
         contentWidth="70%"
         contentHeight="70%"
-        afterClose="onDialogSecondCourseChoiceClose"
-		afterOpen="onDialogSecondCourseOpen">
+        afterClose="onDialogSecondCourseChoiceClose">
 
 		<Table
 			id="secondChoiceCourseTable"
 			items="{
-				path: 'CourseList>/results'
+				path: 'CourseList>/results',
+				filters : [
+					{ path : 'toShow', operator : 'EQ', value1 : true}
+				]
 			}"
 			sticky="ColumnHeaders"
 		>

@@ -8,8 +8,7 @@
         title="{i18n>AcademicInfoCourseFirstCourseChoice}"
         contentWidth="70%"
         contentHeight="70%"
-        afterClose="onDialogFirstCourseChoiceClose"
-		afterOpen="onDialogFirstCourseAfterOpen">
+        afterClose="onDialogFirstCourseChoiceClose">
 		
 		<content>
 			<VBox
@@ -17,7 +16,10 @@
 				<Table
 					id="firstChoiceCourseTable"
 					items="{
-						path: 'CourseList>/results'
+						path: 'CourseList>/results',
+						filters : [
+                        	{ path : 'toShow', operator : 'EQ', value1 : true}
+                        ]
 					}"
 					sticky="ColumnHeaders"
 				>

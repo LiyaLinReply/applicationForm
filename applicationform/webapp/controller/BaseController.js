@@ -333,6 +333,10 @@ sap.ui.define([
         },
 
         postAttachment : async function(_this, storedFile, path){
+            if(!storedFile){
+                console.log("No attachment found");
+                return;
+            }
             const fileName = storedFile.name;
             let attachmentID = "";
 
@@ -341,6 +345,28 @@ sap.ui.define([
                     fileName: fileName,
                     isDeleted: false,
                     guidAttachment_ID: doc.data
+                };
+                return await _this.oDataPOST(_this, "/Attachment", attachment, "Attachment").then((createdAttachment) => {
+                    attachmentID = createdAttachment.ID;
+                })
+            });
+
+            return attachmentID;
+        },
+        postAttachmentStudent : async function(_this, storedFile, studentID, path){
+            if(!storedFile){
+                console.log("No attachment found");
+                return;
+            }
+            const fileName = storedFile.name;
+            let attachmentID = "";
+
+            await _this.attachmentUploadFile(_this, storedFile, path).then(async (doc) => {
+                const attachment = {
+                    fileName: fileName,
+                    isDeleted: false,
+                    guidAttachment_ID: doc.data,
+                    student_ID : studentID
                 };
                 return await _this.oDataPOST(_this, "/Attachment", attachment, "Attachment").then((createdAttachment) => {
                     attachmentID = createdAttachment.ID;

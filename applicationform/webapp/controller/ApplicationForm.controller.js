@@ -52,10 +52,9 @@ sap.ui.define([
             try {
                 switch (selectedStep) {
                     case 'academic':
-                        // if(!_this._checkPersonalRequired()){
-                        //     MessageBox.warning(_this.getTextFor("GeneralTextNotAllFieldCompiled", []));
-                        //     return;
-                        // }
+                        if(!_this._checkPersonalRequired()){
+                            throw new Error("Not all field compiled");
+                        }
                         _this.JModelSetupAcademicInfo();
                         break;
                     case "internship":
@@ -75,6 +74,16 @@ sap.ui.define([
                         _this.JModelSetupHealth();
                         
                         break;
+                    case "housing":
+                        if(!_this._checkHealthRequired()){
+                            throw new Error("Not all field compiled");
+                        }
+                        _this.JModelSetupHousing();
+                        break;
+                    case "document":
+                        throw new Error("Not implemented yet");
+                    case "confirmation":
+                        throw new Error("Not implemented yet");
                     default:
                         break;
                 }
@@ -162,15 +171,22 @@ sap.ui.define([
                     nextStep = "health";
                     break;
                 case "health":
+                    if(!_this._checkHealthRequired()){
+                        MessageBox.warning(_this.getTextFor("GeneralTextNotAllFieldCompiled", []));
+                        return;
+                    }
                     nextStep = "housing";
                     break;
                 case "housing":
+                    return;
                     nextStep = "flight";
                     break;
                 case "flight":
+                    return;
                     nextStep = "document";
                     break;
                 case "document":
+                    return;
                     nextStep = "confirmation";
                     break;
                 default:
@@ -1149,7 +1165,8 @@ sap.ui.define([
                 const healthInfo = {
                     foodAllergie_ID : null,
                     otherAllergie_ID : null,
-                    medCond_ID : null
+                    medCond_ID : null,
+                    agreeHealthSafetyDisclosure : false
                 };
 
                 _this.setModel(new JSONModel({noteDietaryOther:false, foodAllergieYes:false, otherAllergieYes:false, medicalConditionYes:false}), "HealthInfoNotMandatory");
@@ -1178,6 +1195,7 @@ sap.ui.define([
         onChooseFoodAllergies : function(oEvent){
             const _this = this;
             _this.setPropertyBySelectKey("HealthInfo", "/foodAllergie_ID", oEvent);
+            _this.setPropertyBySelectText("HealthInfo", "/foodAllergie", oEvent);
             if(oEvent.getSource().getSelectedItem().getText().toLowerCase().includes("yes")){
                 _this.getModel("HealthInfoNotMandatory").setProperty("/foodAllergieYes", true);
             }else{
@@ -1187,7 +1205,8 @@ sap.ui.define([
 
         onChooseOtherAllergies : function(oEvent){
             const _this = this;
-            _this.setPropertyBySelectKey("HealthInfo", "/medCond_ID", oEvent);
+            _this.setPropertyBySelectKey("HealthInfo", "/otherAllergie_ID", oEvent);
+            _this.setPropertyBySelectText("HealthInfo", "/otherAllergie", oEvent);
             if(oEvent.getSource().getSelectedItem().getText().toLowerCase().includes("yes")){
                 _this.getModel("HealthInfoNotMandatory").setProperty("/otherAllergieYes", true);
             }else{
@@ -1197,7 +1216,8 @@ sap.ui.define([
 
         onChooseHealthImpairments : function(oEvent){
             const _this = this;
-            _this.setPropertyBySelectKey("HealthInfo", "/foodAllergie_ID", oEvent);
+            _this.setPropertyBySelectKey("HealthInfo", "/medCond_ID", oEvent);
+            _this.setPropertyBySelectText("HealthInfo", "/medCond", oEvent);
             if(oEvent.getSource().getSelectedItem().getText().toLowerCase().includes("yes")){
                 _this.getModel("HealthInfoNotMandatory").setProperty("/medicalConditionYes", true);
             }else{
@@ -1242,7 +1262,38 @@ sap.ui.define([
             _this.getModel("HealthInfoNotMandatory").setProperty("/noteDietaryOther", isOther);
         },
 
+        _checkHealthRequired : function() {
+            const _this = this;
+            const healthInfo = _this.getModel("HealthInfo").getData();
+            const notMandatory = _this.getModel("HealthInfoNotMandatory").getData();
+            if(!_this._checkAllObjectKey(healthInfo) || !healthInfo.agreeHealthSafetyDisclosure){
+                return false;
+            }
+            if(healthInfo.foodAllergie.toLowerCase().includes("yes") && !notMandatory.noteFoodAllergie){
+                return false;
+            }
+            if(healthInfo.medCond.toLowerCase().includes("yes") && !notMandatory.noteMedCond){
+                return false;
+            }
+            if(healthInfo.otherAllergie.toLowerCase().includes("yes") && !notMandatory.noteAllergie){
+                return false;
+            }
+            if(notMandatory.noteDietaryOther && !notMandatory.noteDietary){
+                return false;
+            }
+
+            return true;
+        },
+
         //-----------------Health and safety ends -------------------------------
+
+        //-----------------Housing starts------------------------
+
+        JModelSetupHousing : function(){
+            const _this = this;
+        },
+
+
         //-----------------shared --------------------
         onGeneralSelectDialogSearch : function(oEvent){
             const _this = this;
@@ -1260,6 +1311,12 @@ sap.ui.define([
             let selectedValue = oEvent.getSource().getSelectedItem();
             _this.getModel(jModel).setProperty(field, selectedValue.getKey());
         },
+        setPropertyBySelectText : function(jModel, field, oEvent){
+            const _this = this;
+            let selectedValue = oEvent.getSource().getSelectedItem();
+            _this.getModel(jModel).setProperty(field, selectedValue.getText());
+        },
+
         
         onGeneralCheckBoxNoPress : function(value, Jmodel){
             const _this = this;

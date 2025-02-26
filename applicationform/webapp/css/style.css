@@ -26,3 +26,20 @@
     background-color: #86a71a;
     border-color: #408cb7;
 }
+
+/* Change the background color of NavigationListItem */
+.sapTntNavLI {
+    background-color: blue !important; /* Background color */
+    color: white !important; /* Text color */
+}
+
+/* Change background on hover */
+.sapTntNavLI:hover {
+    background-color: darkblue !important;
+}
+
+/* Change the selected item color */
+.sapTntNavLI.sapTntNavLISelected {
+    background-color: navy !important;
+    color: white !important;
+}

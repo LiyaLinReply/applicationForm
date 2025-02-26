@@ -52,7 +52,7 @@
                         width="100%">
                         <core:Item key="{MedicalConditionList>ID}" text="{MedicalConditionList>medCond}"/>
                     </Select>
-                    <TextArea width="100%" rows="3" visible="{HealthInfoNotMandatory>/medicalConditionYes}" value="{HealthInfoNotMandatory>/noteAllergie}"/>
+                    <TextArea width="100%" rows="3" visible="{HealthInfoNotMandatory>/medicalConditionYes}" value="{HealthInfoNotMandatory>/noteMedCond}"/>
                 </VBox>
                 <VBox width="30%" >
 
@@ -63,7 +63,7 @@
             </HBox>
             <HBox class="sapUiSmallMarginBottom"  justifyContent="SpaceBetween">
                 <VBox width="30%" >
-                    <CheckBox text="{i18n>HealthSafetyCheckbox}" />
+                    <CheckBox text="{i18n>HealthSafetyCheckbox}" selected="{HealthInfo>/agreeHealthSafetyDisclosure}"/>
                 </VBox>
                 <VBox width="30%" >
 

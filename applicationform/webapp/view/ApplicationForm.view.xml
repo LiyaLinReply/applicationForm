@@ -102,7 +102,8 @@
                 <Button text="{i18n>generalTextBack}"  press="onApplicationFormBackPress"/>
                 <Button text="{i18n>generalTextNext}" type="Reject" press="onApplicationFormNextPress"/>
                 
-                <Button text="{i18n>generalTextSave}" visible="{=${ApplicationFormInfo>/step} === 'confirmation'}" type="Emphasized" press="onApplicationFormSavePress"/>
+                <Button text="{i18n>generalTextSave}" type="Emphasized" press="onApplicationFormSavePress"/>
+                <Button text="Upload" type="Emphasized" press="onApplicationUpload"/>
 
             </OverflowToolbar>
         </footer>

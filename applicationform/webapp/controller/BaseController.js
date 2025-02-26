@@ -480,6 +480,24 @@ sap.ui.define([
             });
         },
 
+        getUser : function(_this, url){
+
+
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: url, // Replace with your backend endpoint
+                    method: "GET",
+                    success: function (response) {
+                        resolve(response);
+                    },
+                    error: function (error) {
+                        reject(error);
+                        MessageBox.error("Error uploading the file.");
+                    }
+                });
+            });
+        },
+
         _deepEqual: function (obj1, obj2) {
             if (obj1 !== obj2) {
                 return false;

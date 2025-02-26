@@ -12,6 +12,7 @@
                 <VBox width="30%" >
                     <Label text="{i18n>PersonalInfoSelectYourProgram}"/>
                     <Select forceSelection="false"
+                        id="idProgramChoose"
                         change="onChooseProgram($event, 'ProgramList')" 
                         items="{
                             path: 'ProgramList>/results'
@@ -20,17 +21,17 @@
                         <core:Item key="{ProgramList>ID}" text="{ProgramList>name}"/>
                     </Select>
                 </VBox>
-                <VBox width="30%" visible="{= ${ProgramChoice>/typeProgram} !== null}">
+                <VBox width="30%" visible="{= ${ProgramChoice>/typeProgram} === 'FACULTY'}">
                     <Label text="{i18n>PersonalInfoFacultyLedProgram}"/>
                     <Select 
+                        id="idFacultyProgramChoose"
                         forceSelection="false"
-                        visible="{ProgramChoice>/isFaculty}"
                         change="onChooseProgram($event, 'FacultyProgramList')" 
                         items="{
                             path: 'FacultyProgramList>/results'
                         }" 
                         width="100%">
-                        <core:Item key="{FacultyProgramList>name}" text="{FacultyProgramList>name}"/>
+                        <core:Item key="{FacultyProgramList>ID}" text="{FacultyProgramList>name}"/>
                     </Select>
                 </VBox>
                 <VBox width="30%">
@@ -72,6 +73,7 @@
                         items="{
                             path: 'SexOnPassportList>/results'
                         }" 
+                        id="idSelectSex"
                         width="100%">
                         <core:Item key="{SexOnPassportList>ID}" text="{SexOnPassportList>sex}"/>
                     </Select>
@@ -91,6 +93,7 @@
                         items="{
                             path: 'UniversityList>/results'
                         }" 
+                        id="idSelectUniversity"
                         width="100%">
                         <core:Item key="{UniversityList>ID}" text="{UniversityList>name}"/>
                     </Select>
@@ -103,6 +106,7 @@
                         items="{
                             path: 'CountryList>/results'
                         }" 
+                        id="idSelectCountryCitizenship"
                         width="100%">
                         <core:Item key="{CountryList>ID}" text="{CountryList>name}"/>
                     </Select>
@@ -119,6 +123,7 @@
                         items="{
                             path: 'FirstLanguageList>/results'
                         }" 
+                        id="idSelectFirstLanguage"
                         width="100%">
                         <core:Item key="{FirstLanguageList>ID}" text="{FirstLanguageList>name}"/>
                     </Select>    
@@ -163,6 +168,7 @@
                         <Select 
                             forceSelection="false"
                             change="onSelectMobileNumberPrefix" 
+                            id="idSelectMobileNumberPrefix"
                             items="{
                                 path: 'PrefixList>/results'
                             }" 
@@ -196,6 +202,7 @@
                         items="{
                             path: 'FindOutList>/results'
                         }" 
+                        id="idSelectFindOut"
                         width="100%">
                         <core:Item key="{FindOutList>ID}" text="{FindOutList>source}"/>
                     </Select>      
@@ -282,6 +289,7 @@
                         items="{
                             path: 'CountryList>/results'
                         }" 
+                        id="idSelectCountryPermanentAddress"
                         width="100%">
                         <core:Item key="{CountryList>ID}" text="{CountryList>name}"/>
                     </Select>

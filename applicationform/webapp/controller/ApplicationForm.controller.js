@@ -23,21 +23,6 @@ sap.ui.define([
             _this.JModelSetupPersonalInfo(_this);
             _this.setModel(new JSONModel({}), "AcademicInfo");
 
-            // new Promise((resolve, reject) => {
-            //     $.ajax({
-            //         url: "REST/v1/getUser", // Replace with your backend endpoint
-            //         method: "GET",
-            //         success: function (response) {
-            //             resolve(response);
-            //         },
-            //         error: function (error) {
-            //             reject(error);
-            //             MessageBox.error("Error uploading the file.");
-            //         }
-            //     });
-            // }).then((data) => {
-            //     console.log(data);
-            // });
 
             window.addEventListener('resize', _this._handleResize.bind(_this));
 
@@ -171,22 +156,19 @@ sap.ui.define([
                     nextStep = "health";
                     break;
                 case "health":
-                    if(!_this._checkHealthRequired()){
-                        MessageBox.warning(_this.getTextFor("GeneralTextNotAllFieldCompiled", []));
-                        return;
-                    }
+                    // if(!_this._checkHealthRequired()){
+                    //     MessageBox.warning(_this.getTextFor("GeneralTextNotAllFieldCompiled", []));
+                    //     return;
+                    // }
                     nextStep = "housing";
                     break;
                 case "housing":
-                    return;
                     nextStep = "flight";
                     break;
                 case "flight":
-                    return;
                     nextStep = "document";
                     break;
                 case "document":
-                    return;
                     nextStep = "confirmation";
                     break;
                 default:
@@ -256,10 +238,10 @@ sap.ui.define([
             const _this = this;
             const promises = [_this.oDataGET(_this, "/Program", "ProgramList", '', '', "ProgramList").then((data) => {
     
-                const faculty = data.results.filter(result => result.typeProgram);
-                const normal = data.results.filter(result => !result.typeProgram);
-                normal.push({name : "Faculty-Led Program", typeProgram : "Faculty-Led Program"});
-                _this.setModel(new JSONModel({results:faculty}), "FacultyProgramList");
+                const faculty = data.results.filter(result => result.typeProgram === "FACULTY");
+                const normal = data.results.filter(result => result.typeProgram === "STANDARD");
+                normal.push({ID: "Faculty",name : "Faculty-Led Program", typeProgram : "FACULTY"});
+                _this.setModel(new JSONModel({results : faculty}), "FacultyProgramList");
                 _this.setModel(new JSONModel({results : normal}), "ProgramList");
             }),
 
@@ -411,9 +393,10 @@ sap.ui.define([
                 hobbies.forEach(item => allPosts.push(_this.oDataPOST(_this, "/StudentHobbie", {student_ID : student.ID, hobbie_ID : item}, "StudentHobbiePOST")));
 
                 if(_this.oPassportFile){
-                    allPosts.push(_this.postAttachment(_this, _this.oPassportFile,"/REST/v1/documents"));
+                    allPosts.push(_this.postAttachmentStudent(_this, _this.oPassportFile,"/REST/v1/documents", student.ID));
                 }
 
+                _this.replacePersonalInfo(student);
 
             }).catch((err) => {
                 console.log(err);
@@ -426,6 +409,85 @@ sap.ui.define([
                 })
             });
 
+
+        },
+
+        replacePersonalInfo : function(student, passport, permanentAddress){
+            const _this = this;
+
+            programID = student.program_ID;
+            const programList = _this.setModel(new JSONModel({results : normal}), "ProgramList");
+            let inProgramList = false;
+            programList.results.forEach(item => {if(item.ID === programID){ inProgramList = true }});
+            if(!inProgramList){
+                _this.byId("idProgramChoose").setSelectedKey("FACULTY");
+                _this.byId("idFacultyProgramChoose").setSelectedKey(programID);
+                _this.setModel(new JSONModel({ID : programID, typeProgram : "FACULTY"}), "ProgramChoice");
+            }else{
+                _this.byId("idProgramChoose").setSelectedKey(programID);
+                _this.setModel(new JSONModel({ID : programID, typeProgram : "STANDARD"}), "ProgramChoice");
+            }
+
+            const personalInfo = {
+                firstName : student.firstName,
+                lastName : student.lastName,
+                preferredFirstName : student.preferredFirstName,
+                primaryEmailAddress : student.primaryEmailAddress,
+                alternativeEmailAddress : student.alternativeEmailAddress,
+                sexOnPassport_ID : student.sexOnPassport_ID,
+                genderIdentity : student.genderIdentity,
+                university_ID : student.university_ID,
+                noteHomeInstituion : student.noteHomeInstituion,
+                dateBirth : student.dateBirth,
+                cityOfBirth : student.cityOfBirth,
+                stateOfBirth : student.stateOfBirth,
+                countryOfBirth : student.countryOfBirth,
+                country_ID : student.country_ID,
+                firstLanguage_ID : student.firstLanguage_ID,
+                prefix_ID : student.prefix_ID,
+                mobilePhoneNumber : student.mobilePhoneNumber,
+                passportNumber : student.passportNumber,
+                findOut_ID : student.findOut_ID,
+                isItaloAmerican : student.isItaloAmerican,
+                isMemberOfNiaf : student.isMemberOfNiaf,
+                isMemberOfOsdia : student.isMemberOfOsdia,
+            }
+
+            const notMandatory = {
+                instagramAccount : student.instagramAccount,
+
+            }
+
+            const passportUpload = {
+                uploadedPassport : false
+            }
+
+            if(passport){
+                passportUpload.uploadedPassport = true;
+                passportUpload.filename = passport.filename
+            }
+
+            if(student.university_ID){
+                personalInfo.universityOther = false;
+                _this.byId("idSelectUniversity").setSelectedKey(student.university_ID);
+            }else{
+                personalInfo.universityOther = true;
+            }
+            _this.byId("idSelectSex").setSelectedKey(student.sexOnPassport_ID);
+            _this.byId("idSelectCountryCitizenship").setSelectedKey(student.country_ID);
+            _this.byId("idSelectFirstLanguage").setSelectedKey(student.firstLanguage_ID);
+            _this.byId("idSelectMobileNumberPrefix").setSelectedKey(student.prefix_ID);
+            _this.byId("idSelectFindOut").setSelectedKey(student.findOut_ID);
+
+            const permanentAddressInfo = {
+                street : permanentAddress.street,
+                city : permanentAddress.city,
+                state : permanentAddress.state,
+                zipcode : permanentAddress.zipcode,
+                country_ID : permanentAddress.country_ID
+            }
+
+            _this.byId("idSelectCountryPermanentAddress").setSelectedKey("country_ID");
 
         },
 
@@ -455,6 +517,12 @@ sap.ui.define([
 
             var oDroppedFile = oEvent.dataTransfer.files[0]; // Get the dropped file
 
+            if((oDroppedFile.size/1048576) >= 15.0){
+                MessageBox.warning("Size > 15MB");
+                _this.byId("dropZone").getDomRef().classList.remove("dragOver");
+                return;
+            }
+
             _this.oPassportFile = oDroppedFile;
             if(_this.oPassportFile){
                 _this.setModel(new JSONModel({uploadedPassport : true, filename : oDroppedFile.name}), "passportUpload");
@@ -467,6 +535,12 @@ sap.ui.define([
             const _this = this;
             const oFileUploader = oEvent.getSource();
             const file = oFileUploader.oFileUpload.files[0];
+            if((file.size/1048576) >= 15.0){
+                MessageBox.warning("PassPort file Size > 15MB");
+                oEvent.preventDefault();
+                _this.setModel(new JSONModel({uploadedPassport : false, filename : null}), "passportUpload");
+                return;
+            }
             _this.oPassportFile = file;
             _this.setModel(new JSONModel({uploadedPassport : true, filename : file.name}), "passportUpload");
 
@@ -614,7 +688,7 @@ sap.ui.define([
             const programChoice = _this.getModel("ProgramChoice").getData();
             const notMandatory = _this.getModel("PersonalInfoNotMandatory").getData();
         
-            if(!_this._checkAllObjectKey(personalInformation) || !programChoice.ID || (personalInformation.isClubs && notMandatory.leadershipExperience) || (personalInformation.universityOther && !notMandatory.noteHomeInstituion)){
+            if(!_this._checkAllObjectKey(personalInformation) || programChoice.ID === "FACULTY" || !programChoice.ID || (personalInformation.isClubs && notMandatory.leadershipExperience) || (personalInformation.universityOther && !notMandatory.noteHomeInstituion)){
                 return false;
             }
             if((personalInformation.isOtherHobby && !notMandatory.otherHobby) || (!personalInformation.isOtherHobby && _this.getModel("HobbyIds").getData().length === 0)){
@@ -1334,6 +1408,13 @@ sap.ui.define([
             _this.generalSelectDialogSearchManage(_this, oEvent, ["courseName"]);
         },
 
+        onApplicationUpload : function(){
+            const _this = this;
+
+            _this.getUser(_this, "/REST/v1/getUser").then(data => {
+                console.log(data);
+            });
+        },
     });
 
 });

@@ -120,10 +120,10 @@ sap.ui.define([
             const programChoice = _this.getModel("ProgramChoice").getData();
             const notMandatory = _this.getModel("PersonalInfoNotMandatory").getData();
 
-            // if(!_this._checkPersonalRequired()){
-            //     MessageBox.warning(_this.getTextFor("GeneralTextNotAllFieldCompiled", []));
-            //     return;
-            // }
+            if(!_this._checkPersonalRequired()){
+                MessageBox.warning(_this.getTextFor("GeneralTextNotAllFieldCompiled", []));
+                return;
+            }
             
             _this.savePersonalInformation(personalInformation,  programChoice, notMandatory);
         },
@@ -143,18 +143,18 @@ sap.ui.define([
             let nextStep = '';
             switch (currentKey) {
                 case "personal":
-                    // if(!_this._checkPersonalRequired()){
-                    //     MessageBox.warning(_this.getTextFor("GeneralTextNotAllFieldCompiled", []));
-                    //     return;
-                    // }
+                    if(!_this._checkPersonalRequired()){
+                        MessageBox.warning(_this.getTextFor("GeneralTextNotAllFieldCompiled", []));
+                        return;
+                    }
                     nextStep = "academic";
                     _this.JModelSetupAcademicInfo();
                     break;
                 case "academic":
-                    // if(!_this._checkAcademicRequired()){
-                    //     MessageBox.warning(_this.getTextFor("GeneralTextNotAllFieldCompiled", []));
-                    //     return;
-                    // }
+                    if(!_this._checkAcademicRequired()){
+                        MessageBox.warning(_this.getTextFor("GeneralTextNotAllFieldCompiled", []));
+                        return;
+                    }
                     if(!_this._getInternship()){
                         _this.JModelSetupHealth();
                         nextStep = "health";

@@ -227,6 +227,17 @@
                 </VBox>
             </HBox>
 
+            <HBox  justifyContent="SpaceBetween" >
+                <VBox width="30%">
+                    <Label text="{i18n>PersonalInfoUploadPassport}" />
+                </VBox>
+                <VBox width="30%">
+
+                </VBox>
+                <VBox width="30%">
+
+                </VBox>
+            </HBox>
             <Panel class="sapUiSmallMarginBottom dragDropArea" id="dropArea">
                 <VBox justifyContent="Center" alignItems="Center" id="dropZone">
                     <core:Icon src="sap-icon://upload"/>

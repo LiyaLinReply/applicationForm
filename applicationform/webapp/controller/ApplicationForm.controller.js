@@ -23,6 +23,22 @@ sap.ui.define([
             _this.JModelSetupPersonalInfo(_this);
             _this.setModel(new JSONModel({}), "AcademicInfo");
 
+            // new Promise((resolve, reject) => {
+            //     $.ajax({
+            //         url: "REST/v1/getUser", // Replace with your backend endpoint
+            //         method: "GET",
+            //         success: function (response) {
+            //             resolve(response);
+            //         },
+            //         error: function (error) {
+            //             reject(error);
+            //             MessageBox.error("Error uploading the file.");
+            //         }
+            //     });
+            // }).then((data) => {
+            //     console.log(data);
+            // });
+
             window.addEventListener('resize', _this._handleResize.bind(_this));
 
         },

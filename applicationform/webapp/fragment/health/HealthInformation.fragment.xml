@@ -61,6 +61,17 @@
 
                 </VBox>
             </HBox>
+            <HBox class="sapUiSmallMarginBottom"  justifyContent="SpaceBetween">
+                <VBox width="30%" >
+                    <CheckBox text="{i18n>HealthSafetyCheckbox}" />
+                </VBox>
+                <VBox width="30%" >
+
+                </VBox>
+                <VBox width="30%" >
+
+                </VBox>
+            </HBox>
 
 
         </VBox>

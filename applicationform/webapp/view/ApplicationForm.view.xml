@@ -12,11 +12,11 @@
             <VBox width="250px" class="backgroundSideNavigation ">
                 <tnt:SideNavigation  id="applicationFormSideNavigation" selectedKey="{ApplicationFormInfo>/step}" expanded="true" >
                 <tnt:NavigationList class="fixedProperty backgroundSideNavigation" width="250px" itemSelect="onNavigationItemSelect">
-                    <tnt:NavigationListItem  text="Personal informations" icon="sap-icon://customer" key="personal"/>
+                    <tnt:NavigationListItem  text="Personal information" icon="sap-icon://customer" key="personal"/>
                     <tnt:NavigationListItem text="Academic information" icon="sap-icon://education" key="academic"/>
                     <tnt:NavigationListItem text="Internship" icon="sap-icon://basket" key="internship"/>
-                    <tnt:NavigationListItem text="Health and safety" icon="sap-icon://validate" key="health"/>
-                    <tnt:NavigationListItem text="Housing information" icon="sap-icon://home" key="housing"/>
+                    <tnt:NavigationListItem text="Health and Safety" icon="sap-icon://validate" key="health"/>
+                    <tnt:NavigationListItem text="Housing Information" icon="sap-icon://home" key="housing"/>
                     <tnt:NavigationListItem text="Documents" icon="sap-icon://document" key="document"/>
                     <tnt:NavigationListItem text="Confirmation" icon="sap-icon://accept" key="confirmation"/>
                 </tnt:NavigationList>

@@ -384,7 +384,7 @@ sap.ui.define([
                     }));
                     if(allPersonalInfo.isUlteriorHobby){
                         allPosts.push(_this.oDataPOST(_this, "/Hobbie", {name:allPersonalInfo.ulteriorHobby, isDefault:false}, "HobbiePOST").then((hobbie) => {
-                            _this.oDataPOST(_this, "/StudentHobbie", {student_ID : student.ID, hobbie_ID : hobbie.ID}, "StudentHobbiePOST");
+                            _this.oDataPOST(_this, "/StudentHobbie", {student_ID : student.ID, hobbie_ID : hobbie.ID, noteHobby : "ULTERIOR"}, "StudentHobbiePOST");
                         }));
                     }
                 }
@@ -412,7 +412,7 @@ sap.ui.define([
 
         },
 
-        replacePersonalInfo : function(student, passport, permanentAddress){
+        replacePersonalInfo : function(student, passport, permanentAddress, hobbies){
             const _this = this;
 
             programID = student.program_ID;
@@ -451,11 +451,22 @@ sap.ui.define([
                 isItaloAmerican : student.isItaloAmerican,
                 isMemberOfNiaf : student.isMemberOfNiaf,
                 isMemberOfOsdia : student.isMemberOfOsdia,
+                guardianName : student.parentGuardianName,
+                relationship : student.relationship,
+                mobilePhoneNumberParent : student.mobilePhoneNumberParent,
+                emailAddressParent : student.emailAddressParent,
+                permanentAddressParent : student.permanentAddressParent,
+                isGreeklife : student.isGreeklife,
+                isClubs : student.isClubs,
+
             }
 
             const notMandatory = {
                 instagramAccount : student.instagramAccount,
-
+                homePhoneParent : student.homePhoneParent,
+                noteGreeklife : student.noteGreeklife,
+                noteClubs : student.noteClubs,
+                leadershipExperience : student.leadershipExperience,
             }
 
             const passportUpload = {
@@ -487,8 +498,30 @@ sap.ui.define([
                 country_ID : permanentAddress.country_ID
             }
 
-            _this.byId("idSelectCountryPermanentAddress").setSelectedKey("country_ID");
+            _this.byId("idSelectCountryPermanentAddress").setSelectedKey(permanentAddress.country_ID);
 
+            const hobbiesIds = [];
+            let choosedHobbies = "";
+            let otherHobby = false;
+            hobbies.results.forEach(item => {
+                if(!item.isDefault){
+                    otherHobby=true;
+                }else{
+                    choosedHobbies += item.name + " " ;
+                }
+                hobbiesIds.push(value.ID);
+                
+            });
+            if(otherHobby){
+                choosedHobbies += " " + "Other"
+            }
+            personalInfo.isOtherHobby = otherHobby;
+            notMandatory.choosedHobbies = choosedHobbies;
+            _this.setModel(new JSONModel(hobbiesIds), "HobbyIds");
+            _this.setModel(new JSONModel(personalInfo), "PersonalInfo");
+            _this.setModel(new JSONModel(notMandatory), "PersonalInfoNotMandatory");
+            _this.setModel(new JSONModel(passportUpload), "passportUpload");
+            _this.setModel(new JSONModel(permanentAddressInfo), "PermanentAddressInfo");
         },
 
         // Drag Over event handler (showing drag effect)

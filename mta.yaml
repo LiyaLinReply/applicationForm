@@ -15,8 +15,8 @@ modules:
       name: ui5
       url: https://ui5.sap.com
   parameters:
-    disk-quota: 256M
-    memory: 256M
+    disk-quota: 1024MB
+    memory: 1024MB
 - name: applicationform_ui_deployer
   type: com.sap.application.content
   path: .

@@ -104,6 +104,8 @@
                 
                 <Button text="{i18n>generalTextSave}" type="Emphasized" press="onApplicationFormSavePress"/>
                 <Button text="Upload" type="Emphasized" press="onApplicationUpload"/>
+                <Button text="getUser" type="Emphasized" press="onGetUser"/>
+                <Button text="getUser2" type="Emphasized" press="onGetUser2"/>
 
             </OverflowToolbar>
         </footer>

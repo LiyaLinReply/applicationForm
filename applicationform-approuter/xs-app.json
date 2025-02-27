@@ -1,5 +1,11 @@
 {
   "authenticationMethod": "none",
-  "routes": [],
+  "routes": [
+    {
+      "source": "^/user-api/currentUser$",
+      "target": "/currentUser",
+      "service": "sap-approuter-userapi"
+    }
+  ],
   "welcomeFile": "/applicationform"
 }

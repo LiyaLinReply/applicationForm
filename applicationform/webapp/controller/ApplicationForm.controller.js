@@ -23,7 +23,6 @@ sap.ui.define([
             _this.JModelSetupPersonalInfo(_this);
             _this.setModel(new JSONModel({}), "AcademicInfo");
 
-
             window.addEventListener('resize', _this._handleResize.bind(_this));
 
         },
@@ -31,7 +30,6 @@ sap.ui.define([
         onNavigationItemSelect : function(oEvent){
             const _this = this;
             const currentStep = _this.getModel("ApplicationFormInfo");
-            var oSideNavigation = _this.byId("applicationFormSideNavigation");
             let selectedStep = oEvent.getParameter("item").getKey();
             let nextStep = selectedStep;
             try {
@@ -239,7 +237,7 @@ sap.ui.define([
             const promises = [_this.oDataGET(_this, "/Program", "ProgramList", '', '', "ProgramList").then((data) => {
     
                 const faculty = data.results.filter(result => result.typeProgram === "FACULTY");
-                const normal = data.results.filter(result => result.typeProgram === "STANDARD");
+                const normal = data.results.filter(result => result.typeProgram === "STANDARD" || !result.typeProgram);
                 normal.push({ID: "Faculty",name : "Faculty-Led Program", typeProgram : "FACULTY"});
                 _this.setModel(new JSONModel({results : faculty}), "FacultyProgramList");
                 _this.setModel(new JSONModel({results : normal}), "ProgramList");
@@ -1296,6 +1294,8 @@ sap.ui.define([
             _this.oDataGET(_this, "/MedicalCondition", "MedicalConditionList", "", "", "MedicalConditionList")];
             Promise.all(promises).then().catch((err) => console.log(err)).finally(() => {
                 _this.getModel("ApplicationFormInfo").setProperty("/busy", false);
+                _this.getModel("ApplicationFormInfo").setProperty("/loadHealth", true);
+
             })
         },
 
@@ -1443,9 +1443,30 @@ sap.ui.define([
 
         onApplicationUpload : function(){
             const _this = this;
+            _this.postAttachment(_this, _this.oPassportFile,"/REST/v1/documents");
+        },
 
+        onGetUser : function(){
+            const _this = this;
             _this.getUser(_this, "/REST/v1/getUser").then(data => {
                 console.log(data);
+            });
+        },
+        onGetUser2 : function(){
+            const _this = this;
+            $.ajax({
+   
+                url: "/user-api/currentUser",
+                async: false,
+                success: jQuery.proxy(function (user) {
+                    
+                    var currentUser = {
+                        fullName: user.lastName + ", " + user.firstName,
+                        userId: user.name,
+                    };
+                    //Here you can also set object to your oData Model
+                
+                })
             });
         },
     });

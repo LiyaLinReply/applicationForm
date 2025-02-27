@@ -82,8 +82,7 @@
                     <u:FileUploader visible="{AcademicInfo>/learningImpairments}" id="impairmentsDocumentUpload" change="onUploadLearningImpairment" value="{AcademicInfoNotMandatory>/filename}"></u:FileUploader>
                 </VBox>
                 <VBox width="30%">
-                    <CheckBox  text="{i18n>AcademicInfoInternshipCheckBox}" selected="{AcademicInfo>/internshipRequest}"/>
-                    <Label text="{i18n>AcademicInfoInternshipText}" wrapping="true" />
+
                 </VBox>
             </HBox>
 
